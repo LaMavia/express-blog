@@ -1,0 +1,155 @@
+@require "../partials/breakpoints.styl"
+
+:root
+  --chunk-h: 50vh
+  --article-h: 10vh
+  --main-bg: #1e1e1e
+  --main-padding-ver: 3%
+  --main-padding-hor: 10%
+
+.main 
+  width: 100vw
+  height: auto
+  background-color: var(--main-bg)
+  padding: var(--main-padding-ver) var(--main-padding-hor)
+  z-index 50
+  position relative
+
+  &__title
+    font-size: 2.4rem
+    text-align: center
+    font-family: monospace
+    position: relative
+    background: var(--main-bg)
+    color: #ededed
+    width: 22vw
+    font-weight: lighter
+    margin: 5vh auto 0 auto
+
+    &::before 
+    &::after
+      content: ""
+      position: absolute
+      top: 50%
+      width: calc(100vw / 2)
+      height: 3px
+      background-color: rgb(70,70,70)
+      transform: translateY(-50%)
+      z-index: -1
+
+    &::before
+      left: calc(100vw / -3.2 + var(--main-padding-hor))
+    
+    &::after
+      right: calc(100vw / -3.2 + var(--main-padding-hor))
+
+  &__posts
+    --rows: 5
+    --cols: 3
+    --template: "a c e"\ 
+                "a c e"\ 
+                "a d e"\ 
+                "b d f"\ 
+                "b d f"
+    --gap: 3vh
+    width: 100%
+    min-height: 100vh
+    height: 120vh
+    padding: 2% 0
+    align-content: space-around
+    display: grid
+    grid-template: repeat(5, 1fr) \/ repeat(3, 1fr)
+    grid-template-areas: \
+      "a c e"\
+      "a c e"\
+      "a d e"\
+      "b d f"\
+      "b d f"
+    grid-gap: var(--gap)
+
+
+    &__item
+      background-color: #fefefe
+      display: block
+      nthAlphabet()
+      overflow: hidden
+
+      &--small
+        .main__posts__item__link
+          grid-template-areas: \
+            "img"\
+            "img"\
+            "img"\
+            "article"\
+            "article"\
+            "article"
+      
+      &--big
+        .main__posts__item__link
+          grid-template-areas: \
+            "img"\
+            "img"\
+            "img"\
+            "img"\
+            "article"\
+            "article"
+          
+      
+      &__link
+        position: relative
+        left: 0
+        top: 0
+        width: 100%
+        height: 100%
+        display: grid
+        text-decoration: none
+        grid-template: repeat(6,1fr) \/ 1fr
+
+        &__img
+          grid-area: img
+          min-width: 100%
+          min-height: 100%
+          max-height: 150%
+
+        &__article
+          --title-color: #1b1b1b
+          grid-area: article
+          background-color: #fefefe
+          padding: 5%
+          position: relative
+          &::after
+            content: "..."
+            text-align: center
+            font-size: 1.2rem
+            position: absolute
+            left: 0
+            bottom: 0
+            height: (@padding * 3)
+            width: 100%
+            background-color: @background-color
+  
+          &__date
+            color: #cccccc
+            font-size: 1.2rem
+            text-transform: uppercase
+            font-family: monospace
+            font-weight: 100
+  
+          &__title
+            color: var(--title-color)
+            font-size: 2rem
+            white-space: pre-line
+            font-weight: 100
+  
+          &__line
+            width: 30%
+            height: 3px
+            background-color: var(--title-color)
+            margin: 1.4rem 0
+  
+          &__desc
+            font-size: 1.2rem
+            color: #4a4a4a
+            overflow: hidden
+  
+  

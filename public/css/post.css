@@ -1,0 +1,167 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700);
+@import url(http://fonts.googleapis.com/css?family=Arimo:700,700italic);
+:root {
+  --post-header-height: 100vh; }
+
+.header {
+  --img: url("http://placekitten.com/g/1280/720");
+  width: 100vw;
+  height: var(--post-header-height);
+  background: var(--img) center center no-repeat fixed;
+  background-size: cover;
+  position: relative;
+  perspective: 1000px;
+  transform: translateZ(-3px) scale(1.05); }
+  .header__title {
+    text-align: center;
+    line-height: var(--post-header-height);
+    line-break: strict;
+    white-space: pre-line;
+    color: #ffffff;
+    text-align: center;
+    font-size: 4rem;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    font-weight: 300;
+    text-transform: uppercase; }
+
+.main {
+  width: auto;
+  height: auto;
+  line-height: 1.85;
+  color: #444;
+  font-family: "Open Sans Condensed", sans-serif;
+  font-weight: 300;
+  margin: 0 auto;
+  max-width: 48rem;
+  line-height: 1.45;
+  padding: 0.25rem;
+  /* https://github.com/mrmrs/fluidity */ }
+  @media print {
+    .main *,
+    .main *:before,
+    .main *:after {
+      background: transparent !important;
+      color: #000 !important;
+      box-shadow: none !important;
+      text-shadow: none !important; }
+    .main a,
+    .main a:visited {
+      text-decoration: underline; }
+    .main a[href]:after {
+      content: " (" attr(href) ")"; }
+    .main abbr[title]:after {
+      content: " (" attr(title) ")"; }
+    .main a[href^="#"]:after,
+    .main a[href^="javascript:"]:after {
+      content: ""; }
+    .main pre,
+    .main blockquote {
+      border: 1px solid #999;
+      page-break-inside: avoid; }
+    .main thead {
+      display: table-header-group; }
+    .main tr,
+    .main img {
+      page-break-inside: avoid; }
+    .main img {
+      max-width: 100% !important; }
+    .main p,
+    .main h2,
+    .main h3 {
+      orphans: 3;
+      widows: 3; }
+    .main h2,
+    .main h3 {
+      page-break-after: avoid; } }
+  .main pre,
+  .main code {
+    font-family: Menlo, Monaco, "Courier New", monospace; }
+  .main pre {
+    padding: 0.5rem;
+    line-height: 1.25;
+    overflow-x: scroll; }
+  .main a,
+  .main a:visited {
+    color: #3498db; }
+  .main a:hover,
+  .main a:focus,
+  .main a:active {
+    color: #2980b9; }
+  .main .modest-no-decoration {
+    text-decoration: none; }
+  .main html {
+    font-size: 12px; }
+  @media screen and (min-width: 32rem) and (max-width: 48rem) {
+    .main html {
+      font-size: 15px; } }
+  @media screen and (min-width: 48rem) {
+    .main html {
+      font-size: 16px; } }
+  .main p,
+  .main .modest-p {
+    font-size: 1rem;
+    margin-bottom: 1.3rem; }
+  .main h1,
+  .main .modest-h1,
+  .main h2,
+  .main .modest-h2,
+  .main h3,
+  .main .modest-h3,
+  .main h4,
+  .main .modest-h4 {
+    margin: 1.414rem 0 0.5rem;
+    font-weight: inherit;
+    line-height: 1.42; }
+  .main h1,
+  .main .modest-h1 {
+    margin-top: 0;
+    font-size: 3.998rem; }
+  .main h2,
+  .main .modest-h2 {
+    font-size: 2.827rem; }
+  .main h3,
+  .main .modest-h3 {
+    font-size: 1.999rem; }
+  .main h4,
+  .main .modest-h4 {
+    font-size: 1.414rem; }
+  .main h5,
+  .main .modest-h5 {
+    font-size: 1.121rem; }
+  .main h6,
+  .main .modest-h6 {
+    font-size: 0.88rem; }
+  .main small,
+  .main .modest-small {
+    font-size: 0.707em; }
+  .main img,
+  .main canvas,
+  .main iframe,
+  .main video,
+  .main svg,
+  .main select,
+  .main textarea {
+    max-width: 100%; }
+  .main html {
+    font-size: 18px;
+    max-width: 100%; }
+  .main h1,
+  .main h2,
+  .main h3,
+  .main h4,
+  .main h5,
+  .main h6 {
+    font-family: Arimo, Helvetica, sans-serif; }
+  .main h1,
+  .main h2,
+  .main h3 {
+    border-bottom: 2px solid #fafafa;
+    margin-bottom: 1.15rem;
+    padding-bottom: 0.5rem;
+    text-align: center; }
+  .main blockquote {
+    border-left: 8px solid #fafafa;
+    padding: 1rem; }
+  .main pre,
+  .main code {
+    background-color: #fafafa; }

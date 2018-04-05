@@ -1,0 +1,10 @@
+extends layout
+block heading
+  header.header(style=`--img: url(${/https?/g.test(post.Img) ? post.Img : `../${post.Img}`})`)
+    h1.header__title #{post.Title}
+
+block content
+  main.post !{post.Body}
+  // link(rel="stylesheet", href="../css/post.css")
+  script(src="../js/post.js")
+    

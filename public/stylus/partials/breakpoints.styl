@@ -1,0 +1,15 @@
+medias = {
+  phone:     "screen and (max-width: 599px)"
+  tablet_ver: "screen and (max-width: 1024px) and (min-width: 768px)",
+  tablet_hor: "screen and (max-width: 1280px) and (min-width: 1025px)",
+  laptop:     "screen and (max-width: 1800px) and (min-width: 1201px)",
+  desktop:    "screen and (min-width: 1800px)"
+}
+
+breakpoint(breakpoints)
+  conditions = ()
+  for brPoint in breakpoints
+    push(conditions, medias[brPoint])
+  conditions = join(", ", conditions)
+  @media conditions
+    {block}  

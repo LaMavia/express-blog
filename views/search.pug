@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  main.search
+    if posts.length === 0
+      span.search__empty #{`I didn't find anything :(\nPlease search for something else :)`}
+    else
+      -const cols = 2
+      -const rows = Math.ceil(posts.length / cols)
+      ol.search__posts(style=`--cols: ${cols}; --rows: ${rows}`)
+        each post in posts 
+          li.search__posts__item
+            img(src= post.Img, alt="").search__posts__item__img
+            article.search__posts__item__article
+              time.search__posts__item__article__date #{post.Date}
+              h2.search__posts__item__article__title #{post.Title}
+              div.search__posts__item__article__line
+              p.search__posts__item__article__desc #{post.Desc}
+              a.search__posts__item__article__link(title="Read More", href=`${home.replace(/\/\s*\n?$\n?/g, "")}/posts/${post._id}`) Read More
+          

@@ -1,0 +1,8 @@
+@function threeD($color) {
+	@return 1px 1px 0.5px $color, 2px 2px 0.5px darken($color, 10%),
+		3px 3px 0.5px darken($color, 30%);
+}
+
+@mixin nthAlphabet() {
+	
+}

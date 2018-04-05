@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="780 555 320 130"  class="nav__burger__icon">
+  <line 
+    class="nav__burger__icon__line"
+    x1="785" y1="555" 
+    x2="1095" y2="560" 
+    stroke-width="20" borderRadius="50%" stroke="rgb(255,255,255)"  stroke-linecap="round" 
+  />
+  <line 
+    class="nav__burger__icon__line"
+    x1="785" y1="620" 
+    x2="1095" y2="620" 
+    stroke-width="20" borderRadius="50%" stroke="rgb(255,255,255)"  stroke-linecap="round" 
+  />
+  <line 
+    class="nav__burger__icon__line"
+    x1="785" y1="680" 
+    x2="1095" y2="680" 
+    stroke-width="20" borderRadius="50%" stroke="rgb(255,255,255)"  stroke-linecap="round" 
+  />
+</svg>

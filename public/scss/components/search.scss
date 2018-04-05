@@ -1,0 +1,133 @@
+@import "../partials/breakpoints.scss";
+
+.search {
+	width: 100vw;
+	height: auto;
+  min-height: 100vh;
+  background-color: var(--main-bg);
+  padding: 
+  calc(var(--nav-height) * 0.6 + var(--main-padding-ver)) 
+  var(--main-padding-hor)
+  var(--main-padding-ver)
+  var(--main-padding-hor);
+
+  &__empty {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    color: #fefefe;
+    white-space: pre-line;
+    text-align: center;
+  }
+
+	&__posts {
+		--cols: 3;
+		--rows: 3;
+		--item-h: 30vh;
+		--item-w: 1fr;
+		display: grid;
+		grid-template:
+			repeat(var(--rows), var(--item-h)) /
+			repeat(var(--cols), var(--item-w));
+    grid-gap: var(--main-list-gap);
+
+    @include phone {
+      --item-h: 70vh;
+      grid-template: 
+        repeat(calc(var(--cols) * var(--rows)), var(--item-h)) / 
+        var(--item-w);
+    }
+
+		&__item {
+			display: grid;
+			grid-template: 100% / var(--item-h) 1fr;
+			grid-template-areas: "img article";
+      overflow: hidden;
+
+      @include phone {
+        grid-template: 40% 1fr / 100%;
+        grid-template-areas: 
+          "img"
+          "article"
+        ;
+      }
+      
+      &__img {
+        min-width: 100%;
+        max-width: 150%;
+        height: 100%;
+        grid-area: img;
+      }
+
+      &__article {
+        --title-color: #1b1b1b;
+        $padding: 5%;
+        $bg: #fefefe;
+        grid-area: article;
+        background-color: $bg;
+        padding: $padding;
+        position: relative;
+        display: grid;
+        grid-template: 2rem auto 2.4rem auto 6vh / 100%; // Date Title line desc link
+
+        &__date {
+          color: #cccccc;
+          font-size: 1.2rem;
+          text-transform: uppercase;
+          font-family: monospace;
+          font-weight: 100;
+        }
+
+        &__title {
+          color: var(--title-color);
+          font-size: 2rem;
+          white-space: pre-line;
+          font-weight: 100;
+          overflow: hidden;
+        }
+
+        &__line {
+          width: 30%;
+          height: 3px;
+          background-color: var(--title-color);
+          margin: auto 0;
+        }
+
+        &__desc {
+          font-size: 1.2rem;
+          color: #4a4a4a;
+          overflow: hidden;
+        }
+
+        &__link {
+          $color: #9f9f9f;
+          $height: 5.4vh;
+          display: block;
+          width: 34%;
+          height: $height;
+          text-align: center;
+          line-height: $height;
+          font-size: 100%;
+          font-weight: 700;
+          color: $color;
+          text-transform: uppercase;
+          text-decoration: none;
+          border: 3px solid $color;
+          margin: auto 0 0 0;
+          transition: 
+            color  .1s 0s ease-in-out,
+            border .1s 0s ease-in-out
+          ;
+
+          &:hover {
+            $color: #2f2f2f;
+            color: $color;
+            border-color: $color;
+          }
+        }
+      }
+		}
+	}
+}

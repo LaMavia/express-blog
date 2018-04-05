@@ -1,0 +1,161 @@
+.main__pinned {
+  display: grid;
+  width: 100%;
+  height: 110vh;
+  grid-template: repeat(8, 1fr) / repeat(8, 1fr);
+  grid-template-areas: 
+    "top top top top top top top top"
+    "top top top top top top top top"
+    "top top top top top top top top"
+    "top top top top top top top top"
+    "top top top top top top top top"
+    "left left left left right right right right"
+    "left left left left right right right right"
+    "left left left left right right right right"
+    ;
+  grid-gap: 3vh;
+
+  &__article {
+    position: relative;
+    overflow: hidden;
+    &--big {
+      grid-area: top;
+      width: 100%;
+      height: 100%;
+      background-color: #fefefe;
+      display: grid;
+      grid-template: 1fr / 60% 40%;
+      grid-template-areas: "img article";
+
+      .main__pinned__article {
+        &__img {
+          grid-area: img;
+          min-width: 100%;
+          height: 100%;
+        }
+
+        &__data {
+          --title-color: #1b1b1b;
+          grid-area: article;
+          padding: 5% 5% 0 5%;
+          display: grid;
+          background-color: #fefefe;
+          
+          &__date {
+            color: #cccccc;
+            font-size: 1.3rem;
+          }
+
+          &__title {
+            font-size: 4.4rem;;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            color: var(--title-color);
+          }
+
+          &__line {
+            width: 30%;
+            height: 3px ;
+            background-color: var(--title-color);
+          }
+
+          &__desc {
+            font-size: 1.2rem;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            color: #4a4a4a;
+          }
+
+          &__link {
+            $color: #9f9f9f;
+            $height: 5.4vh;
+            display: block;
+            width: 34%;
+            height: $height;
+            text-align: center;
+            line-height: $height;
+            font-size: 100%;
+            font-weight: 700;
+            color: $color;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: 3px solid $color;
+            transition: 
+              color .1s 0s linear,
+              border-color .1s 0s linear
+            ;
+
+            &:hover {
+              $color: #2f2f2f;
+              color: $color;
+              border-color: $color;
+            }
+          }
+        }
+      }
+    }
+
+    
+    &--small {
+      background: #eeeeee;
+      grid-area: right;
+      &:nth-of-type(2) { 
+        grid-area: left;
+      }  
+      .main__pinned__article {
+        box-shadow: inset 0 2vh 2vh 1px rgba(0,0,0,0.8);
+
+        &__link {
+          --img: url('../images/PH/mountains-l.jpeg');
+          --d: 2.4vh;
+          --t: 8vh;
+          display: grid;
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+          padding: 2%;
+          text-decoration: none;
+          background: var(--img) center center no-repeat ;
+          background-size: cover;
+          grid-template: repeat(3, 1fr) var(--d) var(--t) / 100%;
+          grid-template-areas: 
+            "space"
+            "space"
+            "space"
+            "date"
+            "title"
+          ;
+
+          &__img {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            min-height: 100%;
+          }
+          &__date {
+            grid-area: date;
+            color: #eeeeee;
+            font-size: calc( var(--d) * 0.9 );
+            text-transform: uppercase;
+            text-align: center;
+            z-index: 2;
+          }
+          &__title {
+            z-index: 3;
+            grid-area: title;
+            color: #ffffff;
+            text-align: center;
+            font-size: calc( var(--t) * 0.7 );
+            font-weight: 700;
+            font-style: italic;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+          }
+        }
+      }
+    }
+  }
+}
+
+      
+  
