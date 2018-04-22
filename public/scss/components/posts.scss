@@ -16,6 +16,10 @@
 	z-index: 50;
 	position: relative;
 
+	@include phone {
+		--main-padding-hor: 4%;
+	}
+
 	&__title {
 		font-size: 2.4rem;
 		text-align: center;
@@ -177,6 +181,7 @@
 
 					&__desc {
 						font-size: 1.2rem;
+						height: 2ch;
 						color: #4a4a4a;
 						overflow: hidden;
 					}

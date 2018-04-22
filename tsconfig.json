@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "alwaysStrict": true,
+    "target": "es6",
+    "inlineSources": true,
+    "module": "commonjs"
+  }
+}

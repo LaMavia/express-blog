@@ -42,26 +42,40 @@
   }
 
 	const nav = document.getElementById("nav")
-	document.getElementById("burger").addEventListener("click", e => {
-			e.preventDefault()
+	const burger = document.getElementById("burger")
+	let oldY = window.scrollY
+
+	burger.addEventListener("click", e => {
+			// e.preventDefault()
 			nav.classList.toggle("nav--open")
-		},true)
+		},false)
 
 	document.body.addEventListener(
 		"click",
 		e => {
-			if (nav.classList.contains("nav--open")) {
+			console.log(e)
+			// e.target !== nav && e.target !== burger
+			if (!e.path.some(el => el === nav)) {
 				nav.classList.remove("nav--open")
 			}
-		},
-		{capture: true}
+		},{capture: true}
 	)
 
-	window.addEventListener("scroll", e => {
+	window.addEventListener("scroll", e => {	
 		const __navHeightString = getComputedStyle(nav).height
 		const navHeight = Math.floor(Number(__navHeightString.substring(0, __navHeightString.length - 2)))
 		if( window.scrollY > navHeight ) {
 			nav.classList.add("nav--sticky")
+
+			const yD = oldY - window.scrollY
+			oldY = window.scrollY
+			if(yD < 0) {
+				nav.classList.add("nav--sticky--hidden")
+				nav.classList.remove("nav--sticky--shown")
+			} else {
+				nav.classList.remove("nav--sticky--hidden")
+				nav.classList.add("nav--sticky--shown")
+			}
 		} else {
 			nav.classList.remove("nav--sticky")
 		}
@@ -69,7 +83,7 @@
 
 	document.getElementById("search").addEventListener("submit", e => {
 		e.preventDefault()
-		window.location.href = `${location.origin}/search?filter=${e.target[0].value}`
+		window.location.href = `${location.origin}/search?filter=${e.target[0].value}&order=newest`
 		/*const list = document.getElementById("list")
 		const filter = e.target[0].value
 		let posts

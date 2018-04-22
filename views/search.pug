@@ -1,13 +1,26 @@
 extends layout
 
 block content
+  script(src="/js/search.js", defer)
+  input(type="hidden", name="filter", value= filter)#filter
   main.search
+    section.search__settings
+      form.search__settings__form#search
+        ul.search__settings__form__options
+          li.search__settings__form__options__item
+            label(for="order").search__settings__form__options__item__label
+            select#order.search__settings__form__options__item__input.search__settings__form__options__item__input--order(name="order", placeholder="Order")
+              option(value="newest") Newest
+              option(value="oldest") Oldest
+        button(type="submit").search__settings__form__submit#submit Filter
+        
     if posts.length === 0
       span.search__empty #{`I didn't find anything :(\nPlease search for something else :)`}
     else
       -const cols = 2
       -const rows = Math.ceil(posts.length / cols)
       ol.search__posts(style=`--cols: ${cols}; --rows: ${rows}`)
+        input#data(type="hidden", name="data", value= posts.map(e => ({Date: e.Date})))
         each post in posts 
           li.search__posts__item
             img(src= post.Img, alt="").search__posts__item__img

@@ -4,13 +4,13 @@
   }
 }
 
-@mixin tablet-portrait {
+@mixin tablet-ver {
   @media screen and (max-width: 1024px) and (min-width: 768px) {
     @content;
   }
 }
 
-@mixin tablet-landscape {
+@mixin tablet-hor {
   @media screen and (max-width: 1366px) and (min-width: 1025px) {
     @content;
   }

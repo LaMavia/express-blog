@@ -32,7 +32,7 @@ html {
 	background-size: cover;
 	position: relative;
 	perspective: 1000px;
-	transform: translateZ(-3px) scale(1.05) translateY(-3%);
+	transform: translateZ(-3px) scale(1.05) translateY(-2%);
 	overflow: hidden;
 
 	&__title {
@@ -194,6 +194,7 @@ html {
 		padding: 1rem 2rem;
 		background-color: #eee;
 		border-left: 0.1rem solid #888;
+		white-space: pre-line;
 	}
 
 	p code {

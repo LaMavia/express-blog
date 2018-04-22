@@ -54,7 +54,7 @@ app.use(
 		// file: 'style.scss',
 		dest: path.join(__dirname, "public/css"),
 		debug: true,
-		// outputStyle: "compressed",
+		// outputStyle: process.env === "development" ? "expanded" : "compressed",
 		prefix: "/css" // Where prefix is at <link rel="stylesheets" href="prefix/style.css"/>
 	})
 )
@@ -80,7 +80,6 @@ app.get("/api/posts", (req, res, next) => {
 		})
 		.catch(console.error)
 })
-
 app.get("/api/filtered", async (req, res) => {
 	await Post.find()
 		.then(data => {

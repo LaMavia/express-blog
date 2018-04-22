@@ -9,6 +9,17 @@
       "request": "launch",
       "name": "Launch Program",
       "program": "${workspaceFolder}\\bin\\www"
-    }
+    },
+    {
+      "name": "Current TS File",
+      "type": "node",
+      "request": "launch",
+      "args": ["${relativeFile}"],
+      "runtimeArgs": ["--nolazy", "-r", "ts-node/register"],
+      "sourceMaps": true,
+      "cwd": "${workspaceRoot}",
+      "protocol": "inspector",
+      "program": "${workspaceFolder}\\bin\\www"
+  }
   ]
 }

@@ -9,6 +9,5 @@
 const MySlider = new Slider(
   JSON.parse(document.getElementById("__slides__").value)
 )
-
 // const PostsLoader = new Posts()
 // PostsLoader.load()

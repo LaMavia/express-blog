@@ -1,7 +1,7 @@
 @import "../partials/colors";
 // @require "../partials/pos"
 // @require "../partials/functions"
-// @require "../partials/breakpoints"
+@import "../partials/breakpoints";
 
 :root {
 	--header-title-size: 30rem;
@@ -93,30 +93,49 @@
 			&__title {
 				grid-row: 3 / 6;
 				grid-column: 1 / -1;
+				width: auto;
+				height: auto;
+				max-height: 100%;
+				margin: auto;
 				color: #ffffff;
 				font-size: floor(100vh / 9);
-				line-height: floor(100vh / 3.5);
+				line-height: 1;
+				// line-height: floor(100vh / 3.5);
+				vertical-align: middle;
 				text-align: center;
 				text-transform: capitalize;
 				text-shadow: 0 0 1.6px rgba(21, 21, 21, 0.7);
 				white-space: pre-line;
 				overflow: hidden;
+				@include phone {
+					font-size: 13vw;
+				}
 			}
 
 			&__desc {
 				grid-row: 6 / 7;
 				grid-column: 4 / 8;
 				text-align: center;
-				line-height: 10vh;
+				// line-height: 10vh;
 				color: #ffffff;
 				font-size: 1.3rem;
 				text-shadow: 0 0 1px rgba(21, 21, 21, 0.7);
 				overflow: hidden;
 				white-space: pre-line;
+				padding: 5% 0;
+				line-height: 1;
+				@include phone {
+					grid-row: 6 / 8;
+					grid-column: 3 / 9;
+					vertical-align: top;
+					width: auto;
+					height: auto;
+				}
 			}
 
 			&__link {
 				$height: 60%;
+				$p_height: 70%;
 				display: block;
 				width: 60%;
 				height: $height;
@@ -131,6 +150,12 @@
 				text-decoration: none;
 				text-transform: uppercase;
 				overflow: hidden;
+				@include phone {
+					grid-row: 8 / 9;
+					grid-column: 2 / 10;
+					height: $p_height;
+					line-height: calc(100vh / 16);
+				}
 			}
 		}
 	}

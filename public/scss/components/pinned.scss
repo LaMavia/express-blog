@@ -15,6 +15,15 @@
     ;
   grid-gap: 3vh;
 
+  @include phone {
+    height: 160vh;
+    grid-template: repeat(14, 1fr) / 1fr;
+    grid-template-areas: 
+      "top" "top" "top" "top" "top" "top" 
+      "left" "left" "left" "left"
+      "right" "right" "right" "right"
+  }
+
   &__article {
     position: relative;
     overflow: hidden;
@@ -26,6 +35,10 @@
       display: grid;
       grid-template: 1fr / 60% 40%;
       grid-template-areas: "img article";
+      @include phone {
+        grid-template: 60% 40% / 1fr;
+        grid-template-areas: "img" "article";
+      }
 
       .main__pinned__article {
         &__img {
@@ -44,18 +57,23 @@
           &__date {
             color: #cccccc;
             font-size: 1.3rem;
+            @include phone { font-size: 1rem; }
           }
 
           &__title {
-            font-size: 4.4rem;;
+            font-size: 4.4rem;
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
             color: var(--title-color);
+            @include phone {
+              font-size: 1.5rem;
+            }
           }
 
           &__line {
             width: 30%;
             height: 3px ;
             background-color: var(--title-color);
+            @include phone { display: none; }
           }
 
           &__desc {
@@ -64,6 +82,7 @@
             height: 100%;
             overflow: hidden;
             color: #4a4a4a;
+            @include phone { display: none; }
           }
 
           &__link {
@@ -117,7 +136,7 @@
           text-decoration: none;
           background: var(--img) center center no-repeat ;
           background-size: cover;
-          grid-template: repeat(3, 1fr) var(--d) var(--t) / 100%;
+          grid-template: repeat(3, 1fr) var(--d) auto / 100%;
           grid-template-areas: 
             "space"
             "space"
@@ -146,7 +165,10 @@
             grid-area: title;
             color: #ffffff;
             text-align: center;
-            font-size: calc( var(--t) * 0.7 );
+            font-size: 1.8rem;
+            vertical-align: middle;
+            width: 100%;
+            height: auto;
             font-weight: 700;
             font-style: italic;
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;

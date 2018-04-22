@@ -20,7 +20,7 @@ $postParams = @{
   Img    = $PH_Images[$n];
   Body   = $PH_Body;
   Author = "DevCat";
-  Date   = "April 4th 2018";
+  Date   = "2018 7 14";
 }
 
-Invoke-WebRequest -Uri http://localhost:3000/api/add/post -Method POST -Body $postParams
+Invoke-WebRequest -Uri http://localhost:3000/api/add/post -Method POST -Body $postParams 

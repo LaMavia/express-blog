@@ -2,19 +2,19 @@ mixin item(name, href)
   li.nav__pages__item
     a.nav__pages__item__link(href= href) #{name}
 
-nav.nav.nav--static.nav--open#nav
+nav.nav.nav--static#nav
   button.nav__burger#burger
     include ../../public/svg/menu.svg
   h1.nav__logo
     a.nav__logo__link(href= home) #{title}
   form.nav__search#search(action="")
-    input.nav__search__input(type="search", name="filter")
+    input.nav__search__input(type="search", name="filter", value= filter ? filter : "")
     // div.nav__search__bg
     button.nav__search__submit(type="submit") 
       include ../../public/svg/search.svg
   ul.nav__pages
     each page in pages
-      +item(page.name, page.href)
+      +item(page.Name, page.Href)
     // +item("home", "http://localhost:3000/")
     // +item("users", "http://localhost:3000/users")
     // +item("users", "http://localhost:3000/users")

@@ -4,6 +4,8 @@ const md =require('markdown-it')({
   linkify: true,
 	typographer: true
 })
+	.use(require('markdown-it-footnote'))
+	.use(require('markdown-it-imsize'))
 
 const mongoose = require('mongoose')
 const router = express.Router()
@@ -21,9 +23,9 @@ router.get("/:id", async (req, res, next) => {
 		data.Body = md.render(data.Body)
 		console.dir(data.Body, {colors: true})
 		res.render("post", {
-			title: data.Title,
+			title: "Express", // Change for prod
 			home: "http://localhost:3000/",
-			pages,
+			pages: [],
 			header: {
 				slides: JSON.stringify(slides) 
 			},

@@ -1,17 +1,110 @@
 @import "../partials/breakpoints.scss";
-
+:root {
+  --search-settings-width: 12vw;
+  --search-settings-height: 5vh;
+}
 .search {
 	width: 100vw;
 	height: auto;
   min-height: 100vh;
   background-color: var(--main-bg);
   padding: 
-  calc(var(--nav-height) * 0.6 + var(--main-padding-ver)) 
+  var(--nav-height)
   var(--main-padding-hor)
   var(--main-padding-ver)
-  var(--main-padding-hor);
+  var(--main-padding-hor)
+  ;
+  display: grid;
+  grid-template: var(--search-settings-height) 1fr / 100%;
+  grid-template-areas: "settings" "content";
+  grid-row-gap: calc( var(--main-list-gap) * 0.6 );
+  @include phone {
+    --main-padding-ver: 0;
+    --main-padding-hor: 0;
+    --search-settings-height: 12vh;
+  }
+
+  &__settings {
+    // --top: calc(var(--nav-height) * 0.6);
+    grid-area: settings;
+    width: 100%;
+    height: var(--search-settings-height);
+
+    &__form {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-flow: row nowrap;
+
+      @include phone {
+        flex-flow: column nowrap;
+      }
+
+      &__options {
+        display: flex;
+        flex-flow: row nowrap;
+        // justify-content: space-around;
+        height: 100%;
+        width: 100%;
+
+        &__item {
+          height: 100%;
+          flex: 1 0 10%;
+
+          &__input {
+            --h: var(--search-settings-height);
+            width: 100%;
+            height: 100%;
+            margin: auto;
+
+            &--order {
+              font-size: 1.2rem;
+              option {
+                height: var(--h);
+              }
+            }
+          }
+        }
+
+        @include phone {
+         width: auto;
+         height: auto;
+         flex: 2 0 50%; 
+        }
+
+      }
+
+      &__submit {
+        $timing: .1s;
+        flex: 2 0 10%;
+        margin-left: 1%; 
+        border: 2px solid #fefefe;
+        background-color: transparent;
+        color: #fefefe;
+        font-weight: 600;
+        font-size: 1.2rem;
+        transition: 
+          background-color $timing 0s ease-in-out,
+          color            $timing 0s ease-in-out
+        ;
+
+        &:hover {
+          cursor: pointer;
+          background-color: #fefefe;
+          color: var(--main-bg);
+        }
+
+        @include phone {
+          flex: 1 0 30%;
+          margin: 0;
+        }
+      }
+    }
+
+  }
 
   &__empty {
+    grid-area: content;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -26,7 +119,8 @@
 		--cols: 3;
 		--rows: 3;
 		--item-h: 30vh;
-		--item-w: 1fr;
+    --item-w: 1fr;
+    grid-area: content;
 		display: grid;
 		grid-template:
 			repeat(var(--rows), var(--item-h)) /
@@ -35,6 +129,7 @@
 
     @include phone {
       --item-h: 70vh;
+      --item-w: 90vw;
       grid-template: 
         repeat(calc(var(--cols) * var(--rows)), var(--item-h)) / 
         var(--item-w);
@@ -48,6 +143,7 @@
 
       @include phone {
         grid-template: 40% 1fr / 100%;
+        margin: 0 auto;
         grid-template-areas: 
           "img"
           "article"
@@ -70,7 +166,7 @@
         padding: $padding;
         position: relative;
         display: grid;
-        grid-template: 2rem auto 2.4rem auto 6vh / 100%; // Date Title line desc link
+        grid-template: 2rem auto 2.4rem 1fr 6vh / 100%; // Date Title line desc link
 
         &__date {
           color: #cccccc;
@@ -81,6 +177,8 @@
         }
 
         &__title {
+          // display: block;
+          // height: auto;
           color: var(--title-color);
           font-size: 2rem;
           white-space: pre-line;
@@ -99,13 +197,21 @@
           font-size: 1.2rem;
           color: #4a4a4a;
           overflow: hidden;
+          max-height: 7ch;
+          
+          @include phone {
+            display: none;
+            visibility: hidden;
+          }
         }
 
         &__link {
           $color: #9f9f9f;
           $height: 5.4vh;
           display: block;
-          width: 34%;
+          min-width: 34%;
+          width: auto;
+          max-width: 50%;
           height: $height;
           text-align: center;
           line-height: $height;
@@ -125,6 +231,11 @@
             $color: #2f2f2f;
             color: $color;
             border-color: $color;
+          }
+
+          @include phone {
+            margin: auto;
+            grid-row: 4 / 6;
           }
         }
       }
