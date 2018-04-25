@@ -85,9 +85,7 @@ class Shadow {
         this.InitModels();
         this.UpdateData();
         this.InitRoutes();
-        // const server = this.app.listen(
-        // 	this.port, () => console.info("Ready for Action 👊")
-        // )
+        console.info("\x1b[36m%s\x1b[0m", " Ready for Action 👊");
     }
     // DataBase Methods
     GetFromDB(modelName, conditions = {}) {

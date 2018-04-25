@@ -68,7 +68,8 @@ export default class Shadow {
 
 	InitRoutes() {
 		this.routes.forEach(( route: iShadow.Route ) => {
-			this.app.use(route.path, route.handler(this.data))
+			const passedData = Object.freeze(Object.assign({}, this.data))
+			this.app.use(route.path, route.handler(passedData))
 		})
 	}
 
@@ -100,6 +101,9 @@ export default class Shadow {
 		this.app.set("view engine", "pug")
 		dotenv.config()
 		this.data.origin = process.env["HOST"]
+		this.data.sharedMethods = {
+			GetFromDB: this.GetFromDB.bind(this)
+		}
 
 		this.InitMiddleware()
 		this.InitAPI()
@@ -107,10 +111,8 @@ export default class Shadow {
 		this.UpdateData()
 
 		this.InitRoutes()
-
-		// const server = this.app.listen(
-		// 	this.port, () => console.info("Ready for Action 👊")
-		// )
+		console.info("\x1b[36m%s\x1b[0m"," Ready for Action 👊")
+		console.dir(this.data, { colors: true })
 		
 	}
 

@@ -24,12 +24,18 @@ html, body {
 }
 
 body {
+  position: relative;
+  overflow-x: hidden;
 
   &::-webkit-scrollbar {
     width: 8px;
     background-color: #1a1a1a;
+    @include phone {
+      width: 2px;
+    }
     &-thumb {
       background-color: #eeeeee;
+      @include phone {}
     }
   }
 }

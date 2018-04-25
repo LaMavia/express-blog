@@ -14,6 +14,8 @@ const writeToJSON = require("./helpers/debug/writeToJSON")
 const wait = require("./helpers/debug/wait")
 // Routes
 import index from "./routes/index"
+import post from "./routes/post"
+import search from "./routes/search"
 // const users  = require("./routes/users")
 // const posts  = require("./routes/post")
 // const search = require("./routes/search")
@@ -21,7 +23,7 @@ import index from "./routes/index"
 // APIRoutes
 import posts from "./api/get/posts"
 
-import db, { schemas, origin } from "./db"
+import db, { schemas } from "./db"
 import iShadow from "./ShadowMS/types/basic"
 import Shadow from "./ShadowMS/index"
 const middleware = [
@@ -35,7 +37,7 @@ const middleware = [
 		// file: 'style.scss',
 		dest: path.join(__dirname, "public/css"),
 		debug: true,
-		// outputStyle: process.env === "development" ? "expanded" : "compressed",
+		outputStyle: "compressed",
 		prefix: "/css" // Where prefix is at <link rel="stylesheets" href="prefix/style.css"/>
 	}),
 	express.static(path.join(__dirname, "public")),
@@ -48,7 +50,9 @@ const middleware = [
 	})
 ]
 const routes: iShadow.Route[] = [
-	index
+	index,
+	post,
+	search
 ]
 const apiRoutes: iShadow.APIRoute[] = [
 	posts

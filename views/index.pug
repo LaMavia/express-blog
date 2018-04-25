@@ -7,12 +7,12 @@ mixin pinBig(pinned)
     h2.main__pinned__article__data__title #{pinned.Title}
     div.main__pinned__article__data__line
     p.main__pinned__article__data__desc #{pinned.Desc}
-    a.main__pinned__article__data__link(title="Read More", href=`http://localhost:3000/posts/${pinned._id}`) Read Article
+    a.main__pinned__article__data__link(title="Read More", href=`${home}/posts/${pinned._id}`) Read Article
 
 mixin pinSmall(pinned)
   // .main__pinned__article
   a.main__pinned__article__link(
-    href=`http://localhost:3000/posts/${pinned._id}`,
+    href=`${home}/posts/${pinned._id}`,
     style=`--img:url(${/https?/g.test(pinned.Img) ? pinned.Img : `../${pinned.Img}`})`
   )
     // img.main__pinned__article__link__img(src= pinned.Img)

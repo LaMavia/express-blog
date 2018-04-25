@@ -1,37 +1,41 @@
 // @ts-check
-import * as express from"express"
-const axios = require("axios")
+import * as express from "express"
 const router = express.Router()
-const db = require("../db")
-// const { Post } = db.models
-// const _pages = require("./data/pages")
 
-import iShadow from '../ShadowMS/types/basic'
+import iShadow from "../ShadowMS/types/basic"
 import Route from "../ShadowMS/classes/Route"
 
-const handlerConstructor = (data: iShadow.LooseObject) => router.get("/", async (req, res, next) => {
-	const pages = data.NavPage.map(page => ({
-		Name: page.Name,
-		Href: `${data.origin}${page.Href}`
-	}))
-
-	const posts = data["Post"] as any[]
-	const pinnedList: any[3] = []
-	for(let i = 0; i < posts.length && pinnedList.length < 3; i++) {
-		pinnedList.push(posts[i])
+const randomItems = (arr: any[], n: number) => {
+	const output = []
+	for (let i = 0; i < arr.length && output.length <= n; i++) {
+		output.push(arr[Math.floor(Math.random() * arr.length)])
 	}
+	return output
+}
 
-	res.render("index", {
-		title: "Express",
-		pages,
-		home: "http://localhost:3000/",
-		header: {
-			slides: require("./data/slides")
-		},
-		pinnedList,
-		posts
+const handlerConstructor = (data: iShadow.LooseObject) =>
+	router.get("/", (req, res, next) => {
+
+		const pages = data.NavPage.map(page => ({
+			Name: page.Name,
+			Href: `${data.origin}${page.Href}`
+		}))
+
+		const posts: any[] = data["Post"]
+		const pinnedList: any[] = randomItems(posts, 3)
+		
+
+		res.render("index", {
+			title: "Express",
+			pages,
+			home: data.origin,
+			header: {
+				slides: require("./data/slides")
+			},
+			pinnedList,
+			posts
+		})
 	})
-})
 
 /* GET home page. */
 const route = new Route("/", handlerConstructor)
