@@ -4,7 +4,7 @@ import formatPages from "../ShadowMS/functions/formatPages"
 
 import * as express from "express"
 import * as mdInit from "markdown-it"
-import * as mongoose from "mongoose"
+// import * as mongoose from "mongoose"
 
 
 const md = mdInit({
@@ -18,8 +18,9 @@ const md = mdInit({
 const router = express.Router()
 const slides = require("./data/slides")
 
-const handlerConstructor = (data: iShadow.LooseObject) =>
+const handlerConstructor = (Shadow: iShadow.App) =>
 	router.get("/:id", (req, res, next) => {
+		const data = Shadow.data
 		const id = req.params["id"]
 		const post = data.Post.find(pst => pst._id.toString() === id)
 		if (!post) {

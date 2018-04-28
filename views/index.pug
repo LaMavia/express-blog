@@ -19,6 +19,8 @@ mixin pinSmall(pinned)
     time.main__pinned__article__link__date #{pinned.Date}
     h3.main__pinned__article__link__title #{pinned.Title}
 
+block head
+  link(rel='stylesheet', href='/css/style.css')
 block heading
   include ./components/header
 block content
@@ -33,8 +35,5 @@ block content
 
     h2.main__title.main__title--posts Latest Stories
 
-    // Posts depend on it!
-    -var max = 6 
     include ./components/posts
   script(src="/js/index.js", defer)
-  // script(src="/js/posts.js", defer)

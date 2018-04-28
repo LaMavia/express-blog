@@ -9,7 +9,6 @@ html {
 
 body {
 	min-width: 100vw;
-	
 }
 
 @media print {
@@ -31,23 +30,38 @@ body {
 }
 
 .header {
-	--img: url("http://placekitten.com/g/1280/720");
+	perspective: 1px;
+	transform-style: preserve-3d;
+
 	width: 100vw;
 	height: var(--post-header-height);
-	background: var(--img) center center no-repeat fixed;
-	background-size: cover;
-	position: relative;
-	perspective: 1000px;
-	transform: translateZ(-3px) scale(1.05) translateY(-2%);
 	overflow: hidden;
 	@include phone {
-		// background-size: contain;
+	}
+	&__img {
+		min-height: var(--post-header-height);
+		transform: translateZ(-1px) scale(2); 
+		// max-height: 120vh;
+		width: auto;
+		min-width: 100vw;
+		position: fixed;
+		z-index: -1;
+		overflow: hidden;
+
+		@include phone {
+			transform: translateZ(-1px) translate(-37.5%, -25%); 
+		}
 	}
 
 	&__title {
+		display: block;
+		position: relative;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
 		text-align: center;
-		line-height: var(--post-header-height);
 		line-break: strict;
+		padding: 10%;
 		white-space: pre-line;
 		color: #ffffff;
 		text-align: center;
@@ -55,17 +69,35 @@ body {
 		font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 		font-weight: 300;
 		text-transform: uppercase;
+		text-shadow: .1px 2px 2px rgba(21,21,21,0.7);
+		word-wrap: break-word;
+		@include phone {
+			font-size: 2.4rem;
+			padding: 5%;
+		}
 	}
 }
 .post {
 	position: absolute;
 	left: 50%;
 	top: var(--post-header-height);
-	transform: translateX(-50%);
+	transform: translateX(-50%) translateZ(0);
 	min-height: 100vh;
 	height: auto;
 	white-space: pre-line;
 	width: 35em;
+
+	&::before {
+		content: "";
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		z-index: -1;
+		width: 100vw;
+		height: 100%;
+		background-color: #ffffff;
+	}
 	@include phone {
 		width: 90vw;
 	}

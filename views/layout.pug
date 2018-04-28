@@ -7,11 +7,11 @@ html
     link(rel="icon", href="./favicon.png", type="image/png")
     link(rel="shortcut icon", href="./favicon.png", type="image/png")
     link(rel="shortcut icon", href="./favicon.ico", type="image/x-icon")
-    link(rel='stylesheet', href='/css/style.css')
+    link(rel="manifest", href="./manifest.json")
+    block head 
   body
-    include ./components/nav
     block heading
+    include ./components/nav
     block content 
 
-  script(src="/js/postItemTemplate.js")
-  script(src="/js/nav.js")
+    script(src="/js/postItemTemplate.js")

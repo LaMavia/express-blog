@@ -1,5 +1,5 @@
-@charset "UTF-8";
 @import "./partials/breakpoints.scss";
+
 :root {
   --fs: 17px;
 }
@@ -39,9 +39,5 @@ body {
     }
   }
 }
-
 @import "./components/nav";
-@import "./components/pinned";
-@import "./components/header";
-@import "./components/posts";
-@import "./components/search";
+@import "./components/postComp";

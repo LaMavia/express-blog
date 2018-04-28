@@ -3,7 +3,11 @@ const transpile = (array = []) => {
   array = array.map(el => el.map(String).join(" "))
   return array
 }
-
+window.addEventListener("resize", e => {
+	waterfall("#list")
+})
+waterfall("#list")
+/*
 class Posts {
 	constructor(
 		config = {
@@ -73,3 +77,4 @@ class Posts {
 		this.output.style.setProperty("--template", `"${this.template.join('" "')}"`.replace(';', "") )
 	}
 }
+*/

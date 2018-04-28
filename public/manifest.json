@@ -1,0 +1,9 @@
+{
+  "name": "Express",
+  "short_name": "Express",
+  "theme_color": "#2c2c2c",
+  "background_color": "#1e1e1e",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "/"
+}

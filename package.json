@@ -6,11 +6,13 @@
     "dev": "SET DEBUG=true-blog:* & concurrently --kill-others \" mongod --dbpath C:\\Users\\xelox\\MongoDB\\data\\db \" \"nodemon --exec ts-node ./bin/www \" ",
     "start": "node ./bin/www",
     "db": "mongod --dbpath C:\\Users\\xelox\\MongoDB\\data\\db",
-    "watch": "nodemon --exec ts-node ./bin/www",
-    "shadow": "tsc ./ShadowMS/index --target ES2016 --strict -w --pretty --module commonjs"
+    "watch": "nodemon --exec ts-node ./bin/www -L",
+    "shadow": "tsc -p . -w",
+    "_shadow": "tsc ./ShadowMS/index --target ES2016 --strict -w --pretty --module commonjs"
   },
   "homepage": "http://localhost:3000",
   "dependencies": {
+    "@types/node-sass-middleware": "0.0.30",
     "axios": "^0.18.0",
     "body-parser": "~1.18.2",
     "compression": "^1.7.2",

@@ -1,13 +1,8 @@
 import * as mongoose from "mongoose"
-import * as fs from "fs-extra"
 
 import Post from "./schemas/Post"
 import NavPage from "./schemas/NavPage"
 
-const parse = d => {
-	const l = JSON.parse(d)
-	return l
-}
 
 // Setting up MongoDB
 mongoose

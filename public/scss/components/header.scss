@@ -99,16 +99,20 @@
 				margin: auto;
 				color: #ffffff;
 				font-size: floor(100vh / 9);
+				font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 				line-height: 1;
 				// line-height: floor(100vh / 3.5);
 				vertical-align: middle;
 				text-align: center;
 				text-transform: capitalize;
-				text-shadow: 0 0 1.6px rgba(21, 21, 21, 0.7);
+				text-shadow: .1px 2px 2px rgba(21,21,21,0.7);		
 				white-space: pre-line;
 				overflow: hidden;
+				font-weight: 300;
+
 				@include phone {
 					font-size: 13vw;
+					padding: 2%;
 				}
 			}
 
@@ -127,7 +131,8 @@
 				@include phone {
 					grid-row: 6 / 8;
 					grid-column: 3 / 9;
-					vertical-align: top;
+					padding-top: 15%;
+					vertical-align: baseline;
 					width: auto;
 					height: auto;
 				}
@@ -135,7 +140,7 @@
 
 			&__link {
 				$height: 60%;
-				$p_height: 70%;
+				$p_height: 80%;
 				display: block;
 				width: 60%;
 				height: $height;
@@ -150,11 +155,13 @@
 				text-decoration: none;
 				text-transform: uppercase;
 				overflow: hidden;
+
 				@include phone {
+					--h: calc(100vh / 12);
 					grid-row: 8 / 9;
-					grid-column: 2 / 10;
-					height: $p_height;
-					line-height: calc(100vh / 16);
+					grid-column: 1 / 11;
+					height: var(--h);
+					line-height: var(--h);
 				}
 			}
 		}

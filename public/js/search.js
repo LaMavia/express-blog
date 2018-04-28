@@ -14,6 +14,6 @@
     const order  = document.getElementById('order').value
     console.log(data.map(el => {el.Date = new Date(el.Date); return el}))
     location.href = `${location.origin}${location.pathname}?filter=${filter}&order=${order}`
-    // console.log(posts)
   })
+  const nav = new Nav(window)
 })()

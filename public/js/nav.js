@@ -1,106 +1,75 @@
-;(() => {
-	const templates = {
-    big: (post, i) => `
-      <li class="main__posts__item  main__posts__item--big" 
-      data-index="${i + 1}">
-        <a href="${location.origin}/posts/${post._id}" class="main__posts__item__link">
-          <img src="${post.Img}" class="main__posts__item__link__img"/>
-          <article class="main__posts__item__link__article">
-            <time class="main__posts__item__link__article__date">${post.Date}</time>
-            <h2 class="main__posts__item__link__article__title">${post.Title}</h2>
-            <div class="main__posts__item__link__article__line"></div>
-            <p class="main__posts__item__link__article__desc">${post.Desc}</p>
-          </article>
-        </a>
-      </li>
-    `,
-    small: (post, i) => `
-      <li class="main__posts__item  main__posts__item--small" 
-      data-index="${i + 1}">
-        <a href="${location.origin}/posts/${post._id}" class="main__posts__item__link">
-          <img src="${post.Img}" class="main__posts__item__link__img"/>
-          <article class="main__posts__item__link__article">
-            <time class="main__posts__item__link__article__date">${post.Date}</time>
-            <h2 class="main__posts__item__link__article__title">${post.Title}</h2>
-            <div class="main__posts__item__link__article__line"></div>
-            <p class="main__posts__item__link__article__desc">${post.Desc}</p>
-          </article>
-        </a>
-      </li>
-  `
-  }
-  
-	const templater = (el, i, arr) => 
-		i == 1 || i == 2 || i == 5 
-		? templates.small(el,i) 
-		: templates.big(el,i)
+// @ts-check
 
-	const errorHandler = err => {
-		setTimeout(() => {
-			throw new Error(err)
-		})
-  }
+class Nav {
+	constructor(scrollTarget) {
+		this.target = scrollTarget
+		this.nav = document.getElementById("nav")
+		this.burger = document.getElementById("burger")
+		this.search = document.getElementById("search")
 
-	const nav = document.getElementById("nav")
-	const burger = document.getElementById("burger")
-	let oldY = window.scrollY
+		this.oldY = this.targetY
 
-	burger.addEventListener("click", e => {
-			// e.preventDefault()
-			nav.classList.toggle("nav--open")
-		},false)
+		if(this.target) {
+			this.target.addEventListener("scroll", this.scrollHandler.bind(this))
+			this.target.addEventListener("touchend", this.scrollHandler.bind(this))
 
-	document.body.addEventListener(
-		"click",
-		e => {
-			console.log(e)
-			// e.target !== nav && e.target !== burger
-			if (!e.path.some(el => el === nav)) {
-				nav.classList.remove("nav--open")
-			}
-		},{capture: true}
-	)
+		}
+		else
+			console.error("Invalid / undefined ScrollTarget")
 
-	window.addEventListener("scroll", e => {	
-		const __navHeightString = getComputedStyle(nav).height
-		const navHeight = Math.floor(Number(__navHeightString.substring(0, __navHeightString.length - 2)))
-		if( window.scrollY > navHeight ) {
-			nav.classList.add("nav--sticky")
+		this.burger.addEventListener("click", this.burgerHandler.bind(this))
+		document.body.addEventListener("click", this.modalHandler.bind(this), { capture: true })
+		this.search.addEventListener("submit", this.searchHandler.bind(this))
+	}
 
-			const yD = oldY - window.scrollY
-			oldY = window.scrollY
-			if(yD < 0) {
-				nav.classList.add("nav--sticky--hidden")
-				nav.classList.remove("nav--sticky--shown")
+	get targetY() {
+		return this.target.scrollY 
+			? this.target.scrollY 
+			: this.target.scrollTop
+	}
+
+	scrollHandler(e){
+		const Y = this.targetY
+		const __navHeightString = getComputedStyle(this.nav).height
+		const navHeight = Math.floor(
+			Number(__navHeightString.substring(0, __navHeightString.length - 2))
+		)
+		if (Y > navHeight) {
+			this.nav.classList.add("nav--sticky")
+			console.log("1")
+			const yD = this.oldY - Y
+			this.oldY = Y
+			if (yD < 0) {
+				console.log("1.1")
+				this.nav.classList.add("nav--sticky--hidden")
+				this.nav.classList.remove("nav--sticky--shown")
 			} else {
-				nav.classList.remove("nav--sticky--hidden")
-				nav.classList.add("nav--sticky--shown")
+				console.log("1.2")
+				this.nav.classList.remove("nav--sticky--hidden")
+				this.nav.classList.add("nav--sticky--shown")
 			}
 		} else {
-			nav.classList.remove("nav--sticky")
+			console.log("2")
+			this.nav.classList.remove("nav--sticky")
 		}
-	}, { passive: true })
+	}
 
-	document.getElementById("search").addEventListener("submit", e => {
+	burgerHandler(e) {
+		this.nav.classList.toggle("nav--open")
+	}
+
+	modalHandler(e) {
+		if (!e.path.some(el => el === this.nav)) {
+			this.nav.classList.remove("nav--open")
+		}
+	}
+
+	searchHandler(e) {
 		e.preventDefault()
-		window.location.href = `${location.origin}/search?filter=${e.target[0].value}&order=newest`
-		/*const list = document.getElementById("list")
-		const filter = e.target[0].value
-		let posts
-		fetch(`${location.origin}/api/filtered?filter=${filter}`)
-			.then(res =>
-				res.text()
-					.then(text => {
-						list.attributes.n = list.attributes.n ? list.attributes.n + 1 : 1
-						list.style.setProperty("--n", list.attributes.n)
-            list.innerHTML = JSON.parse(text)
-              .filter((el, i) => i < 6)
-							.map(templater)
-							.join("")
-					})
-					.catch(errorHandler)
-			)
-			.catch(errorHandler)
-		*/
-	})
-})()
+		window.location.href = `${location.origin}/search?filter=${
+			e.target[0].value
+		}&order=newest`
+	}
+}
+
+console.log("loaded")

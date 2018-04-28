@@ -2,7 +2,12 @@
   "compilerOptions": {
     "alwaysStrict": true,
     "target": "es6",
-    "inlineSources": true,
-    "module": "commonjs"
+    "module": "commonjs",
+    "pretty": true,
+    "strict": true,
+    "noUnusedParameters": true,
+    "noUnusedLocals": true,
+    "noImplicitAny": false,
+    "noEmit": true
   }
 }

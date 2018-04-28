@@ -1,4 +1,4 @@
-# Lorem Ipsum ─ Header1
+# Lorem Ipsum - Header1
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut suscipit purus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce suscipit lacus et enim ornare ultricies. Vivamus venenatis, elit vitae blandit varius, tortor nisl rutrum dui, sed tempor ex lectus ac libero. Vivamus condimentum, neque et fermentum viverra, nisl elit placerat orci, sed fermentum felis risus at eros. Suspendisse potenti. Nulla quam sapien, pharetra quis semper ut, suscipit sit amet diam. Pellentesque non nisl mi. Donec iaculis, nunc dapibus convallis maximus, diam dui facilisis mi, et blandit neque eros id lacus. Nam quis suscipit mauris, non lacinia mi. Aliquam efficitur nulla neque. Nam elit tortor, dapibus ut orci mattis, finibus sollicitudin libero. Pellentesque aliquam nibh sit amet aliquam eleifend.
 

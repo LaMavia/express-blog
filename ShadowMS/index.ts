@@ -1,22 +1,15 @@
 import * as mongoose from "mongoose";
 import * as express from "express"
 import * as dotenv from "dotenv"
-import { Url } from "url";
+import * as path from "path"
 
 import iShadow from "./types/basic"
 
 /**
+ * @todo Add setState functions for handlers etc. (updating data)
  * @todo Add CMS routes \w handlers
  * @todo Rewrite app.js to ShadowMS app 
  */
-const path = require("path")
-const favicon = require("serve-favicon")
-const logger = require("morgan")
-const cookieParser = require("cookie-parser")
-const bodyParser = require("body-parser")
-const sass = require("node-sass")
-const sassMiddleware = require("node-sass-middleware")
-const compression = require("compression")
 
 export default class Shadow {
 	
@@ -30,7 +23,6 @@ export default class Shadow {
 	host: string
 	APIRoutes: iShadow.APIRoute[]
 	CatchHandler: iShadow.CatchHandler
-	env: dotenv.DotenvResult
 	data: iShadow.LooseObject
 
 	constructor(
@@ -57,7 +49,9 @@ export default class Shadow {
 
 		this.app = express()
 
-		this.Init(this.port)
+		dotenv.config()
+
+		this.Init()
 	}
 
 	InitMiddleware() {
@@ -68,7 +62,7 @@ export default class Shadow {
 
 	InitRoutes() {
 		this.routes.forEach(( route: iShadow.Route ) => {
-			const passedData = Object.freeze(Object.assign({}, this.data))
+			const passedData = this // Object.freeze(Object.assign({}, this))
 			this.app.use(route.path, route.handler(passedData))
 		})
 	}
@@ -85,7 +79,7 @@ export default class Shadow {
 			}
 		}, this)
 	}
-
+ 
 	InitModels() {
 		this.dbSchemas.forEach(
 			(schema: iShadow.Schema) => {
@@ -95,11 +89,10 @@ export default class Shadow {
 		)
 	}
 
-	Init(port: number) {
+	Init() {
 
 		this.app.set("views", path.join(__dirname, "..","views"))
 		this.app.set("view engine", "pug")
-		dotenv.config()
 		this.data.origin = process.env["HOST"]
 		this.data.sharedMethods = {
 			GetFromDB: this.GetFromDB.bind(this)
@@ -112,15 +105,14 @@ export default class Shadow {
 
 		this.InitRoutes()
 		console.info("\x1b[36m%s\x1b[0m"," Ready for Action 👊")
-		console.dir(this.data, { colors: true })
 		
 	}
 
 	// DataBase Methods
 	async GetFromDB(modelName: string, conditions: iShadow.LooseObject = {}) {
-		let out = null
+		let out: any[] = []
 		await this.dbModels[modelName].find(conditions)
-			.then ( d   => out = d        )
+			.then ( d   => out = d )
 			.catch( err => new Error(err) )
 		return out
 	}

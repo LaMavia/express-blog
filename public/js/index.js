@@ -6,8 +6,11 @@
 /**
  * 
  */
-const MySlider = new Slider(
-  JSON.parse(document.getElementById("__slides__").value)
-)
+(() => {
+  const MySlider = new Slider(
+    JSON.parse(document.getElementById("__slides__").value)
+  )
+  const nav = new Nav(window)
+})()
 // const PostsLoader = new Posts()
 // PostsLoader.load()

@@ -1,5 +1,8 @@
 extends layout
 
+block head
+  link(rel='stylesheet', href='/css/style.css')
+  
 block content
   script(src="/js/search.js", defer)
   input(type="hidden", name="filter", value= filter)#filter

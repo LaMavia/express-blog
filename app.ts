@@ -16,12 +16,10 @@ const wait = require("./helpers/debug/wait")
 import index from "./routes/index"
 import post from "./routes/post"
 import search from "./routes/search"
-// const users  = require("./routes/users")
-// const posts  = require("./routes/post")
-// const search = require("./routes/search")
 
 // APIRoutes
 import posts from "./api/get/posts"
+import Addpost from "./api/post/post"
 
 import db, { schemas } from "./db"
 import iShadow from "./ShadowMS/types/basic"
@@ -42,7 +40,7 @@ const middleware = [
 	}),
 	express.static(path.join(__dirname, "public")),
 	compression({
-		filter: (req, res) => {
+		filter: (req: any, res: any) => {
 			return req.headers["x-no-compression"]
 				? false
 				: compression.filter(req, res)
@@ -55,7 +53,8 @@ const routes: iShadow.Route[] = [
 	search
 ]
 const apiRoutes: iShadow.APIRoute[] = [
-	posts
+	posts,
+	Addpost
 ]
 const catchHandler = (err => new Error(err))
 const app = new Shadow(3000, db, schemas, middleware, routes, apiRoutes, catchHandler)
