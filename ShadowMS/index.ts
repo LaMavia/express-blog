@@ -1,26 +1,23 @@
-import * as mongoose from "mongoose";
+import * as mongoose from "mongoose"
 import * as express from "express"
 import * as dotenv from "dotenv"
 import * as path from "path"
 
-import iShadow from "./types/basic"
+import iShadow from "./types/basic" 
 
 /**
- * @todo Add setState functions for handlers etc. (updating data)
  * @todo Add CMS routes \w handlers
- * @todo Rewrite app.js to ShadowMS app 
- */
+*/
 
 export default class Shadow {
 	
 	port: number
 	db: mongoose.Connection
 	dbSchemas: iShadow.Schema[]
-	dbModels: iShadow.Models
+	dbModels: iShadow.Models<any>
 	middleware: express.RequestHandler[]
 	app: express.Express
 	routes: iShadow.Route[]
-	host: string
 	APIRoutes: iShadow.APIRoute[]
 	CatchHandler: iShadow.CatchHandler
 	data: iShadow.LooseObject
@@ -42,14 +39,16 @@ export default class Shadow {
 		this.middleware = middleware
 		this.routes = routes
 		this.APIRoutes = APIRoutes
-		this.host = ""
 		this.data = {}
 
 		this.CatchHandler = CatchHandler
 
 		this.app = express()
 
-		dotenv.config()
+		this.app.on("update", this.UpdateData.bind(this))
+
+		dotenv.config() 
+		this.CreateServer(Number(process.env["PORT"]), process.env["HOST"] as string)
 
 		this.Init()
 	}
@@ -69,7 +68,7 @@ export default class Shadow {
 
 	InitAPI() {
 		this.APIRoutes.forEach((route: iShadow.APIRoute) => {
-			const handler = route.handler(this.dbModels)
+			const handler = route.handler(this)
 			switch(route.method) {
 				case "GET"   : this.app.get   (route.path, handler);break;
 				case "POST"  : this.app.post  (route.path, handler);break;
@@ -89,11 +88,35 @@ export default class Shadow {
 		)
 	}
 
-	Init() {
+	InitErrorHandler() {
+		this.app.use((err, req, res, next) => {
+			// set locals, only providing error in development
+			res.locals.message = err.message
+			res.locals.error = 
+				req.app.get("env") === "development" 
+					? err 
+					: {}
+		
+			// render the error page
+			res.status(err.status || 500)
+			res.render("error")
+		})
+	}
 
+	CreateServer(port: number, host: string) {
+		this.app.listen(port, () => {
+			console.info('\x1b[32m%s\x1b[0m', ` Listening at ${host}:${port}`)
+		})
+	}
+
+	Init() {
 		this.app.set("views", path.join(__dirname, "..","views"))
 		this.app.set("view engine", "pug")
-		this.data.origin = process.env["HOST"]
+		
+		this.data.origin = `${process.env["HOST"]}${process.env["PORT"] 
+			? `:${process.env["PORT"]}`
+			: ""
+		}`
 		this.data.sharedMethods = {
 			GetFromDB: this.GetFromDB.bind(this)
 		}

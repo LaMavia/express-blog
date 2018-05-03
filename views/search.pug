@@ -4,7 +4,6 @@ block head
   link(rel='stylesheet', href='/css/style.css')
   
 block content
-  script(src="/js/search.js", defer)
   input(type="hidden", name="filter", value= filter)#filter
   main.search
     section.search__settings
@@ -33,4 +32,5 @@ block content
               div.search__posts__item__article__line
               p.search__posts__item__article__desc #{post.Desc}
               a.search__posts__item__article__link(title="Read More", href=`${home.replace(/\/\s*\n?$\n?/g, "")}/posts/${post._id}`) Read More
+  script(src="/js/search.js", defer)
           

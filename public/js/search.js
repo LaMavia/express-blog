@@ -1,4 +1,4 @@
-(() => {
+const onload = () => {
   const form = document.getElementById("search")
   form.addEventListener("submit", e => {
     e.preventDefault()
@@ -16,4 +16,6 @@
     location.href = `${location.origin}${location.pathname}?filter=${filter}&order=${order}`
   })
   const nav = new Nav(window)
-})()
+}
+
+window.addEventListener("DOMContentLoaded", onload, { passive: true })

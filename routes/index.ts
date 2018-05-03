@@ -1,4 +1,3 @@
-// @ts-check
 import * as express from "express"
 const router = express.Router()
 
@@ -40,13 +39,4 @@ const handlerConstructor = (Shadow: iShadow.App) =>
 		})
 	})
 
-/* GET home page. */
-const route = new Route("/", handlerConstructor)
-
-export default route
-
-// post: {
-//   Author: "Illuminati",
-//   Date: "03/14/2018",
-//   Tags: ["math", "pi"].join(', ')
-// },
+export default new Route("/", handlerConstructor)

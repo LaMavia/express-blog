@@ -1,4 +1,6 @@
+"using strict"
 import iShadow from "../ShadowMS/types/basic"
+import Models from "../ShadowMS/types/models"
 import Route from "../ShadowMS/classes/Route"
 import toPromise from "../ShadowMS/functions/toPromise"
 import stringToNumArray from "../ShadowMS/functions/stringToNumArray"
@@ -8,6 +10,7 @@ const express = require("express")
 const router = express.Router()
 const slides = require("./data/slides")
 
+// : (filter: RegExp) => (data: Models.IPost[]) => Models.IPost[] 
 const filterData = filter => data =>
 	data.filter(el => filter.test(el.Body) || filter.test(el.Title))
 
@@ -19,18 +22,22 @@ const filterData = filter => data =>
 
 const sortData = (order: string) => {
 	let foo
+	const convertToDate = 
+		(post: iShadow.LooseObject): Date => 
+			new Date(...stringToNumArray(post.Date, " "))
+
 	switch (order.toLowerCase()) {
 		case "newest":
 			foo = (a, b) =>
-				stringToNumArray(a.Date, " ")[1] - stringToNumArray(b.Date, " ")[1]
+				convertToDate(b) - convertToDate(a)
 			break
 		case "oldest":
 			foo = (a, b) =>
-				stringToNumArray(b.Date, " ")[1] - stringToNumArray(a.Date, " ")[1]
+				convertToDate(a) - convertToDate(b)
 			break
 		default:
 			foo = (a, b) =>
-				stringToNumArray(a.Date, " ")[1] - stringToNumArray(b.Date, " ")[1]
+				convertToDate(a) - convertToDate(b)
 			break
 	}
 	return foo
@@ -41,11 +48,11 @@ const handlerConstructor = (Shadow: iShadow.App) =>
 		const data = Shadow.data
 		const filter = new RegExp(req.query["filter"], "g")
 		const order = req.query["order"]
-		toPromise(data.Post)
+		toPromise(data.Post as Models.IPost)
 			.then(filterData(filter))
 			.then(data => data.sort(sortData(order)))
 			.then(data => data.map(formatDate))
-			.then(posts => {
+			.then((posts: Models.IPost[]) => {
 				res.render("search", {
 					title: `Results for: "${req.query["filter"]}"`,
 					home: data.origin,

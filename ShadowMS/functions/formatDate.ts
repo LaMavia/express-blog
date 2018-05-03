@@ -18,7 +18,6 @@ export default (post: Post) => {
   )
   .map(Number)
   .filter(Boolean)
-	console.dir(Date, { colors: true })
   const day = Date[2]
   // @ts-ignore
 	const formattedPost: Post = {

@@ -15,8 +15,8 @@ declare namespace iShadow {
     collection: string
   }
   
-  interface Models {
-    [name: string]: mongoose.Model<any>
+  interface Models<T> {
+    [name: string]: mongoose.Model<any | T>
   }
 
   type HandlerConstruct = (Shadow: App) => express.Router
@@ -25,7 +25,7 @@ declare namespace iShadow {
     handler: HandlerConstruct
   }
   
-  type APIHandlerConstruct = (models: Models) => express.RequestHandler
+  type APIHandlerConstruct = (Shadow: App) => express.RequestHandler
   type Method = "GET" | "POST" | "PUT" | "DELETE"
   interface APIRoute {
     method: Method

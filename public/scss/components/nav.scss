@@ -117,7 +117,7 @@
 
   &__burger {
     --s: 3vh;
-    --margin: calc((var(--nav-upper-height) - var(--s)) / 2) auto;
+    --margin: calc((100% - var(--s) * 1.5) / 2) auto;
     @include phone { --s: 5vh; }
     grid-area: burger;
     width: var(--s);
@@ -134,14 +134,14 @@
       height: 100%;
     }
     @include desktop {
-      --margin: calc((100% - var(--s) * 1.5) / 2) auto;
+      // --margin: calc((100% - var(--s) * 1.5) / 2) auto;
     }
     @include phone {
-      --margin: calc((var(--nav-upper-height) - var(--s)) / 2) auto;
+      // --margin: calc((var(--nav-upper-height) - var(--s)) / 2) auto;
     }
 
     @include tablet-ver {
-      --margin: calc((var(--nav-upper-height) - var(--s)) / 2) auto;
+      // --margin: calc((var(--nav-upper-height) - var(--s)) / 2) auto;
     }
   }
 

@@ -1,0 +1,16 @@
+@import "../partials/breakpoints.scss";
+html {
+  @include oldAF {
+    background-color: #1b1b1b;
+    content: "Get out of here";
+    text-decoration: underline;
+    color: #ffffff;
+    text-align: center;
+    font-size: 3rem;
+    line-height: 100vh;
+    * {
+      display: none;
+      visibility: hidden;
+    }
+  }
+}

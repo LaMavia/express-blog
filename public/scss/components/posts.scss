@@ -94,7 +94,7 @@
 			}
 
 			&__link {
-				$yd: -5%;
+				$yd: -6%;
 				width: 100%;
 				min-height: 100%;
 				height: auto;
@@ -102,6 +102,9 @@
 				display: flex;
 				flex-flow: column nowrap;
 				@include edge {
+					transform: translateY($yd);
+				}
+				@include android-native {
 					transform: translateY($yd);
 				}
 
@@ -117,14 +120,12 @@
 				}
 
 				&__img {
-					height: 50vh;
-					width: auto;
-					object-fit: fill;
-					object-position: top;
+					width: 100%;
+					object-position: center;
 
 					@include tablet-hor {
-						max-height: 100%;
-						width: auto;
+						// max-height: 100%;
+						// width: auto;
 					}
 				}
 
@@ -158,6 +159,9 @@
 						background-color: $bg;
 						@include edge {
 							bottom: $yd;
+						}
+						@include android-native {
+							bottom: calc(var(--after-h) * -.5);
 						}
 					}
 

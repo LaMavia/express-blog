@@ -1,0 +1,20 @@
+extends layout
+
+block head
+  link(rel="stylesheet", href="../css/login.css")
+
+block content
+  main.main
+    form.main__form.main__form--login#form
+      h1.main__form__title Login
+      div.main__form__field
+        label(for="login").main__form__field__label login
+        input#login(type="text", name="login").main__form__field__input
+      div.main__form__field
+        label(for="password").main__form__field__label password
+        input#password(type="password", name="password").main__form__field__input
+      div.main__form__field--check
+        label(for="vis").main__form__field__label show password
+        input#vis(type="checkbox", name="vis").main__form__field__input
+      input#submit(type="submit", value="login", disabled).main__form__submit
+  script(src="../js/login.js", defer)

@@ -1,4 +1,5 @@
 import iShadow from "../ShadowMS/types/basic"
+import Models from "../ShadowMS/types/models"
 import Route from "../ShadowMS/classes/Route"
 import formatPages from "../ShadowMS/functions/formatPages"
 
@@ -22,7 +23,7 @@ const handlerConstructor = (Shadow: iShadow.App) =>
 	router.get("/:id", (req, res, next) => {
 		const data = Shadow.data
 		const id = req.params["id"]
-		const post = data.Post.find(pst => pst._id.toString() === id)
+		const post: Models.Post = data.Post.find(pst => pst._id.toString() === id)
 		if (!post) {
 			next("Post not found")
 			res.render("error", {

@@ -1,13 +1,32 @@
-extends layout
-block head
-  link(rel="stylesheet", href="../css/post.css")
-block heading
-  header.header
-    img.header__img(src= `${/https?/g.test(post.Img) ? post.Img : `../${post.Img}`}`, alt="")
-    h1.header__title #{post.Title}
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    link(rel="stylesheet", href="../css/post.css")
+    title= `Express | ${post.Title}`
+  body
+    include ./components/nav
+    div.wrapper#wrapper
+      header.header
+        img.header__img(src= `${/https?/g.test(post.Img) ? post.Img : `../${post.Img}`}`, alt="")
+        h1.header__title #{post.Title}
+      main.post !{post.Body}
+    div.progress
+      div.progress__bar#progressBar
+    script(src="../js/post.js" defer)
 
-block content
-  main.post !{post.Body}
-  script(src="../js/post.js")
-  // script(src="../js/nav.js", defer)
+
+// extends layout
+// block head
+//   link(rel="stylesheet", href="../css/post.css")
+// block heading
+//   header.header
+//     img.header__img(src= `${/https?/g.test(post.Img) ? post.Img : // `../${post.Img}`}`, alt="")
+//     h1.header__title #{post.Title}
+// 
+// block content
+//   main.post !{post.Body}
+//   script(src="../js/post.js" defer)
     

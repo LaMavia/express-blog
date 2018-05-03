@@ -10,12 +10,13 @@ class Nav {
 		this.oldY = this.targetY
 
 		if(this.target) {
-			this.target.addEventListener("scroll", this.scrollHandler.bind(this))
-			this.target.addEventListener("touchend", this.scrollHandler.bind(this))
-
+			this.target.addEventListener("scroll", this.scrollHandler.bind(this), { passive: true })
+			this.target.addEventListener("touchend", this.scrollHandler.bind(this), { passive: true })
 		}
-		else
+		else {
+			alert("Ivnalid nav target")
 			console.error("Invalid / undefined ScrollTarget")
+		}
 
 		this.burger.addEventListener("click", this.burgerHandler.bind(this))
 		document.body.addEventListener("click", this.modalHandler.bind(this), { capture: true })
@@ -52,6 +53,8 @@ class Nav {
 			console.log("2")
 			this.nav.classList.remove("nav--sticky")
 		}
+
+		console.log(this.oldY, this.targetY)
 	}
 
 	burgerHandler(e) {

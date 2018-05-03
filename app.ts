@@ -7,23 +7,27 @@ import * as express from "express"
 import * as compression from 'compression'
 
 
-
 // HELPERS
-const formatItem = require("./helpers/formatItem")
-const writeToJSON = require("./helpers/debug/writeToJSON")
-const wait = require("./helpers/debug/wait")
+// const formatItem = require("./helpers/formatItem")
+// const writeToJSON = require("./helpers/debug/writeToJSON")
+// const wait = require("./helpers/debug/wait")
+
 // Routes
 import index from "./routes/index"
 import post from "./routes/post"
 import search from "./routes/search"
+import login from "./routes/login"
 
 // APIRoutes
 import posts from "./api/get/posts"
-import Addpost from "./api/post/post"
+import AddPost from "./api/post/post"
+import AddUser from "./api/post/user"
+import APILogin from "./api/post/login"
 
 import db, { schemas } from "./db"
 import iShadow from "./ShadowMS/types/basic"
 import Shadow from "./ShadowMS/index"
+
 const middleware = [
 	favicon(path.join(__dirname, "public", "favicon.ico")),
 	// logger("dev"),
@@ -50,14 +54,18 @@ const middleware = [
 const routes: iShadow.Route[] = [
 	index,
 	post,
-	search
+	search,
+	login 
 ]
 const apiRoutes: iShadow.APIRoute[] = [
 	posts,
-	Addpost
+	AddPost,
+	AddUser,
+	APILogin
 ]
 const catchHandler = (err => new Error(err))
 const app = new Shadow(3000, db, schemas, middleware, routes, apiRoutes, catchHandler)
+
 // App
 /**
 app.get("/api/posts", (req, res, next) => {

@@ -1,4 +1,4 @@
-export default <T>(data: T) => new Promise((res) => {
+export default <T>(data: T) => new Promise<T>((res) => {
   let copy 
   if(Array.isArray(data)) copy = data.slice()
   else if(typeof data === "object") copy = Object.assign({}, data)

@@ -2,16 +2,19 @@ doctype html
 html
   head
     title= title
-    meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    link(rel="icon", href="./favicon.ico", type="image/x-icon")
-    link(rel="icon", href="./favicon.png", type="image/png")
-    link(rel="shortcut icon", href="./favicon.png", type="image/png")
-    link(rel="shortcut icon", href="./favicon.ico", type="image/x-icon")
-    link(rel="manifest", href="./manifest.json")
+    include ./common/head
     block head 
   body
     block heading
     include ./components/nav
     block content 
 
-    script(src="/js/postItemTemplate.js")
+
+
+
+// meta(name="viewport", content="width=device-width, initial-scale=1.0")
+// link(rel="icon", href="/favicon.ico", type="image/x-icon")
+// link(rel="icon", href="/favicon.png", type="image/png")
+// link(rel="shortcut icon", href="/favicon.png", type="image/png")
+// link(rel="shortcut icon", href="/favicon.ico", type="image/x-icon")
+// link(rel="manifest", href="/manifest.json")
