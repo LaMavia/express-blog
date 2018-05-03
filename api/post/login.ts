@@ -7,10 +7,12 @@ import * as bcrypt from "bcrypt"
 const path = "/api/login"
 const method = "POST"
 
-const userExists = (user: {Login:string, Password: string}, users: Models.User[]): boolean => 
-  users.some(dbUser => 
+// @ts-ignore
+const userExists = async (user: {Login:string, Password: string}, users: Models.User[]): boolean => 
+  // @ts-ignore
+  users.some(async dbUser => 
     user.Login === dbUser.Login
-      ? bcrypt.compareSync(user.Password, dbUser.Password)
+      ? await bcrypt.compare(user.Password, dbUser.Password)
       : false
   )
   /*users.some(dbUser => 
