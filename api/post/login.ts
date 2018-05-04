@@ -33,7 +33,7 @@ const handlerConstruct: iShadow.APIHandlerConstruct = (Shadow: iShadow.App) =>
         {
           maxAge: 10800000
         }
-      ).sendStatus(200)
+      ).redirect(Shadow.data["origin"])
       console.dir(req.cookies, {colors: true})
     } else {
       res.sendStatus(400)

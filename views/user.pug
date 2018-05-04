@@ -1,0 +1,40 @@
+mixin post(post)
+  li.main__posts__item
+    a.main__posts__item__link(href= `${home}/posts/${post._id}`)
+      img.main__posts__item__link__img(src= `../${post.Img}`, decoding="async", alt="")
+      article.main__posts__item__link__article
+        time.main__posts__item__link__article__date #{post.Date}
+        h2.main__posts__item__link__article__title #{post.Title}
+        div.main__posts__item__link__article__line 
+        p.main__posts__item__link__article__desc #{post.Desc}
+
+
+
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    title= user.Name
+    link(rel="stylesheet", href="../css/user.css")
+  body
+    include ./components/nav.pug
+    div.wrapper 
+      header.header
+        img.header__background(
+          src= `${/.*\..{1,8}/g.test(user.Background) 
+            ? user.Background
+            : `data:image/jpg;base64, ${user.Background}` }`, 
+          alt= user.Name)
+        img.header__img(src=`data:image/jpg;base64, ${user.Img}`)
+        h1.header__name #{user.Name}
+      main.main
+        ol.main__posts#list(style=`--length: ${max}`)
+          for item in posts
+            +post(item)
+      
+
+
+
+    script(src="../js/user.js", defer)

@@ -9,6 +9,16 @@
   const visibilityBox = document.getElementById("vis")
 
 
+  const hideError = () => {
+    passwordF.classList.remove("main__form__field__input--error")
+    loginF.classList.remove("main__form__field__input--error")
+  }
+
+  const showError = () => {
+    passwordF.classList.add("main__form__field__input--error")
+    loginF.classList.add("main__form__field__input--error")
+  }
+
   /**@returns {Boolean} */
   const canSend = () => passwordF.value && loginF.value
 
@@ -39,6 +49,7 @@
         Password: passwordF.value
       })
 
+      hideError()
       fetch(`${location.origin}/api/login`, {
         body: data,
         method: "POST",
@@ -46,8 +57,13 @@
         redirect: 'follow',
         headers: new Headers({"Content-Type": "application/json"})
       })
-        .then(res => res.status)
-        .then(console.dir)
+        .then(res => {
+          if(res.status === 200)
+            location.href = location.origin
+          else {
+            showError()
+          }
+        })
         .catch(err => console.error(new Error(err)))
     }
   })

@@ -145,15 +145,20 @@
   &__user {
     grid-area: user;
     display: flex;
-    width: 30%;
+    width: auto;
     margin-left: auto;
     flex-flow: row nowrap;
 
     a {
+      line-height: var(--nav-closed-height);
       color: #eeeeee;
       &:hover {
         color: #ffffff;
       }
+    }
+
+    &__logout {
+      margin-left: 2vw;
     }
   }
 

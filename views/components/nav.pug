@@ -18,9 +18,12 @@ nav.nav.nav--static#nav
   section.nav__user
     if user
       a.nav__user__name(
-        href=`${home}/users/${String(user._id)}`
+        href=`${home}/users/${String(user._id)}`,
+        title="Visit your profile!"
       )= user.Name
-      a.nav__user__logout(href=`${home}/logout`) logout
+      a.nav__user__logout(
+        href=`${home}/logout`,
+      ) logout
     else
       a.nav__user__login(href=`${home}/login`) login
     

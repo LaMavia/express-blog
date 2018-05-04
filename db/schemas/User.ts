@@ -10,6 +10,7 @@ const USER_SCHEMA = new mongoose.Schema({
   Desc: String,
   BirthDate: String, // YYYY MM DD
   Img: String, // Use prefix data:image/jpeg;base64, on Front-End
+  Background: String, // Base4 or server link
   Type: String // User / Admin
 })
 

@@ -169,6 +169,19 @@ export default class Shadow {
 		return output
 	}
 
+	/*async __AddBackground() {
+		let out: any
+		await this.dbModels["User"]
+			.update(
+				{}, 
+				{ Background: "../images/PH/osx_like-l.jpeg" },
+				{ multi: true, overwrite: false }
+			)
+			.then(res => out = res)
+			.catch(err => out = err)
+		return out
+	}*/
+
 	// Data Methods
 	/**
 	 * @description Fetches data from data base and saves to ```this.data```
