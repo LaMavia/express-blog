@@ -7,36 +7,34 @@ import * as bcrypt from "bcrypt"
 const path = "/api/login"
 const method = "POST"
 
-// @ts-ignore
-const userExists = async (user: {Login:string, Password: string}, users: Models.User[]): boolean => 
-  // @ts-ignore
-  users.some(async dbUser => 
-    user.Login === dbUser.Login
-      ? await bcrypt.compare(user.Password, dbUser.Password)
-      : false
-  )
-  /*users.some(dbUser => 
-    user.Login === dbUser.Login
-      ? bcrypt.compareSync(user.Password, dbUser.Password)
-      : false
-  )*/
-/**
-{
-  for(const dbUser of users) {
-    if(user.Login === dbUser.Login)
-      return bcrypt.compareSync(user.Password, dbUser.Password)
-  }
-  return false
+const userExists = (user: {Login:string, Password: string}, users: Models.User[]): boolean | Models.User => {
+  let foundUser: Models.User | null = null
+  users.some(dbUser => {
+    if(user.Login === dbUser.Login){
+      if(bcrypt.compareSync(user.Password, dbUser.Password)) {
+        foundUser = dbUser
+        return true
+      }
+    }
+    return false
+  })
+  return foundUser ? foundUser : false
 }
-
-*/
 
 const handlerConstruct: iShadow.APIHandlerConstruct = (Shadow: iShadow.App) => 
   (req, res) => {
     console.time("check")
     const data = req.body
-    if(userExists(data, Shadow.data.User)) {
-      res.sendStatus(200)
+    const user = userExists(data, Shadow.data.User) as Models.User
+    if(user) {
+      res.cookie(
+        "UserID", 
+        String(user._id),
+        {
+          maxAge: 10800000
+        }
+      ).sendStatus(200)
+      console.dir(req.cookies, {colors: true})
     } else {
       res.sendStatus(400)
     }

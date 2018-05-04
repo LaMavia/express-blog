@@ -16,7 +16,7 @@ const handler: iShadow.APIHandlerConstruct = (Shadow: iShadow.App) => (
 		Body: "",
 		Author: "",
 		Date: ""
-	}).sort()
+	}).sort()	
   res.set('Content-Type', 'application/json')
   const rk = JSON.stringify(reqKeys)
   const pk = JSON.stringify(properKeys)

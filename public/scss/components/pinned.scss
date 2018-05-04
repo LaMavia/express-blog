@@ -34,7 +34,7 @@
       grid-area: top;
       background-color: #fefefe;
       display: grid;
-      grid-template: 1fr / auto 1fr;
+      grid-template: 1fr / 60% 1fr;
       grid-template-areas: "img article";
       position: relative;
       @include phone {

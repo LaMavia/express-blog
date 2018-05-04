@@ -4,6 +4,7 @@ const router = express.Router()
 import iShadow from "../ShadowMS/types/basic"
 import Route from "../ShadowMS/classes/Route"
 import formatDate from "../ShadowMS/functions/formatDate"
+import userRenderProps from "../ShadowMS/functions/userRenderProps"
 
 const randomItems = (arr: any[], n: number) => {
 	const output = []
@@ -35,7 +36,8 @@ const handlerConstructor = (Shadow: iShadow.App) =>
 				slides: require("./data/slides")
 			},
 			pinnedList,
-			posts
+			posts,
+			user: userRenderProps(req.cookies["UserID"], Shadow.data["User"])
 		})
 	})
 

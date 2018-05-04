@@ -1,14 +1,197 @@
 @import "../partials/breakpoints.scss";
 
 :root {
-  --nav-height: 15vh;
+  --nav-closed-height: 5vh;
+  --nav-height: var(--nav-closed-height);
+  --nav-upper-height: var(--nav-closed-height);
+  --nav-pages-height: 6vh;
+  --nav-open-height: calc(var(--nav-closed-height) + var(--nav-pages-height));
+  --nav-color: rgba(7,7,7,0.7);
+  --nav-open-color: rgba(7,7,7,1);
   --nav-side-padding: 2%;
   --nav-aside-width: 5vw;
-  --nav-upper-height: 60%;
 }
-// @todo: Sticky menu
+/**@todo: Sticky menu */
 .nav {
-  --nav-height: calc( 15vh * 0.6 );
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: var(--nav-height);
+  // min-height: var(--nav-closed-height);
+  padding: 0 var(--nav-side-padding);
+  background-color: var(--nav-color);
+  z-index: 10000;
+  will-change: height;
+  display: grid;
+  grid-template: var(--nav-height) 1fr / 10% 20% 1fr 30%;
+  grid-template-areas: 
+    "burger search logo user"
+    "pages pages pages pages"
+  ;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+  &--sticky {
+    position: fixed;
+    transition: transform .1s 0s ease-out;
+    background-color: var(--nav-open-color);
+
+    &--hidden {
+      transform: translateY(-100%);
+    }
+    &--shown {
+      transform: translateY(0);
+    }
+  }
+
+  &--open {
+    --nav-height: var(--nav-open-height);
+    --nav-pages-height: calc(var(--nav-height) - var(--nav-upper-height));
+    background-color: var(--nav-open-color);
+    grid-template-rows: var(--nav-upper-height) auto;
+    grid-template-areas: 
+      "burger search logo user"
+      "pages pages pages pages"
+    ;
+
+    .nav__pages {
+      display: flex;
+      height: var(--nav-pages-height);
+    }
+  }
+
+  &__burger {
+    --s: calc(var(--nav-closed-height) / 1.5);
+    grid-area: burger;
+    height: var(--s);
+    width: var(--s);
+    margin-top: calc((var(--nav-closed-height) - var(--s)) / 2); 
+    overflow: hidden;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+
+    &__icon {
+      max-width: var(--s);
+      max-height: var(--s);
+      fill: #fefefe;
+    }
+  }
+
+  &__search {
+    --h: calc(var(--nav-closed-height) / 1.7);
+    grid-area: search;
+    height: var(--h);
+    margin-top: calc((var(--nav-closed-height) - var(--h)) / 2);
+    display: grid;
+    grid-template: var(--h) / 1fr var(--h);
+    grid-column-gap: 4%;
+    overflow: hidden;
+
+    &__input {
+      background-color: transparent;
+      color: #fefefe;
+      border: none;
+      border-bottom: 2px solid #ffffff;
+      font-size: calc(var(--h) / 2);
+      padding: 2% 2% 1% 2%;
+    }
+
+    &__submit {
+      background-color: transparent;
+      border: none;
+      fill: #ffffff;
+    }
+  }
+
+  &__logo {
+    --h: var(--nav-closed-height);
+    --fs: calc(var(--h) / 2);
+    grid-area: logo;
+    font-size: var(--fs);
+    line-height: var(--h);
+    text-align: center;
+
+    &__link {
+      color: #ffffff;
+    }
+  }
+
+  &__pages {
+    grid-area: pages;
+    display: none;
+    flex-flow: row nowrap;
+    height: var(--nav-pages-height);
+
+    &__item {
+      height: 100%;
+      flex: 1 0 10%;
+      text-align: center;
+
+      &__link {
+        color: #eeeeee;
+        line-height: var(--nav-pages-height);
+        font-size: calc(var(--nav-pages-height) / 2);
+        text-transform: capitalize;
+        text-decoration: none;
+
+        &:hover, &:focus {
+          color: #ffffff;
+        }
+      }
+    }
+  }
+
+  &__user {
+    grid-area: user;
+    display: flex;
+    width: 30%;
+    margin-left: auto;
+    flex-flow: row nowrap;
+
+    a {
+      color: #eeeeee;
+      &:hover {
+        color: #ffffff;
+      }
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /*
   position: absolute;
   top: 0;
   left: 0;
@@ -205,18 +388,6 @@
       }
     }
 
-    /*&__bg {
-      width: calc(100% - (var(--imr) + var(--ss)));
-      height: 2rem;
-      position: absolute;
-      left: 0;
-      bottom: -100%;
-      background-color: #fefefe;
-      transform: translateY(0);
-      transition: transform .2s 0s ease-out;
-      z-index: -1;
-    }*/
-
     &__submit {
       width: var(--ss);
       height: var(--ss);
@@ -316,7 +487,7 @@
         }
       }
     }
-  }
+  }*/
 }
 
 

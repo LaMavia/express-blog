@@ -17,6 +17,7 @@ import index from "./routes/index"
 import post from "./routes/post"
 import search from "./routes/search"
 import login from "./routes/login"
+import logout from "./routes/logout"
 
 // APIRoutes
 import posts from "./api/get/posts"
@@ -55,7 +56,8 @@ const routes: iShadow.Route[] = [
 	index,
 	post,
 	search,
-	login 
+	login,
+	logout 
 ]
 const apiRoutes: iShadow.APIRoute[] = [
 	posts,

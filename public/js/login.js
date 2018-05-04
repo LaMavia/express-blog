@@ -8,6 +8,7 @@
   const submitBtn = document.getElementById("submit")
   const visibilityBox = document.getElementById("vis")
 
+
   /**@returns {Boolean} */
   const canSend = () => passwordF.value && loginF.value
 
@@ -41,13 +42,14 @@
       fetch(`${location.origin}/api/login`, {
         body: data,
         method: "POST",
+        credentials: 'include',
+        redirect: 'follow',
         headers: new Headers({"Content-Type": "application/json"})
       })
         .then(res => res.status)
         .then(console.dir)
         .catch(err => console.error(new Error(err)))
     }
-    console.dir(e)
   })
 
   

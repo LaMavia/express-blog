@@ -2,6 +2,7 @@ import iShadow from "../ShadowMS/types/basic"
 import Models from "../ShadowMS/types/models"
 import Route from "../ShadowMS/classes/Route"
 import formatPages from "../ShadowMS/functions/formatPages"
+import userRenderProps from "../ShadowMS/functions/userRenderProps"
 
 import * as express from "express"
 import * as mdInit from "markdown-it"
@@ -24,6 +25,7 @@ const handlerConstructor = (Shadow: iShadow.App) =>
 		const data = Shadow.data
 		const id = req.params["id"]
 		const post: Models.Post = data.Post.find(pst => pst._id.toString() === id)
+
 		if (!post) {
 			next("Post not found")
 			res.render("error", {
@@ -38,7 +40,8 @@ const handlerConstructor = (Shadow: iShadow.App) =>
 				home: data.origin,
 				pages: formatPages(data, "NavPage"),
 				header: { slides: JSON.stringify(slides) },
-				post
+				post,
+				user: userRenderProps(req.cookies["UserID"], Shadow.data["User"])
 			})
 		}
 	})

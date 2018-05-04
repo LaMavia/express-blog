@@ -1,6 +1,7 @@
 mixin item(name, href)
   li.nav__pages__item
     a.nav__pages__item__link(href= href) #{name}
+
 nav.nav.nav--static#nav
   button.nav__burger#burger
     include ../../public/svg/menu.svg
@@ -14,31 +15,39 @@ nav.nav.nav--static#nav
   ul.nav__pages
     each page in pages
       +item(page.Name, page.Href)
-    // +item("home", "http://localhost:3000/")
-    // +item("users", "http://localhost:3000/users")
-    // +item("users", "http://localhost:3000/users")
-    // +item("users", "http://localhost:3000/users")   
-  ul.nav__media
-    -var target = "_blank"
-    li.nav__media__item
-      a.nav__media__item__link(
-        href="https://www.facebook.com/" 
-        target="#{target}"
-        title="facebook"
-      ) 
-        include ../../public/svg/facebook.svg
-    li.nav__media__item
-      a.nav__media__item__link(
-        href="https://github.com/LastShadowPL/" 
-        target="#{target}" 
-        title="github"
-      )
-        include ../../public/svg/github.svg
-    li.nav__media__item
-      a.nav__media__item__link(
-        href="https://twitter.com/" 
-        target="#{target}" 
-        title="twitter"
-      )
-        include ../../public/svg/twitter.svg
+  section.nav__user
+    if user
+      a.nav__user__name(
+        href=`${home}/users/${String(user._id)}`
+      )= user.Name
+      a.nav__user__logout(href=`${home}/logout`) logout
+    else
+      a.nav__user__login(href=`${home}/login`) login
+    
+      
   script(src="/js/nav.js", defer)
+
+
+// ul.nav__media
+//       -var target = "_blank"
+//       li.nav__media__item
+//         a.nav__media__item__link(
+//           href="https://www.facebook.com/" 
+//           target="#{target}"
+//           title="facebook"
+//         ) 
+//           include ../../public/svg/facebook.svg
+//       li.nav__media__item
+//         a.nav__media__item__link(
+//           href="https://github.com/LastShadowPL/" 
+//           target="#{target}" 
+//           title="github"
+//         )
+//           include ../../public/svg/github.svg
+//       li.nav__media__item
+//         a.nav__media__item__link(
+//           href="https://twitter.com/" 
+//           target="#{target}" 
+//           title="twitter"
+//         )
+//           include ../../public/svg/twitter.svg

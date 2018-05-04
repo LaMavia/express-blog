@@ -51,7 +51,12 @@ body {
 		display: flex;
 		flex-flow: column nowrap;
     justify-content: center;
-    font-family: monospace;
+		font-family: monospace;
+		
+		@include phone {
+			--form-w: 20em;
+			--form-min-h: 24em;
+		}
 
 		&__title {
 			position: absolute;
@@ -66,19 +71,32 @@ body {
 			background-color: #111111;
 			padding-bottom: 1.5%;
 			box-shadow: 0 1px 2px 0px #000000;
+
+			@include phone {
+				font-size: 1.7rem;
+			}
 		}
 
 		&__field {
 			width: 50%;
 			height: var(--form-field-h);
-      margin: 1vh auto;
+			margin: 1vh auto;
+			
+			@include phone {
+				width: 70%;
+				--form-field-h: 8vh;
+			}
 
       &--check {
         height: 3vh;
         width: 50%;
         margin: 0 auto;
         display: flex;
-        flex-flow: row nowrap;
+				flex-flow: row nowrap;
+				
+				@include phone {
+					width: 70%;
+				}
 
         .main__form__field__input {
           margin: auto .5vw;
@@ -133,6 +151,10 @@ body {
       background-color: transparent;
       color: var(--color);
 			transition: background-color .1s 0s linear, color .1s 0s linear;
+
+			@include phone {
+				margin: 4vh auto 0 auto;
+			}
 			
 			&:enabled {
 				--color: #fefefe;
