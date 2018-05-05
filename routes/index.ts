@@ -1,10 +1,10 @@
-import * as express from "express"
-const router = express.Router()
-
 import iShadow from "../ShadowMS/types/basic"
 import Route from "../ShadowMS/classes/Route"
 import formatDate from "../ShadowMS/functions/formatDate"
 import userRenderProps from "../ShadowMS/functions/userRenderProps"
+import * as express from "express"
+
+const router = express.Router()
 
 const randomItems = (arr: any[], n: number) => {
 	const output = []

@@ -8,6 +8,11 @@ mixin post(post)
         div.main__posts__item__link__article__line 
         p.main__posts__item__link__article__desc #{post.Desc}
 
+mixin dataItem(name, value)
+  div.main__data__item
+    span.main__data__item__name #{name}:
+    span.main__data__item__value #{value}
+
 
 
 doctype html
@@ -16,25 +21,34 @@ html(lang="en")
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     meta(http-equiv="X-UA-Compatible", content="ie=edge")
-    title= user.Name
+    title= displayedUser.Name
     link(rel="stylesheet", href="../css/user.css")
   body
     include ./components/nav.pug
     div.wrapper 
       header.header
         img.header__background(
-          src= `${/.*\..{1,8}/g.test(user.Background) 
-            ? user.Background
-            : `data:image/jpg;base64, ${user.Background}` }`, 
-          alt= user.Name)
-        img.header__img(src=`data:image/jpg;base64, ${user.Img}`)
-        h1.header__name #{user.Name}
+          src= `${/.*\..{1,8}/g.test(displayedUser.Background) 
+            ? displayedUser.Background
+            : `data:image/jpg;base64, ${displayedUser.Background}` }`, 
+          alt= displayedUser.Name)
+        img.header__img(src=`data:image/jpg;base64, ${displayedUser.Img}`)
+        h1.header__name #{displayedUser.Name}
+        div.header__links
+          a.header__links__item(href="#posts") posts
+          a.header__links__item(href="#aboutme") about me
       main.main
-        ol.main__posts#list(style=`--length: ${max}`)
+        ol.main__posts#posts
           for item in posts
             +post(item)
-      
-
-
-
-    script(src="../js/user.js", defer)
+        section.main__data#aboutme
+          h2.main__data__title about me
+          div.main__data__desc
+            span.main__data__desc__quote #{`"${displayedUser.Desc}"`}
+            span.main__data__desc__author ~#{displayedUser.Name}
+          +dataItem("name", displayedUser.Name)
+          +dataItem("e-mail", displayedUser.Email)
+          +dataItem("birth date", displayedUser.BirthDate.replace(/\s/g, '.'))
+        section.main__info(v-else-if="hash === 'info'")
+          #{displayedUser.BirthDate}
+  script(src="../js/user.js", defer)

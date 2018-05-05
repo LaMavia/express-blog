@@ -9,7 +9,6 @@ nav.nav.nav--static#nav
     a.nav__logo__link(href= home) #{title}
   form.nav__search#search(action="")
     input.nav__search__input(type="search", name="filter", value= filter ? filter : "")
-    // div.nav__search__bg
     button.nav__search__submit(type="submit") 
       include ../../public/svg/search.svg
   ul.nav__pages
@@ -30,27 +29,3 @@ nav.nav.nav--static#nav
       
   script(src="/js/nav.js", defer)
 
-
-// ul.nav__media
-//       -var target = "_blank"
-//       li.nav__media__item
-//         a.nav__media__item__link(
-//           href="https://www.facebook.com/" 
-//           target="#{target}"
-//           title="facebook"
-//         ) 
-//           include ../../public/svg/facebook.svg
-//       li.nav__media__item
-//         a.nav__media__item__link(
-//           href="https://github.com/LastShadowPL/" 
-//           target="#{target}" 
-//           title="github"
-//         )
-//           include ../../public/svg/github.svg
-//       li.nav__media__item
-//         a.nav__media__item__link(
-//           href="https://twitter.com/" 
-//           target="#{target}" 
-//           title="twitter"
-//         )
-//           include ../../public/svg/twitter.svg

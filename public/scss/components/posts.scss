@@ -81,6 +81,7 @@
 			margin: var(--m) calc(var(--m) / 8);
 			background-color: #ffffff;
 			position: relative;
+			box-shadow: .7px .7px 2px .5px #000000;
 			-webkit-column-break-inside: avoid;
 
 			&:nth-of-type(1) {

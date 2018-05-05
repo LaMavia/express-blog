@@ -93,8 +93,11 @@
       color: #fefefe;
       border: none;
       border-bottom: 2px solid #ffffff;
-      font-size: calc(var(--h) / 2);
+      font-size: calc(var(--h) / 1.6);
       padding: 2% 2% 1% 2%;
+      &:focus {
+        outline: none;
+      }
     }
 
     &__submit {
@@ -131,7 +134,7 @@
       &__link {
         color: #eeeeee;
         line-height: var(--nav-pages-height);
-        font-size: calc(var(--nav-pages-height) / 2);
+        font-size: calc(var(--nav-pages-height) / 3);
         text-transform: capitalize;
         text-decoration: none;
 

@@ -37,24 +37,18 @@ class Nav {
 		)
 		if (Y > navHeight) {
 			this.nav.classList.add("nav--sticky")
-			console.log("1")
 			const yD = this.oldY - Y
 			this.oldY = Y
 			if (yD < 0) {
-				console.log("1.1")
 				this.nav.classList.add("nav--sticky--hidden")
 				this.nav.classList.remove("nav--sticky--shown")
 			} else {
-				console.log("1.2")
 				this.nav.classList.remove("nav--sticky--hidden")
 				this.nav.classList.add("nav--sticky--shown")
 			}
 		} else {
-			console.log("2")
 			this.nav.classList.remove("nav--sticky")
 		}
-
-		console.log(this.oldY, this.targetY)
 	}
 
 	burgerHandler(e) {
@@ -62,7 +56,8 @@ class Nav {
 	}
 
 	modalHandler(e) {
-		if (!e.path.some(el => el === this.nav)) {
+		// !e.path.some(el => el === this.nav)
+		if (e.target !== this.nav) {
 			this.nav.classList.remove("nav--open")
 		}
 	}
@@ -75,4 +70,4 @@ class Nav {
 	}
 }
 
-console.log("loaded")
+console.log("loaded Nav")

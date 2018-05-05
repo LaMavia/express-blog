@@ -4,6 +4,7 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	scroll-behavior: smooth;
 }
 
 :root {
@@ -51,8 +52,31 @@ body {
 	overflow: hidden;
 	position: relative;
 
+	&__edit {
+		--s: 5vh;
+		position: absolute;
+		bottom: 2%;
+		left: 2%;
+		transform: translate(-50%, 0%);
+		width: var(--s);
+		height: var(--s);
+		background: transparent;
+		border: none;
+		cursor: pointer;
+		z-index: 1000;
+
+		svg {
+			width: inherit;
+			height: inherit;
+			* {
+				stroke-width: 2px;
+			}
+		}
+	}
+
 	&__background {
-    height: var(--header-height);
+		height: var(--header-height);
+		transform: translateY(-10%);
     @include chrome {
       transform: translateZ(-1px) scale(2) translateY(-10%);
     }
@@ -71,7 +95,7 @@ body {
 		--s: 30vw;
 		position: relative;
     left: 50%;
-    transform: translate(-50%, 48%) scale(0.7);
+    transform: translate(-50%, 45%) scale(0.8);
     @include chrome {
       transform: translateX(-50%) translateZ(-1.5px) scale(2);
     }
@@ -79,20 +103,19 @@ body {
 		max-width: var(--s);
 		max-height: var(--s);
 		border-radius: 50%;
+		z-index: 10;
 	}
 
 	&__name {
-		display: block;
 		position: relative;
 		left: 50%;
     top: 25%;
-    transform: translate(-50%, -60%) ;
+    transform: translate(-50%, -80%) ;
     @include chrome {
       transform: translate(-50%, -50%) translateZ(-0.7px) scale(1.8);
     }
 		text-align: center;
 		line-break: strict;
-		padding: 10%;
 		white-space: pre-line;
 		color: #ffffff;
 		text-align: center;
@@ -102,16 +125,153 @@ body {
 		text-transform: uppercase;
 		text-shadow: 0.1px 2px 2px rgba(21, 21, 21, 0.7);
 		word-wrap: break-word;
+		z-index: 20;
 		@include phone {
 			font-size: 2.4rem;
 			padding: 5%;
 		}
 	}
-}
 
-.main {
-	min-height: calc(100vh - var(--header-h));
+	&__links {
+		--h: 5vh;
+		position: absolute;
+		left: 50%;
+		bottom: 5%;
+		transform: translate(-50%, -40%);
+		@include chrome{
+			transform: translate(-50%, -50%) translateZ(-.1px);
+		}
+		width: auto;
+		height: var(--h);
+		display: flex;
+		justify-items: center;
+		align-content: space-around;
+
+		&__item {
+			color: #eeeeee;
+			line-height: var(--h);
+			font-size: calc( var(--h) / 2 );
+			text-transform: capitalize;
+			text-align: center;
+			width: 8vw;
+
+			&:hover {
+				color: #ffffff;
+				text-shadow: 0 0px 1px #ffffff;
+			}
+		}
+	}
 }
 
 @import "./components/posts.scss";
+
+:root {
+	--main-nav-h: 6vh;
+}
+.main {
+	min-height: calc(100vh - var(--header-h));
+
+	&__nav {
+		width: 100%;
+		height: var(--main-nav-h);
+		display: flex;
+		flex-flow: row nowrap;
+
+		&__link {
+			display: block;
+			flex: 0 1 10%;
+			line-height: var(--main-nav-h);
+			color: #dedede;
+			text-align: center;
+			font-size: calc(var(--main-nav-h) / 3);
+
+			&--active {
+				color: #ffffff;
+				background-color: #2a2a2a;
+			}
+		}
+	}
+
+	&__data {
+		width: 40%;
+		height: 30vh;
+		margin: 4vh auto 0 auto;
+		display: flex;
+		flex-flow: column;
+		font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+		&__title {
+			color: #fefefe;
+			font-size: 4vh;
+			text-align: center;
+			text-transform: capitalize;
+			position: relative;
+			background-color: var(--body-color);
+			text-decoration: underline;
+
+			&::before,
+			&::after {
+				content: "";
+				position: absolute;
+				top: 50%;
+				width: calc(100vw / 2);
+				height: 3px;
+				background-color: rgb(70, 70, 70);
+				transform: translateY(-50%);
+				z-index: -1;
+			}
+			&::before {
+				left: calc(100vw / -3.2 + var(--main-padding-hor));
+			}
+			&::after {
+				right: calc(100vw / -3.2 + var(--main-padding-hor));
+			}
+		}
+
+		&__desc {
+			--author-h: 5vh;
+			width: 100%;
+			margin: 2vh auto;
+			display: grid;
+			grid-template: auto var(--author-h) / 100%;
+
+			&__quote {
+				font-size: 5vh;
+				text-align: center;
+				color: #fefefe;
+				font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+			}
+
+			&__author {
+				color: #eeeeee;
+				text-align: right;
+				padding-right: 10%;
+				font-size: calc(var(--author-h) / 2);
+				line-height: var(--author-h); 
+			}
+		}
+
+		&__item {
+			display: flex;
+			flex-flow: row nowrap;
+			font-size: 2vh;
+			height: auto;
+			width: 50%;
+			justify-content: space-between;
+			margin: 0 auto;
+
+			&__name {
+				color: #9f9f9f;
+				text-transform: uppercase;
+			}
+
+			&__value {
+				color: #fefefe;
+				text-align: right;
+				align-self: flex-end;
+			}
+		}
+	}
+}
+
 @import "./components/nav.scss";
