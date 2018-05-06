@@ -116,7 +116,9 @@ export default class Shadow {
 		this.app.set("views", path.join(__dirname, "..","views"))
 		this.app.set("view engine", "pug")
 		
-		this.data.origin = `${process.env["HOST"]}${process.env["PORT"] 
+		this.data.origin = this._env === "production"
+			? process.env["HOST"]
+			:`${process.env["HOST"]}${process.env["PORT"] 
 			? `:${process.env["PORT"]}`
 			: ""
 		}`
