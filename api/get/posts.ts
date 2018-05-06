@@ -3,7 +3,7 @@ import iShadow from "../../ShadowMS/types/basic"
 
 const path = "/api/posts"
 const method = "GET"
-const handler = (Shadow: iShadow.App) => (req, res, next) => {
+const handler = (Shadow: iShadow.App) => (req, res) => {
 	Shadow.dbModels.Post.find()
 		.then(data => {
 			if (data.length === 0) res.sendStatus(404)

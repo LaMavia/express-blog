@@ -24,19 +24,23 @@ const sortData = (order: string) => {
 	let foo
 	const convertToDate = 
 		(post: iShadow.LooseObject): Date => 
+			// @ts-ignore
 			new Date(...stringToNumArray(post.Date, " "))
 
 	switch (order.toLowerCase()) {
 		case "newest":
 			foo = (a, b) =>
+				// @ts-ignore
 				convertToDate(b) - convertToDate(a)
 			break
 		case "oldest":
 			foo = (a, b) =>
+				// @ts-ignore
 				convertToDate(a) - convertToDate(b)
 			break
 		default:
 			foo = (a, b) =>
+				// @ts-ignore
 				convertToDate(a) - convertToDate(b)
 			break
 	}

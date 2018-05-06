@@ -11,3 +11,4 @@ const handlerConstruct: iShadow.HandlerConstruct = (Shadow: iShadow.App) =>
 
 export default new Route("/logout", handlerConstruct)
 
+ 

@@ -2,7 +2,6 @@ import APIRoute from "../../ShadowMS/classes/APIRoute"
 import iShadow from "../../ShadowMS/types/basic"
 import Models from "../../ShadowMS/types/models"
 import hash from "../../ShadowMS/functions/hash"
-import * as bcrypt from "bcrypt"
 
 interface IsTakenRes {
   Email: boolean

@@ -21,6 +21,7 @@ export default class Shadow {
 	APIRoutes: iShadow.APIRoute[]
 	CatchHandler: iShadow.CatchHandler
 	data: iShadow.LooseObject
+	_env: string
 
 	constructor(
 		port: number, 
@@ -40,6 +41,7 @@ export default class Shadow {
 		this.routes = routes
 		this.APIRoutes = APIRoutes
 		this.data = {}
+		this._env = process.env["NODE_ENV"] || "dev"
 
 		this.CatchHandler = CatchHandler
 
@@ -47,7 +49,8 @@ export default class Shadow {
 
 		this.app.on("update", this.UpdateData.bind(this))
 
-		dotenv.config() 
+		if(this._env === "production") dotenv.config()
+		else dotenv.config({path: "../dev.env"}) 
 		this.CreateServer(Number(process.env["PORT"]), process.env["HOST"] as string)
 
 		this.Init()

@@ -5,7 +5,7 @@
     "module": "commonjs",
     "pretty": true,
     "strict": true,
-    "noUnusedParameters": true,
+    // "noUnusedParameters": false,
     "noUnusedLocals": true,
     "noImplicitAny": false,
     "noEmit": true

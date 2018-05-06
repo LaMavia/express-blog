@@ -3,7 +3,6 @@ import Models from "../ShadowMS/types/models"
 import Route from "../ShadowMS/classes/Route"
 import formatPages from "../ShadowMS/functions/formatPages"
 import userRenderProps from "../ShadowMS/functions/userRenderProps"
-import formatDate from "../ShadowMS/functions/formatDate"
 
 import * as express from 'express'
 const router = express.Router()

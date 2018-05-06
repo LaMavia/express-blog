@@ -1,5 +1,4 @@
 import Shadow from "../types/basic"
-import * as express from "express"
 import iShadow from "../types/basic";
 
 export default class APIRoute implements Shadow.APIRoute{
