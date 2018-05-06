@@ -10,7 +10,7 @@ import * as dotenv from 'dotenv'
 const _env = process.env["NODE_ENV"] || "dev"
 
 if(_env === "production") dotenv.config()
-else dotenv.config({path: "../dev.env"}) 
+else dotenv.config({path: "./DEV/.env"}) 
 
 // HELPERS
 // const formatItem = require("./helpers/formatItem")

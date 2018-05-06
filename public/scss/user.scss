@@ -51,6 +51,9 @@ body {
 	height: var(--header-h);
 	overflow: hidden;
 	position: relative;
+	@include phone {
+		--header-h: 90vh;
+	}
 
 	&__edit {
 		--s: 5vh;
@@ -104,6 +107,10 @@ body {
 		max-height: var(--s);
 		border-radius: 50%;
 		z-index: 10;
+
+		@include phone {
+			--s: 80vw;
+		}
 	}
 
 	&__name {
@@ -147,6 +154,11 @@ body {
 		justify-items: center;
 		align-content: space-around;
 
+		@include phone {
+			--h: 7vh;
+			bottom: 2%;
+		}
+
 		&__item {
 			color: #eeeeee;
 			line-height: var(--h);
@@ -154,6 +166,10 @@ body {
 			text-transform: capitalize;
 			text-align: center;
 			width: 8vw;
+
+			@include phone {
+				width: 50vw;
+			}
 
 			&:hover {
 				color: #ffffff;
@@ -200,6 +216,10 @@ body {
 		flex-flow: column;
 		font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
+		@include phone {
+			width: 90%;
+		}
+		
 		&__title {
 			color: #fefefe;
 			font-size: 4vh;
@@ -248,6 +268,10 @@ body {
 				padding-right: 10%;
 				font-size: calc(var(--author-h) / 2);
 				line-height: var(--author-h); 
+				
+				@include phone {
+					padding-right: 5%;
+				}
 			}
 		}
 
@@ -259,6 +283,10 @@ body {
 			width: 50%;
 			justify-content: space-between;
 			margin: 0 auto;
+
+			@include phone {
+				width: 90%;
+			}
 
 			&__name {
 				color: #9f9f9f;

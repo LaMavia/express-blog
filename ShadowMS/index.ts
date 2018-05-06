@@ -49,9 +49,15 @@ export default class Shadow {
 
 		this.app.on("update", this.UpdateData.bind(this))
 
-		if(this._env === "production") dotenv.config()
-		else dotenv.config({path: "../dev.env"}) 
-		this.CreateServer(Number(process.env["PORT"]), process.env["HOST"] as string)
+		if(this._env === "production") 
+			dotenv.config()
+		else 
+			dotenv.config({path: "../dev.env"}) 
+
+		this.CreateServer(
+			Number(process.env["PORT"]), 
+			process.env["HOST"] as string
+		)
 
 		this.Init()
 	}

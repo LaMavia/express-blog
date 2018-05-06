@@ -49,6 +49,4 @@ html(lang="en")
           +dataItem("name", displayedUser.Name)
           +dataItem("e-mail", displayedUser.Email)
           +dataItem("birth date", displayedUser.BirthDate.replace(/\s/g, '.'))
-        section.main__info(v-else-if="hash === 'info'")
-          #{displayedUser.BirthDate}
   script(src="../js/user.js", defer)
