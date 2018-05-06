@@ -4,10 +4,10 @@ import Post from "./schemas/Post"
 import NavPage from "./schemas/NavPage"
 import User from "./schemas/User"
 
-
+const dbLink = String(process.env["DB_LINK"])
 // Setting up MongoDB
 mongoose
-	.connect("mongodb://localhost:27017/true-blog")
+	.connect(dbLink)
 	.then(() => console.info("Connected"))
 	.catch(err => console.error(err))
 const db = mongoose.connection

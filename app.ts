@@ -5,7 +5,12 @@ import * as cookieParser from 'cookie-parser'
 import * as sassMiddleware from 'node-sass-middleware'
 import * as express from "express"
 import * as compression from 'compression'
+import * as dotenv from 'dotenv'
 
+const _env = process.env["NODE_ENV"] || "dev"
+
+if(_env === "production") dotenv.config()
+else dotenv.config({path: "../dev.env"}) 
 
 // HELPERS
 // const formatItem = require("./helpers/formatItem")
