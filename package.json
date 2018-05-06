@@ -13,8 +13,7 @@
     "db": "mongod --dbpath C:\\Users\\xelox\\MongoDB\\data\\db",
     "watch": "nodemon --exec ts-node ./app.ts -L",
     "shadow": "tsc -p . -w",
-    "_shadow": "tsc ./ShadowMS/index --target ES2016 --strict -w --pretty --module commonjs",
-    "postinstall": "tsc ./app -t ES2015 -m commonjs"
+    "_shadow": "tsc ./ShadowMS/index --target ES2016 --strict -w --pretty --module commonjs"
   },
   "homepage": "http://localhost:3000",
   "dependencies": {

@@ -2,7 +2,7 @@ const isTeen = (num: number): boolean =>
 	num - 10 < 10 && num - 10 > 0
 	
 
-
+	// "postinstall": "tsc ./app -t ES2015 -m commonjs"
 
 interface Post {
 	Title: string
