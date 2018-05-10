@@ -24,7 +24,6 @@
 
   /**@param {Event} e */
   const fieldChangeHandler = e => {
-    e.preventDefault()
     if(canSend()) {
       submitBtn.disabled = false
     } else {
@@ -32,8 +31,8 @@
     }
   }
 
-  loginF.addEventListener("change", fieldChangeHandler)
-  passwordF.addEventListener("change", fieldChangeHandler)
+  loginF.addEventListener("keyup", fieldChangeHandler, { passive: true })
+  passwordF.addEventListener("keyup", fieldChangeHandler, { passive: true })
 
   visibilityBox.addEventListener("change", e => {
     e.target.checked 

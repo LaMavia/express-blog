@@ -35,12 +35,16 @@ const handlerConstructor = (Shadow: iShadow.App) =>
 		}
 		else {
 			post.Body = md.render(post.Body)
+			const author = Shadow.data["User"].find( 
+				(user: Models.User) => user.Name === post.Author 
+			)
 			res.render("post", {
 				title: "Express",
 				home: data.origin,
 				pages: formatPages(data, "NavPage"),
 				header: { slides: JSON.stringify(slides) },
 				post,
+				author,
 				user: userRenderProps(req.cookies["UserID"], Shadow.data["User"])
 			})
 		}

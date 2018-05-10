@@ -8,7 +8,7 @@ nav.nav.nav--static#nav
   h1.nav__logo
     a.nav__logo__link(href= home) #{title}
   form.nav__search#search(action="")
-    input.nav__search__input(type="search", name="filter", value= filter ? filter : "")
+    input.nav__search__input(type="search", name="filter", value= filter ? filter : "", placeholder="Search")
     button.nav__search__submit(type="submit") 
       include ../../public/svg/search.svg
   ul.nav__pages

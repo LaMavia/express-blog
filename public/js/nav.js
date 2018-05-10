@@ -56,10 +56,8 @@ class Nav {
 	}
 
 	modalHandler(e) {
-		// !e.path.some(el => el === this.nav)
-		if (e.target !== this.nav) {
+		if(e.target === document.body) 
 			this.nav.classList.remove("nav--open")
-		}
 	}
 
 	searchHandler(e) {

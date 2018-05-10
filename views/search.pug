@@ -4,14 +4,14 @@ block head
   link(rel='stylesheet', href='/css/style.css')
   
 block content
-  input(type="hidden", name="filter", value= filter)#filter
   main.search
     section.search__settings
       form.search__settings__form#search
+        input.search__settings__form__filter#filter(type="text", name="filter", value= filter)
         ul.search__settings__form__options
           li.search__settings__form__options__item
             label(for="order").search__settings__form__options__item__label
-            select#order.search__settings__form__options__item__input.search__settings__form__options__item__input--order(name="order", placeholder="Order")
+            select#order.search__settings__form__options__item__input.search__settings__form__options__item__input--order(name="order", placeholder="Order", value= options.order ? options.order : "newest")
               option(value="newest") Newest
               option(value="oldest") Oldest
         button(type="submit").search__settings__form__submit#submit Filter

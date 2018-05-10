@@ -63,6 +63,9 @@ const handlerConstructor = (Shadow: iShadow.App) =>
 					filter: req.query["filter"],
 					posts,
 					slides,
+					options: {
+						order
+					},
 					pages: data.NavPage
 				})
 			})

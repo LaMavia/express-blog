@@ -40,12 +40,20 @@
         flex-flow: column nowrap;
       }
 
+      &__filter {
+        flex: 1 0 20%;
+        margin-right: .6vh;
+        font-size: 1.2rem;
+        padding: 0 .5%;
+      }
+
       &__options {
         display: flex;
         flex-flow: row nowrap;
         // justify-content: space-around;
         height: 100%;
         width: 100%;
+        list-style: none;
 
         &__item {
           height: 100%;

@@ -155,9 +155,10 @@ export default class Shadow {
 		modelName: string, 
 		query: iShadow.LooseObject, 
 		data: iShadow.LooseObject, 
+		options: mongoose.ModelUpdateOptions
 	) {
 		let output: any
-		await this.dbModels[modelName].findOneAndUpdate(query, data)
+		await this.dbModels[modelName].update(query, data, options)
 			.then(res => output = res)
 			.catch(err => output = err)
 		return output
@@ -180,22 +181,23 @@ export default class Shadow {
 		return output
 	}
 
-	/*async __AddBackground() {
+	async AddProp<T>(modelName: string, propName: string, value: T) {
 		let out: any
-		await this.dbModels["User"]
+		await this.dbModels[modelName]
 			.update(
 				{}, 
-				{ Background: "../images/PH/osx_like-l.jpeg" },
+				{ [propName]: value },
 				{ multi: true, overwrite: false }
 			)
 			.then(res => out = res)
 			.catch(err => out = err)
 		return out
-	}*/
+	}
 
 	// Data Methods
 	/**
 	 * @description Fetches data from data base and saves to ```this.data```
+	 * @returns void
 	 */
 	async UpdateData(...modelNames: string[]) {
 		if(modelNames.length > 0) {
@@ -211,39 +213,6 @@ export default class Shadow {
 					.catch(this.CatchHandler)
 			}
 		} 
-	}
+	}	
 
 }
-/*for(let prop in Shadow.prototype.app.prototype) {
-	// @ts-ignore
-	Shadow.prototype[prop] = 
-		typeof Shadow.prototype.app.prototype[prop] === "function"
-		? Shadow.prototype.app.prototype[prop].bind(Shadow.prototype.app)
-		: Shadow.prototype.app.prototype[prop]
-}*/
-// module.exports = Shadow
-
-/**
- * Default middleware *
-	favicon(path.join(__dirname, "public", "favicon.ico"))
-	logger("dev")
-	bodyParser.json()
-	bodyParser.urlencoded({ extended: false })
-	cookieParser()
-	sassMiddleware({
-		src: path.join(__dirname, "public/scss"),
-		// file: 'style.scss',
-		dest: path.join(__dirname, "public/css"),
-		debug: true,
-		outputStyle: process.env === "development" ? "expanded" : "compressed",
-		prefix: "/css" // Where prefix is at <link rel="stylesheets" href="prefix/style.css"/>
-	})
-	express.static(path.join(__dirname, "public"))
-	compression({
-		filter: (req, res) => {
-			return req.headers["x-no-compression"]
-				? false
-				: compression.filter(req, res)
-		}
-	})
- */

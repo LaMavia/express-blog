@@ -1,5 +1,7 @@
 :root {
 	--post-header-height: 100vh;
+	--post-header-author-height: 10vh;
+	--post-header-author-img-size: 8vh;
 }
 html {
 	font-size: 18px;
@@ -30,29 +32,30 @@ body {
 }
 
 .header {
-	// perspective: 1px;
-	// transform-style: preserve-3d;
 	position: absolute;
 	left: 0;
 	top: 0;
-	transform: translateZ(-1px) scale(2);
+	// transform: translateZ(-1px) scale(2);
 	width: 100vw;
 	height: var(--post-header-height);
 	overflow: hidden;
 	@include phone {
 	}
 	&__img {
-		min-height: var(--post-header-height);
-		transform: translateZ(-1px) scale(1) translateY(-10%); 
+		min-height: 100%;
+		transform-origin: center;
+		@include chrome {
+			transform: translateZ(-1px) scale(2); 
+		}
 		// max-height: 120vh;
 		width: auto;
-		min-width: 100vw;
-		position: fixed;
+		position: absolute;
+		// top: 50%;
+		// left: 50%;
 		z-index: -1;
 		overflow: hidden;
-
 		@include phone {
-			transform: translateZ(-1px) translate(-35.5%, -27.5%) scale(1); 
+			transform: translateZ(-1px) translate(-35.5%, -27.5%) scale(2); 
 		}
 	}
 
@@ -61,7 +64,11 @@ body {
 		position: relative;
 		top: 50%;
 		left: 50%;
-		transform: translate(-50%, -50%) translateZ(-1px);
+		transform: translate(-50%, -50%);
+		@include chrome {
+			transform: translate(-50%, -50%) translateZ(-1.3px) scale(2);
+		}
+		z-index: 20;
 		text-align: center;
 		line-break: strict;
 		padding: 10%;
@@ -77,6 +84,40 @@ body {
 		@include phone {
 			font-size: 2.4rem;
 			padding: 5%;
+		}
+	}
+
+	&__author {
+		position: absolute;
+		left: 50%;
+		bottom: 10%;
+		transform: translate(-50%, -50%);
+		@include chrome {
+			transform: translate(-50%, -50%) translateZ(-1px) scale(1.7);
+		}
+		width: auto;
+		height: var(--post-header-author-height);
+		display: flex;
+		flex-flow: column nowrap;
+		text-decoration: none;
+		z-index: 42343;
+
+		&__img {
+			width: var(--post-header-author-img-size);
+			height: var(--post-header-author-img-size);
+			margin: 0 auto;
+			border-radius: 50%;
+			box-shadow: .1px 1.4px 2px 0px rgba(21,21,21,0.7);
+		}
+
+		&__name {
+			font-size: calc( var(--post-header-author-height) / 3 );
+			color: #ffffff;
+			text-align: center;
+			// line-height: var(--post-header-author-height);
+			font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+			font-weight: 300;
+			text-shadow: .1px 1.4px 2px rgba(21,21,21,0.7);
 		}
 	}
 }
