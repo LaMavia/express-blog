@@ -10,7 +10,7 @@
   const MySlider = new Slider(
     JSON.parse(document.getElementById("__slides__").value)
   )
-  const nav = new Nav(window)
+  const nav = new Nav()
 })()
 // const PostsLoader = new Posts()
 // PostsLoader.load()

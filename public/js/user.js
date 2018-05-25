@@ -1,3 +1,3 @@
 (() => {
-  const nav = new Nav(document.querySelector(".wrapper"))
+  const nav = new Nav()
 })()

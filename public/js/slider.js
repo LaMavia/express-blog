@@ -95,7 +95,7 @@ class Slider {
 	}
 
 	rerender() {
-		this.slides.style.setProperty("--translate", `-${this.current * 100}vw`)
+		this.slides.style.setProperty("--translate", `calc(${this.current * -1} * var(--w))`)
 		// this.slides.scrollTo({behavior: "smooth", left: window.innerWidth * this.current, top: 0})
 		if (this.btns.length > 0) {
 			this.btns[this.current].checked = true

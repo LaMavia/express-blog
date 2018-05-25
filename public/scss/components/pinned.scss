@@ -59,11 +59,11 @@
           --title-color: #1b1b1b;
           grid-area: article;
           width: 100%;
-          max-height: calc( var(--pinned-height) * 5 / 8 );
+          max-height: calc( var(--pinned-height) * 5 / 8.1 );
           position: relative;
           padding: 5% 5% 0 5%;
           display: grid;
-          grid-template: repeat(5, auto) .1fr / 100%;
+          grid-template: auto minmax(10vh, 60%) 4vh 1fr 10vh / 100%;
           background-color: #fefefe;
           // @include tablet-hor {
           //   grid-template: repeat(3, auto) 1fr auto / 100%;

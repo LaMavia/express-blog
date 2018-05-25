@@ -8,14 +8,8 @@ import * as compression from 'compression'
 import * as dotenv from 'dotenv'
 
 const _env = process.env["NODE_ENV"] || "dev"
-
 if(_env === "production") dotenv.config()
 else dotenv.config({path: "./DEV/.env"}) 
-
-// HELPERS
-// const formatItem = require("./helpers/formatItem")
-// const writeToJSON = require("./helpers/debug/writeToJSON")
-// const wait = require("./helpers/debug/wait")
 
 // Routes
 import index from "./routes/index"
@@ -24,12 +18,14 @@ import search from "./routes/search"
 import login from "./routes/login"
 import logout from "./routes/logout"
 import user from "./routes/user"
+import panel from "./routes/panel"
 
 // APIRoutes
 import posts from "./api/get/posts"
 import AddPost from "./api/post/post"
 import AddUser from "./api/post/user"
 import APILogin from "./api/post/login"
+import GetUser from "./api/get/user"
 
 import db, { schemas } from "./db"
 import iShadow from "./ShadowMS/types/basic"
@@ -64,13 +60,15 @@ const routes: iShadow.Route[] = [
 	search,
 	login,
 	logout,
-	user 
+	user,
+	panel 
 ]
 const apiRoutes: iShadow.APIRoute[] = [
 	posts,
 	AddPost,
 	AddUser,
-	APILogin
+	APILogin,
+	GetUser
 ]
 const catchHandler = (err => new Error(err))
 const app = new Shadow(3000, db, schemas, middleware, routes, apiRoutes, catchHandler)

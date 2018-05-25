@@ -1,5 +1,7 @@
 @charset "UTF-8";
 @import "./partials/breakpoints.scss";
+@import "./components/nav";
+
 :root {
   --fs: 17px;
 }
@@ -26,6 +28,8 @@ html, body {
 body {
   position: relative;
   overflow-x: hidden;
+  display: flex;
+  flex-flow: row nowrap;
 
   &::-webkit-scrollbar {
     width: 8px;
@@ -40,7 +44,13 @@ body {
   }
 }
 
-@import "./components/nav";
+.wrapper {
+  height: auto;
+  width: calc(100vw - var(--nav-w));
+  overflow-y: auto;
+  margin-left: var(--nav-w);
+}
+
 @import "./components/pinned";
 @import "./components/header";
 @import "./components/posts";

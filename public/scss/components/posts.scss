@@ -5,11 +5,11 @@
 	--article-h: 10vh;
 	--main-list-gap: 3vh; 
 	--main-bg: #1e1e1e;
-	--main-padding-ver: 3%;
-	--main-padding-hor: 10%;
+	--main-padding-ver: 3vh;
+	--main-padding-hor: 3vw;
 }
 .main {
-	width: 100vw;
+	width: 100%;
 	height: auto;
 	background-color: var(--main-bg);
 	padding: var(--main-padding-ver) var(--main-padding-hor);
@@ -96,6 +96,7 @@
 
 			&__link {
 				$yd: -6%;
+				--av: hidden;
 				width: 100%;
 				min-height: 100%;
 				height: auto;
@@ -114,7 +115,7 @@
 						.main__posts__item__link__article {
 							transform: translateY(-20%);
 							&::after {
-								visibility: hidden;
+								visibility: var(--av, hidden);
 								}
 						}
 					}
@@ -158,6 +159,7 @@
 						height: var(--after-h);
 						width: 100%;
 						background-color: $bg;
+						visibility: var(--av, visible);
 						@include edge {
 							bottom: $yd;
 						}

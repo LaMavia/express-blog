@@ -4,7 +4,7 @@
   const progressBar = document.getElementById("progressBar")
   const post = document.querySelector("main.post")
   const header = document.querySelector("header.header")
-  const nav = new Nav(scrollBox)
+  const nav = new Nav()
 
   const scrollHandler = e => {
     const postRects = post.getClientRects()[0]

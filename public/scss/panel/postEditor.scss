@@ -1,0 +1,130 @@
+.editor {
+  --padding: 2vh;
+  --utils-h: 6vh;
+  display: grid;
+  grid-template: var(--utils-h) 1fr / 100%;
+  grid-template-areas: "utils" "edit";
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  background-color: #ffffff;
+
+  &__utils {
+    --up: 1vh;
+    grid-area: utils;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-items: flex-end;
+    padding: 0 var(--up);
+
+    &__btn {
+      --h: calc(var(--utils-h) / 1.6);
+      --yd: 2px;
+      border: none;
+      background-color: transparent;
+      height: var(--h);
+      width: 10vh;
+      font-size: calc(var(--h) / 3);
+      color: #1c1c1c;
+      margin: auto var(--up) auto 0;
+      box-shadow: 0 var(--yd) var(--yd) 0 #000000;
+      transition:
+        color .1s 0s linear,
+        background-color .1s 0s linear,
+        transform .1s 0s linear,
+        box-shadow .1s 0s linear
+      ;
+
+      &:focus {
+        outline: none;
+        @extend .editor__utils__btn--active;
+      }
+
+      &--active {
+        color: #ffffff;
+        background-color: #1c1c1c;
+        box-shadow: 0 0px var(--yd) 0 #000000;
+        transform: translateY(var(--yd));
+      }
+    }
+  }
+
+  &__edit {
+    --w: 40vw;
+    grid-area: edit;
+    width: var(--w);
+    margin: 0 auto;
+
+    &__block {
+      --fs: 3vh;
+      width: 80%;
+      height: auto;
+      font-size: var(--fs);
+      color: #1c1c1c;
+      background-color: transparent;
+      border-bottom: 2px solid #1c1c1c;
+      display: flex;
+      flex-flow: column nowrap;
+      text-align: center;
+      text-transform: uppercase;
+      margin: 5vh auto;
+
+      &--small {
+        $h: 7vh;
+        height: $h;
+        flex-flow: row nowrap;
+        line-height: $h;
+        align-content: center;
+        justify-content: space-around;
+      }
+
+      &--big {
+        height: auto;
+      }
+
+      &__input {
+        border: none;
+        color: inherit;
+
+        &--title {
+          text-align: center;
+          font-size: var(--fs);
+        }
+        &--body {
+          font-size: calc(var(--fs) / 1.4);
+          width: 100%;
+          height: auto;
+          overflow-y: scroll;
+          margin: 0 auto;
+
+          &:focus {
+            outline: none;
+            -webkit-appearance: none;
+            appearance: none;
+          }
+        }
+      }
+
+      &__btn {
+        --h: 3vh;
+        font-size: calc(var(--fs) / 2);
+        margin: auto 0;
+        display: flex;
+        flex-flow: column nowrap;
+        height: var(--h);
+        width: auto;
+        line-height: var(--h);
+      }
+    }
+  }
+
+  &__preview {
+    display: none;
+  }
+}
+
+@import "../post.scss";

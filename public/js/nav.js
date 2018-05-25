@@ -1,6 +1,6 @@
 // @ts-check
 
-class Nav {
+/*class Nav {
 	constructor(scrollTarget) {
 		this.target = scrollTarget
 		this.nav = document.getElementById("nav")
@@ -67,5 +67,39 @@ class Nav {
 		}&order=newest`
 	}
 }
+*/
+/**
+ * 
+ * @param target {HTMLElement}
+ * @param activeClass {string}
+ */
+const SwitchConstructor = (target, activeClass) => e => {
+	target.classList.toggle(activeClass)
+}
 
+
+const defaultBlocks = [{
+	activator: "#menuBtn",
+	block: "#menu",
+	activeClass: "nav__under__block--vis"
+}]
+class Nav {
+	/**
+	 * @param blocks {{activator: string, block: string, activeClass: string}[]} 
+	 */
+	constructor(blocks = defaultBlocks) {
+		this.blocks = blocks;
+		debugger
+		this.blocks.forEach(block => {
+			const activator = document.querySelector(block.activator)
+			if(activator) {
+				activator.addEventListener("click", SwitchConstructor(
+					document.querySelector(block.block), 
+					block.activeClass
+				))
+			} else throw new Error(`Couldn't find the activator: ${block.activator}`)
+				
+		})
+	}
+}
 console.log("loaded Nav")

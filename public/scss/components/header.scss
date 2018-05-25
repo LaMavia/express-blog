@@ -9,7 +9,8 @@
 }
 
 .slider {
-	width: 100vw;
+	--w: calc(100vw - var(--nav-w));
+	width: var(--w);
 	max-width: 100vw;
 	height: 100vh;
 	z-index: 10;
@@ -40,7 +41,7 @@
 			left: 0;
 		}
 		&--next {
-			left: calc(100vw - 5rem);
+			left: calc(var(--w) - 5rem);
 		}
 	}
 
@@ -62,7 +63,7 @@
 
 		&__item {
 			--img: url("https://loremflickr.com/1280/720");
-			width: 100vw;
+			width: var(--w);
 			height: 100%;
 			display: grid;
 			grid-template: repeat(10, 1fr) / repeat(10, 1fr);

@@ -12,6 +12,7 @@
     "start": "node ./app",
     "db": "mongod --dbpath C:\\Users\\xelox\\MongoDB\\data\\db",
     "watch": "nodemon --exec ts-node ./app.ts -L",
+    "webpack": "webpack -w --jsx",
     "shadow": "tsc -p . -w",
     "_shadow": "tsc ./ShadowMS/index --target ES2016 --strict -w --pretty --module commonjs",
     "postinstall": "tsc ./app -t ES2015 -m commonjs"
@@ -19,7 +20,12 @@
   "homepage": "http://localhost:3000",
   "dependencies": {
     "@types/node-sass-middleware": "0.0.30",
+    "awesome-typescript-loader": "^5.0.0",
     "axios": "^0.18.0",
+    "babel": "^6.23.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.7.0",
     "bcrypt": "^2.0.1",
     "body-parser": "~1.18.2",
     "compression": "^1.7.2",
@@ -35,16 +41,25 @@
     "markdown-it-imsize": "^2.0.1",
     "markdown-splendor": "^1.0.1",
     "marked": "^0.3.18",
+    "mdbreact": "^4.3.0",
     "mongoose": "^5.0.10",
     "mongoose-events": "^0.3.9",
     "morgan": "~1.9.0",
     "node-sass": "^4.8.3",
     "node-sass-middleware": "^0.11.0",
     "pug": "2.0.0-beta11",
+    "pug-runtime": "^2.0.4",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.2.2",
+    "redux": "^4.0.0",
     "serve-favicon": "~2.4.5",
     "stylus": "0.54.5",
+    "ts-loader": "^4.3.0",
     "ts-node": "^5.0.1",
-    "typescript": "^2.7.2"
+    "typescript": "^2.7.2",
+    "webpack": "^4.8.2"
   },
   "devDependencies": {
     "@types/bcrypt": "^2.0.0",
@@ -56,8 +71,15 @@
     "@types/marked": "^0.3.0",
     "@types/mongoose": "^5.0.10",
     "@types/morgan": "^1.7.35",
+    "@types/pug": "^2.0.4",
+    "@types/react": "^16.3.14",
+    "@types/react-dom": "^16.0.5",
+    "@types/react-redux": "^6.0.0",
+    "@types/react-router-dom": "^4.2.6",
+    "@types/redux": "^3.6.0",
     "@types/serve-favicon": "^2.2.30",
     "@types/stylus": "^0.48.29",
-    "node-fetch": "^2.1.2"
+    "node-fetch": "^2.1.2",
+    "webpack-cli": "^2.1.3"
   }
 }
