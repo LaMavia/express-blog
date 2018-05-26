@@ -5,16 +5,17 @@ block head
 
 block content
   main.main
+    h1.main__title Express
     form.main__form.main__form--login#form
-      h1.main__form__title Login
       div.main__form__field
         label(for="login").main__form__field__label login
         input#login(type="text", name="login").main__form__field__input
       div.main__form__field
         label(for="password").main__form__field__label password
         input#password(type="password", name="password").main__form__field__input
-      div.main__form__field--check
+      div.main__form__field.main__form__field--check
+        input#vis(type="checkbox", name="vis").main__form__field__box
         label(for="vis").main__form__field__label show password
-        input#vis(type="checkbox", name="vis").main__form__field__input
       input#submit(type="submit", value="login", disabled).main__form__submit
+    div.main__shape
   script(src="../js/login.js", defer)

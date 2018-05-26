@@ -1,6 +1,6 @@
 (() => {
   // @ts-ignore
-  const nav = new Nav(window)
+  const nav = new Nav()
 
   const form = document.getElementById("form")
   const loginF = document.getElementById("login")
@@ -24,6 +24,7 @@
 
   /**@param {Event} e */
   const fieldChangeHandler = e => {
+    e.currentTarget.classList.remove("main__form__field__input--error")
     if(canSend()) {
       submitBtn.disabled = false
     } else {

@@ -27,7 +27,7 @@ const sortData = (order: string) => {
 			// @ts-ignore
 			new Date(...stringToNumArray(post.Date, " "))
 
-	switch (order.toLowerCase()) {
+	switch ((order || "").toLowerCase()) {
 		case "newest":
 			foo = (a, b) =>
 				// @ts-ignore

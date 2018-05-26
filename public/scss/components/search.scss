@@ -4,7 +4,7 @@
   --search-settings-height: 5vh;
 }
 .search {
-	width: 100vw;
+	width: calc(100vw - var(--nav-w));
 	height: auto;
   min-height: 100vh;
   background-color: var(--main-bg);

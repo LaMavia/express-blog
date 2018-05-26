@@ -15,7 +15,7 @@ const onload = () => {
     console.log(data.map(el => {el.Date = new Date(el.Date); return el}))
     location.href = `${location.origin}${location.pathname}?filter=${filter}&order=${order}`
   })
-  const nav = new Nav(window)
+  const nav = new Nav()
 }
 
 window.addEventListener("DOMContentLoaded", onload, { passive: true })

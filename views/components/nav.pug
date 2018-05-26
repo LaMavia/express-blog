@@ -32,10 +32,25 @@ mixin Item--link(text, href)
   li.nav__under__block__list__item
     a.nav__under__block__list__item__link(href= href) #{text}
 
+mixin Item--link--ext(text, href)
+  li.nav__under__block__list__item.nav__under__block__list__item--ext
+    a.nav__under__block__list__item__link(href= href) #{text}
+    block 
+
+mixin Item--btn(text)
+  li.nav__under__block__list__item.nav__under__block__list__item--btn
+    button(class='nav__under__block__list__item__btn')&attributes(attributes) #{text}
+
 mixin BarIcon(type = "link", href = "", id= null)
   if type === "btn"
-    button.nav__bar__icon(id= `${id ? id : ""}`)
+    button.nav__bar__icon(id= id ? id : "")
       block
+  else if type === "ext"
+    div.nav__bar__icon.nav__bar__icon--ext
+      button.nav__bar__icon__btn(id= id ? id : "")
+        block
+      form#search.nav__bar__icon__block(action="/search/")
+        input.nav__bar__icon__block__input(type="search", name="filter", value= filter ? filter : "", placeholder="Search")
   else if type === "link"
     a.nav__bar__icon(href= href)
       block
@@ -45,11 +60,11 @@ nav.nav
     div.nav__bar--top
       +BarIcon("btn", "", "menuBtn")
         include ../../public/svg/maticons/menu.svg
-      +BarIcon("btn")
+      +BarIcon("ext", "", "searchBtn")
         include ../../public/svg/maticons/search.svg
     div.nav__bar--mid
     div.nav__bar--btm
-      +BarIcon("btn")
+      +BarIcon("btn", "", "userBtn")
         include ../../public/svg/maticons/person.svg
 
   ul.nav__under
@@ -58,6 +73,15 @@ nav.nav
         +Item--link("Home", home)
         +Item--link("Home", home)
         +Item--link("Home, but longer", home)
+    li#user.nav__under__block
+      ul.nav__under__block__list
+        if user
+          +Item--link--ext(user.Name, `${home}/users/${String(user._id)}`)
+            a.nav__under__block__list__item__btn(href="/logout")
+              include ../../public/svg/maticons/arrow-right.svg
+        else 
+          +Item--link("Login", `${home}/login`)
+          +Item--link("Register", `${home}/login`)
         
 
 

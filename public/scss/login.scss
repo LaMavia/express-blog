@@ -1,13 +1,24 @@
 @import "./partials/breakpoints";
 @import "./partials/colors";
+
+@import "./components/nav";
+
 :root {
-	--form-color: #1a1a1a;
-	--form-w: 40vw;
-	--form-min-h: 50vh;
-	--form-field-h: 5vh;
-	--form-label-fs: 1.8vh;
-	--form-input-h: 3vh;
-	--form-input-fs: calc(var(--form-input-h) * 0.6);
+	--main-w: 30em;
+	--main-c: #1C1C1C;
+	--main-form-w: 65%;
+	--main-form-label-fs: 1rem;
+	--main-form-input-w: 100%;
+	--main-form-input-h: 3em;
+	--main-form-input-fs: 1rem;
+	--main-form-box-s: 1rem;
+}
+
+@include phone {
+	:root {
+		--main-w: 100%;
+		--main-form-input-h: 20vw;
+	}
 }
 
 * {
@@ -27,11 +38,128 @@ body {
 body {
 	overflow-y: auto;
 	background-color: #1e1e1e;
+
 	&::-webkit-scrollbar {
 		display: none;
 	}
 }
 
+.wrapper {
+	width: calc(100vw - var(--nav-w));
+	height: 100vh;
+	margin-left: var(--nav-w);
+	background: url("../images/PH/man-l.jpeg") center center no-repeat fixed;
+	@include phone {
+		background-image: none;
+	}
+	background-size: cover;
+}
+.main {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	right: 0;
+	width: var(--main-w);
+	background-color: var(--main-c);
+	display: flex;
+	flex-flow: column nowrap;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	overflow: hidden;
+
+	&__title {
+		font-size: 5vh;
+		font-weight: 400;
+		text-align: center;
+		color: #909090;
+		margin: 7% 0 36% 0;
+	}
+
+	&__form {
+		display: flex;
+		flex-flow: column nowrap;
+		flex: 1 0 30%;
+		width: var(--main-form-w);
+		margin: 0 auto;
+
+		&__field {
+			width: var(--main-form-input-w);
+			height: calc(var(--main-form-label-fs) + var(--main-form-input-h));
+			display: flex;
+			flex-flow: column nowrap;
+			margin-bottom: 15px;
+
+			&--check {
+				height: calc(var(--main-form-box-s) * 1.5);
+				flex-flow: row nowrap;
+				padding-left: 4px;
+			}
+
+			&__label {
+				font-size: var(--main-form-label-fs);
+				padding-left: 4px;
+				color: #EEEEEE;
+				text-transform: capitalize;
+			}
+
+			&__input {
+				display: block;
+				width: var(--main-form-input-w);
+				// height: var(--main-form-input-h);
+				height: 100%;
+				font-size: var(--main-form-input-fs);
+				border: none;
+				background-color: #404040;
+				color: #D1D1D1;
+				padding-left: 10px;
+
+				&--error {
+					color: #dd0000;
+				}
+			}
+
+			&__box {
+				width: var(--main-form-box-s);
+				height: var(--main-form-box-s);
+				margin: auto 0;
+			}
+		}
+
+		&__submit {
+			--c: #ffffff;
+			height: var(--main-form-input-h);
+			width: 100%;
+			font-size: var(--main-form-input-fs);
+			color: var(--c);
+			border: 3px solid var(--c);
+			background-color: var(--main-c);
+			cursor: pointer;
+			text-transform: uppercase;
+			transition: 
+				background-color .1s 0s linear, 
+				color .1s 0s linear
+			;
+
+			&:hover, &:focus {
+				color: var(--main-c);
+				background-color: var(--c);
+			}
+		}
+
+	}
+
+	&__shape {
+		$c: #1f1f1f;
+		--s: 48em;
+		width: 0;
+		height: 0;
+		border: none;
+		border: var(--s) solid $c;
+		border-color: transparent $c;
+		transform: rotate(45deg); 
+	}
+}
+/*
 .main {
 	width: 100vw;
 	height: 100vh;
@@ -171,6 +299,4 @@ body {
 
 		}
 	}
-}
-
-@import "./components/nav";
+}*/

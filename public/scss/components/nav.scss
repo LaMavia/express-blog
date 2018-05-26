@@ -7,24 +7,27 @@
   --nav-icon-is: calc(var(--nav-icon-s) / 2);
   --nav-link-h: var(--nav-icon-s);
   --nav-link-fs: calc(var(--nav-link-h) / 3.5);
-  --nav-link-pd: 0 0 0 2vh;
+  --nav-link-pd: 0 2vh;
 }
 
 .nav {
   position: fixed;
   top: 0;
   left: 0;
-  width: var(--nav-w);
+  // width: var(--nav-w);
+  width: auto;
   height: 100vh;
   overflow-x: visible;
   z-index: 1000;
 
   &__bar {
+    position: absolute;
+    z-index: 1;
     display: grid;
     grid-template: repeat(3, auto) / 100%;
     grid-template-areas: "top" "mid" "btm";
     background-color: #1b1b1b;
-    width: 100%;
+    width: var(--nav-w);
     height: 100%;
 
     &--top, &--mid, &--btm {
@@ -36,8 +39,12 @@
       left: 0;
     }
 
-    &--top { top: 0; }
-    &--btm { bottom: 0; }
+    &--top { 
+      top: 0; 
+    }
+    &--btm { 
+      bottom: 0; 
+    }
 
     &__icon {
       width: var(--nav-icon-s);
@@ -45,6 +52,8 @@
       background-color: transparent;
       border: none;
       fill: #999999;
+      cursor: pointer;
+
       &:hover, &:focus {
         outline: none;
         fill: #ffffff;
@@ -54,28 +63,99 @@
         height: var(--nav-icon-is);
         fill: inherit;
         transition: fill .1s 0s linear;
+        margin: auto;
+      }
+
+      &--ext {
+        display: flex;
+        flex-flow: row nowrap;
+        position: relative;
+        // width: calc(var(--nav-under-block-w) + var(--nav-w));
+        width: auto;
+        z-index: 1;
+        
+        .nav__bar__icon__btn {
+          width: var(--nav-icon-s);
+          height: var(--nav-icon-s);
+          background-color: transparent;
+          border: none;
+          fill: #999999;
+          cursor: pointer;
+          
+          &:hover, &:focus {
+            outline: none;
+            fill: #ffffff;
+          }
+          svg {
+            width: var(--nav-icon-is);
+            height: var(--nav-icon-is);
+            fill: inherit;
+            transition: fill .1s 0s linear;
+          }
+        }
+
+        .nav__bar__icon__block {
+          width: var(--nav-under-block-w);
+          height: var(--nav-link-h);
+          position: absolute;
+          left: 0;
+          top: 0;
+          transform: translateX(-100%);
+          width: calc(var(--nav-under-block-w) + var(--nav-w));
+          height: 100%;
+          padding-left: var(--nav-w);
+          background-color: #3b3b3b;
+          z-index: -1;
+          transition: transform .1s 0s linear;
+
+          &--vis {
+            transform: translateX(0%);
+          }
+
+          &__input {
+            @extend .nav__under__block__list__item__link;
+            padding: var(--nav-link-pd);
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+            border: none;
+            z-index: 2;
+          }
+        }
       }
     }
   }
 
   &__under {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: calc(var(--nav-w) + var(--nav-under-block-w));
+    width: 0;
+    @include edge {
+      width: calc(var(--nav-under-block-w));
+    }
     height: 100%;
-    z-index: -1;
+    overflow-x: visible;
+    list-style: none;
 
     &__block {
-      position: absolute;
-      right: 0;
+      --w: var(--nav-under-block-w);
+      @include edge {
+        --w: calc(var(--nav-under-block-w));
+      }
+      position: fixed;
+      left: 0;
       top: 0;
-      transform: translateX(-100%);
-      width: var(--nav-under-block-w);
+      transform: translateX(calc(var(--w) * -1));
+      @include edge {
+        transform: translateX(0%);
+      }
+      width: var(--w);
       height: 100%;
       background-color: #2c2c2c;
-      transition: transform .1s 0s linear;
+      transition: 
+        transform .1s 0s linear,
+        visibility 0s .1s linear
+      ;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      visibility: hidden;
 
       &--small {
         top: var(--y);
@@ -83,7 +163,15 @@
       }
 
       &--vis {
-        transform: translateX(0%);
+        visibility: visible;
+        transform: translateX(calc(0% + var(--nav-w) - 1px));
+        @include edge {
+          transform: translateX(25%);
+        }
+        transition: 
+          transform .1s 0s linear,
+          visibility .1s 0s linear
+        ;
       }
 
       &__list {
@@ -100,11 +188,24 @@
           height: var(--nav-link-h);
           width: 100%;
           line-height: var(--nav-link-h);
+          display: flex;
+          flex-flow: row nowrap;
+
+          &__btn {
+            display: flex;
+            @extend .nav__bar__icon;
+            position: relative;
+            align-items: center;
+            margin-left: auto;
+            cursor: pointer;
+          }
 
           &__link {
+            display: block;
             color: #909090;
             font-size: var(--nav-link-fs);
             text-decoration: none;
+            height: var(--nav-link-h);
 
             &:hover, &:focus {
               color: #fefefe;
@@ -118,9 +219,6 @@
 
 
 }
-
-
-
 
 
 

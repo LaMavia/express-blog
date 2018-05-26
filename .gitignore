@@ -4,3 +4,6 @@ node_modules/
 *.env
 *.css
 *.log
+*.zip
+*.gzip
+*.7zip

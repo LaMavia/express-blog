@@ -69,34 +69,65 @@
 }
 */
 /**
- * 
- * @param target {HTMLElement}
+ * @param activator {Element}
+ * @param target {Element}
+ * @param sections {Element[]}
  * @param activeClass {string}
  */
-const SwitchConstructor = (target, activeClass) => e => {
-	target.classList.toggle(activeClass)
+const SwitchConstructor = (activator, target, sections, activeClass) => e => {
+	sections.forEach(section => {
+		if(section !== target)
+			section.classList.remove(activeClass)
+	})
+	if(e.currentTarget === activator) 
+		target.classList.toggle(activeClass)
 }
 
 
-const defaultBlocks = [{
-	activator: "#menuBtn",
-	block: "#menu",
-	activeClass: "nav__under__block--vis"
-}]
+const defaultBlocks = [
+	{
+		activator: "#menuBtn",
+		block: "#menu",
+		activeClass: "nav__under__block--vis"
+	},
+	{
+		activator: "#userBtn",
+		block: "#user",
+		activeClass: "nav__under__block--vis"
+	},
+	{
+		activator: "#searchBtn",
+		block: "#search",
+		activeClass: "nav__bar__icon__block--vis"
+	}
+]
+/**
+ * @todo Add Blocks list to hide on press
+ * @property sections {HTMLElement[]}
+ */
 class Nav {
 	/**
 	 * @param blocks {{activator: string, block: string, activeClass: string}[]} 
 	 */
 	constructor(blocks = defaultBlocks) {
 		this.blocks = blocks;
-		debugger
+		this.sections = []
+
+		this.initListeners()
+	}
+
+	initListeners() {
 		this.blocks.forEach(block => {
 			const activator = document.querySelector(block.activator)
+			const section = document.querySelector(block.block)
+			this.sections.push(section)
 			if(activator) {
 				activator.addEventListener("click", SwitchConstructor(
-					document.querySelector(block.block), 
+					activator,
+					section, 
+					this.sections,	
 					block.activeClass
-				))
+				), { passive: true, capture: true })
 			} else throw new Error(`Couldn't find the activator: ${block.activator}`)
 				
 		})

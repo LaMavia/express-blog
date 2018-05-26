@@ -25,7 +25,7 @@ block content
         input#data(type="hidden", name="data", value= posts.map(e => ({Date: e.Date})))
         each post in posts 
           li.search__posts__item
-            img(src= post.Img, alt="").search__posts__item__img
+            img(src= `${/https?/g.test(post.Img) ? post.Img : `../${post.Img}`}`, alt="").search__posts__item__img
             article.search__posts__item__article
               time.search__posts__item__article__date #{post.Date}
               h2.search__posts__item__article__title #{post.Title}
