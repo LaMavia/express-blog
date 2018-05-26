@@ -94,7 +94,7 @@ export default class App extends React.PureComponent<{}, S> {
   render() {
     return (
       <Router>
-        <div className="container-fluid">
+        <div className="container-fluid"> 
           <Nav items={this.state.navItems} openEditor={this.toggleEditor}/>
           {
             this.state.showEditor ?

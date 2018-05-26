@@ -12,7 +12,7 @@ export default (props: P) => (
         (props.posts ? props.posts : []).map((post, i) => (
           <li className="main__posts__item" key={i}>
             <a href={`${location.origin}/posts/${post._id}`} className="main__posts__item__link">
-              <img src={post.Img} decoding="async" alt="" className="main__posts__item__link__img" />
+              <img src={post.Img} alt=""  className="main__posts__item__link__img" />
               <article className="main__posts__item__link__article" style={{
                 transform: 'translateY(-20%)',
                 '--av': "hidden"

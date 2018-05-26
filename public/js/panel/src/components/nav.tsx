@@ -4,6 +4,7 @@ import { Navbar, NavbarBrand, NavItem, NavLink, NavbarNav, Button } from 'mdbrea
 
 interface P {
   items: Models.INavPage[]
+  openEditor: (...args:any[]) => any
 }
 
 export default ({ items, openEditor }: P) => (

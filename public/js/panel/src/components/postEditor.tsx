@@ -109,25 +109,27 @@ export default class postEditor extends React.PureComponent<P, S>{
             exit
           </button>
         </div>
-        <form className="editor__edit" onSubmit={this.submitHandler}>
+        <form className="editor__edit" onSubmit={this.submitHandler as any}>
           <label htmlFor="title" className="editor__edit__block"> Title
             <input type="text" id="title" name="title" className="editor__edit__block__input editor__edit__block__input--title"/>
           </label>
           <label htmlFor="img" className="editor__edit__block editor__edit__block--small"> Image
             <input 
-              type="file" name="img" id="img" onChange={this.imageHandler}
+              type="file" name="img" id="img" onChange={this.imageHandler as any}
               className="editor__edit__block__btn"
             />
           </label>
           <label htmlFor="body" className="editor__edit__block editor__edit__block--big"> Body
-            <textarea name="body" id="body" onChange={this.bodyHandler}
+            <textarea name="body" id="body" onChange={this.bodyHandler as any}
               className="editor__edit__block__input editor__edit__block__input--body"
             ></textarea>
           </label>
         </form>
         {
           (this.state.preview) ?
-            <section className="editor__preview" dangerouslySetInnerHTML={{__html: pug.compile(postTemplate)({
+            <section className="editor__preview" dangerouslySetInnerHTML={{__html: 
+              // @ts-ignore
+              pug.compile(postTemplate)({
                 title: "Express",
                 home: location.origin,
                 pages: formatPages({"":[]}, ""),
