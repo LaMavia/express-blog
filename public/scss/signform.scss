@@ -1,0 +1,58 @@
+@import "./partials/breakpoints";
+@import "./partials/colors";
+
+@import "./components/nav";
+
+:root {
+	--bookmark-w: 30em;
+	--bookmark-c: #1C1C1C;
+	--bookmark-form-w: 65%;
+	--bookmark-form-label-fs: 1rem;
+	--bookmark-form-input-w: 100%;
+	--bookmark-form-input-h: 3em;
+	--bookmark-form-input-fs: 1rem;
+	--bookmark-form-box-s: 1rem;
+}
+
+@include phone {
+	:root {
+		--bookmark-w: 100%;
+		--bookmark-form-input-h: 20vw;
+	}
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html,
+body {
+	width: 100vw;
+	height: auto;
+	min-height: 100vh;
+	overflow-x: hidden;
+}
+
+body {
+	overflow-y: auto;
+	background-color: #1e1e1e;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+}
+
+.wrapper {
+	width: calc(100vw - var(--nav-w));
+	height: 100vh;
+	margin-left: var(--nav-w);
+	background: url("../images/PH/man-l.jpeg") center center no-repeat fixed;
+	@include phone {
+		background-image: none;
+	}
+	background-size: cover;
+}
+
+@import "./components/bookmark.scss";

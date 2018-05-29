@@ -8,7 +8,9 @@
  */
 (() => {
   const MySlider = new Slider(
-    JSON.parse(document.getElementById("__slides__").value)
+    document.querySelector("header"),
+    document.querySelectorAll(".slider__imgs__item"),
+    document.querySelectorAll(".bookmark__pages__item")
   )
   const nav = new Nav()
 })()

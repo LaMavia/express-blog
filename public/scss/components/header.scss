@@ -2,11 +2,96 @@
 // @require "../partials/pos"
 // @require "../partials/functions"
 @import "../partials/breakpoints";
+@import "./bookmark.scss";
 
 :root {
-	--header-title-size: 30rem;
+	--header-n: 0;
 	--header-img: ($blue);
+	--header-img-w: calc(100vw - var(--bookmark-w));
+	--header-trans:
+		transform .4s 0s linear
+	;
+	--bookmark-w: 26em;
+	--bookmark-c: #1C1C1C;
+	--bookmark-title-c: #EEEEEE;
+	--bookmark-title-mb: 20%;
+	--bookmark-shape-r: 10%;
+	--bookmark-shape-b: -40%;
+	--bookmark-btn-w: 65%;
+	--bookmark-form-label-fs: 1rem;
+	--bookmark-form-input-w: 100%;
+	--bookmark-form-input-h: 3em;
+	--bookmark-form-input-fs: 1rem;
+	--bookmark-form-box-s: 1rem;
 }
+
+.slider {
+	width: 100vw;
+	height: 100vh;
+	position: relative;
+
+	&__imgs {
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: auto;
+		height: inherit;
+		display: flex;
+		flex-flow: row nowrap;
+		background-color: var(--bookmark-c);
+		transform: translateX(
+			calc(var(--header-n) * var(--header-img-w) * -1)
+		);
+		transition: var(--header-trans);
+
+		&__item {
+			width: var(--header-img-w);
+			height: inherit;
+			overflow: hidden;
+
+			&__img {
+				object-fit: fill;
+				height: 100vh;
+				width: auto;
+			}
+		}
+	}
+
+	.bookmark__pages {
+		position: absolute;
+		width: auto;
+		height: 100%;
+		display: flex;
+		flex-flow: row nowrap;
+		transform: translateX(
+			calc(var(--header-n) * var(--bookmark-w) * -1)
+		);
+		transition: var(--header-trans);
+
+		&__item {
+			position: relative;
+			width: var(--bookmark-w);
+			height: 100%;
+		}
+
+		.bookmark__btn--slider {
+			position: absolute;
+			left: 50%;
+			bottom: 32px;
+			transform: translateX(-50%);
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+/*
 
 .slider {
 	--w: calc(100vw - var(--nav-w));
@@ -207,3 +292,4 @@
 		}
 	}
 }
+*/

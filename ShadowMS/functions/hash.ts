@@ -14,7 +14,7 @@ export default  async <T>(data: T, rounds: number = 10) =>
         ? Promise.all(data.map((item: T) => hashify(item, salt)))
         : hashify(data, salt)
     )
-    .catch(res => new Error(res))
+    .catch(res => {throw new Error(res)})
 
 
 

@@ -30,11 +30,8 @@ const handlerConstruct: iShadow.APIHandlerConstruct = (Shadow: iShadow.App) =>
       res.cookie(
         "UserID", 
         String(user._id),
-        {
-          maxAge: 10800000
-        }
+        { maxAge: 10800000 }
       ).redirect(Shadow.data["origin"])
-      console.dir(req.cookies, {colors: true})
     } else {
       res.sendStatus(400)
     }

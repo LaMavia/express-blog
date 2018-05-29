@@ -16,6 +16,7 @@ import index from "./routes/index"
 import post from "./routes/post"
 import search from "./routes/search"
 import login from "./routes/login"
+import register from "./routes/register"
 import logout from "./routes/logout"
 import user from "./routes/user"
 import panel from "./routes/panel"
@@ -59,6 +60,7 @@ const routes: iShadow.Route[] = [
 	post,
 	search,
 	login,
+	register,
 	logout,
 	user,
 	panel 

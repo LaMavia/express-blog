@@ -1,9 +1,20 @@
 header.slider
-  ol.slider__slides#slider__slides
-    li.slider__slides__item
-  button.slider__btn.slider__btn--prev <
-  button.slider__btn.slider__btn--next >
-  form.slider__btns#slider__btns
+  ol.slider__imgs
+    for slide in header.slides
+      li.slider__imgs__item
+        img.slider__imgs__item__img(alt="", src= slide.img)
+  div.bookmark
+    ol.bookmark__pages
+      for slide in header.slides
+        li.bookmark__pages__item
+          h2.bookmark__title #{slide.title}
+          p.bookmark__desc #{slide.desc}
+          a.bookmark__btn.bookmark__btn--slider Read more
+          div.bookmark__shape
+
+  // button.slider__btn.slider__btn--prev <
+  // button.slider__btn.slider__btn--next >
+  // form.slider__btns#slider__btns
   input(type="hidden", name="slides", value= header.slides, id="__slides__")
 
   script(src="/js/slider.js", defer)

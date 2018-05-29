@@ -1,19 +1,44 @@
-const buttonTemplate = index =>
-	`
-<div class="slider__btns__item">
-	<input class="slider__btns__item__btn" type="radio" name="slide-num" data-index="${index}"/>
-</div>
-`
-const slideTemplate = (img, title, desc, href) =>
-	`
-<li class="slider__slides__item" style="--img: url('../${img}')">
-	<h1 class="slider__slides__item__title">${title}</h1>
-	<div class="slider__slides__item__line"></div>
-	<p class="slider__slides__item__desc">${desc}</p>
-	<a class="slider__slides__item__link" href="${href}">read more  ></a>
-</li>
-`
+// @ts-check
 
+class Slider {
+	/**
+	 * @param header {HTMLElement}
+	 * @param imgs {Element[]} 
+	 * @param articles {Element[]} 
+	 */
+	constructor(header, imgs, articles) {
+		this.header = header
+		this.imgs = imgs
+		this.articles = articles
+		this.n = 0
+		this.timeout = setInterval(this.change.bind(this), 3000)
+	}
+
+	change() {
+		this.update()
+		this.render()
+
+		this.timeout
+	}
+
+	update() {
+		this.n = this.n + 1 >= this.imgs.length 
+			?	0
+			: this.n + 1
+	}
+
+	render() {
+		this.header.style.setProperty("--header-n", this.n)
+	}
+
+}
+
+
+
+
+
+
+/*
 class Slider {
 	constructor(
 		slides,
@@ -122,4 +147,4 @@ const PH = {
 	img: "http://placekitten.com/g/1280/720",
 	href: "#"
 }
-
+*/

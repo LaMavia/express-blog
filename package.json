@@ -11,7 +11,7 @@
     "dev": "SET DEBUG=true-blog:* & concurrently --kill-others \" mongod --dbpath C:\\Users\\xelox\\MongoDB\\data\\db \" \"nodemon --exec ts-node ./bin/www \" ",
     "start": "node ./app",
     "db": "mongod --dbpath C:\\Users\\xelox\\MongoDB\\data\\db",
-    "watch": "nodemon --exec ts-node ./app.ts -L",
+    "server": "nodemon --exec ts-node ./app.ts --inspect -L",
     "webpack": "webpack -w --jsx",
     "shadow": "tsc -p . -w",
     "_shadow": "tsc ./ShadowMS/index --target ES2016 --strict -w --pretty --module commonjs",
