@@ -9,8 +9,6 @@
     "inlineSourceMap": true,
     "inlineSources": true,
     "noUnusedLocals": true,
-    "noImplicitAny": false,
-    "noEmit": true,
-    "jsx": "react"
+    "noImplicitAny": false
   }
 }

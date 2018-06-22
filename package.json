@@ -14,7 +14,8 @@
     "server": "nodemon --exec ts-node ./app.ts --inspect -L",
     "webpack": "webpack -w",
     "shadow": "tsc -p . -w",
-    "_shadow": "tsc ./ShadowMS/index --target ES2016 --strict -w --pretty --module commonjs"
+    "_shadow": "tsc ./ShadowMS/index --target ES2016 --strict -w --pretty --module commonjs",
+    "postinstall": "tsc"
   },
   "browserslist": [
     "> 1%",
