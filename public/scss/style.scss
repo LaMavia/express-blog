@@ -2,55 +2,8 @@
 @import "./partials/breakpoints.scss";
 @import "./components/nav";
 
-:root {
-  --fs: 17px;
-}
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  scroll-behavior: smooth;
-}
-html {
-  font-size: var(--fs);
-  overflow-x: hidden;
 
-  @include phone { --fs: 1px; }
-}
-html, body {
-  width: 100vw;
-  min-width: 100vw;
-  max-width: 100vw;
-  height: auto;
-  overflow-x: hidden;
-}
-
-body {
-  position: relative;
-  overflow-x: hidden;
-  display: flex;
-  flex-flow: row nowrap;
-
-  &::-webkit-scrollbar {
-    width: 8px;
-    background-color: #1a1a1a;
-    @include phone {
-      width: 2px;
-    }
-    &-thumb {
-      background-color: #eeeeee;
-      @include phone {}
-    }
-  }
-}
-
-.wrapper {
-  height: auto;
-  width: calc(100vw - var(--nav-w));
-  overflow-y: auto;
-  margin-left: var(--nav-w);
-}
-
+@import "./components/wrapper";
 @import "./components/pinned";
 @import "./components/header";
 @import "./components/posts";

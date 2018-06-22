@@ -32,7 +32,7 @@ const handler: iShadow.APIHandlerConstruct = (Shadow: iShadow.App) => (
 			})
       .catch(Shadow.CatchHandler)
 	}
-	console.dir(req.body, {colors: true})
+	// console.dir(req.body, {colors: true})
 }
 
 export default new APIRoute(method, path, handler)

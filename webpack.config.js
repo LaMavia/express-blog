@@ -1,35 +1,30 @@
 const path = require('path');
 module.exports = {
-  entry: './public/js/panel/src/index.tsx',
+  entry: path.join(__dirname, 'panel_src', 'main'),
   output: {
-    path: path.resolve('public/js/panel'),
-    filename: 'panel_bundle.js'
+    filename: 'panel.js',
+    path: path.resolve(__dirname, 'public', 'js')
+  },
+  module: {
+    rules: [{
+      test: /.jsx?$/,
+      include: [
+        path.resolve(__dirname, 'panel_src')
+      ],
+      exclude: [
+        path.resolve(__dirname, 'node_modules'),
+      ],
+      loader: 'babel-loader',
+      query: {
+        presets: ['env']
+      }
+    }]
   },
   resolve: {
-    extensions: [".tsx", ".ts", ".d.ts", ".js"]
+    extensions: ['.json', '.js', '.jsx', '.css']
   },
-  mode: "development",
-  module: {
-    rules: [
-      { test: /\.css$/,
-        use: [
-          { loader: "style-loader" },
-          { loader: "css-loader" }
-        ]
-      },
-      {
-        test: /\.ts$/,
-        exclude: /node_modules/,
-        use: "awesome-typescript-loader"
-      }, {
-        test: /\.tsx?$/,
-        exclude: /node_modules/,
-        use: "awesome-typescript-loader"
-      }
-    ]
-  },
-  /*externals: {
-    "react": "React",
-    "react-dom": "ReactDOM"
-  }*/
-}
+  devtool: 'source-map',
+  devServer: {
+    publicPath: path.join('/dist/')
+  }
+};

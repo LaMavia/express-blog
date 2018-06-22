@@ -1,0 +1,52 @@
+:root {
+  --fs: 17px;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+html {
+  font-size: var(--fs);
+  overflow-x: hidden;
+}
+html, body {
+  width: 100vw;
+  min-width: 100vw;
+  max-width: 100vw;
+  height: auto;
+  overflow-x: hidden;
+}
+
+body {
+  position: relative;
+  overflow-x: hidden;
+  display: flex;
+  flex-flow: row nowrap;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    background-color: #1a1a1a;
+    @include phone {
+      width: 2px;
+    }
+    &-thumb {
+      background-color: #eeeeee;
+    }
+  }
+}
+
+.wrapper {
+  min-height: 100vh;
+  height: auto;
+  width: calc(100vw - var(--nav-w));
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-left: var(--nav-w);
+  @include phone {
+    margin-left: 0;
+    width: 100vw;
+    height: calc(100vh - var(--nav-h));
+  }
+}

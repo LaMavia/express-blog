@@ -1,7 +1,7 @@
 mixin post(post)
   li.main__posts__item
     a.main__posts__item__link(href= `${home}/posts/${post._id}`)
-      img.main__posts__item__link__img(src= `../${post.Img}`, decoding="async", alt="")
+      img.main__posts__item__link__img(src= post.Img && post.Img.length > 1 ? `${/https?/g.test(post.Img) ? post.Img : (/data:.*/.test(post.Img) ? post.Img : `../${post.Img}`)}` : "/images/PH/man-l.jpeg", decoding="async", alt="")
       article.main__posts__item__link__article
         time.main__posts__item__link__article__date #{post.Date}
         h2.main__posts__item__link__article__title #{post.Title}

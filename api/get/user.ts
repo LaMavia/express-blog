@@ -9,6 +9,7 @@ const canAccess = (user: Models.User, users: Models.User[]) =>
 const path = "/api/user"
 const method = "GET"
 const handler = (Shadow: iShadow.App) => (req: express.Request, res: express.Response) => {
+  debugger
   const id = req.query["id"] || req.cookies["UserID"]
   const reqUser: Models.User = Shadow.data["User"].find((user: Models.User) => String(user._id) === id) || null
 	Shadow.dbModels["User"].findOne({_id: id})

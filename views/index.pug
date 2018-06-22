@@ -1,37 +1,26 @@
 extends layout
 
-mixin pinBig(pinned)
-  img.main__pinned__article__img(src= pinned.Img, alt="", decoding="async")
-  div.main__pinned__article__data
-    time.main__pinned__article__data__date #{pinned.Date}
-    h2.main__pinned__article__data__title #{pinned.Title}
-    div.main__pinned__article__data__line
-    p.main__pinned__article__data__desc #{pinned.Desc}
-    a.main__pinned__article__data__link(title="Read More", href=`${home}/posts/${pinned._id}`) Read Article
-
-mixin pinSmall(pinned)
-  // .main__pinned__article
-  a.main__pinned__article__link(
-    href=`${home}/posts/${pinned._id}`,
-    style=`--img:url(${/https?/g.test(pinned.Img) ? pinned.Img : `../${pinned.Img}`})`
-  )
-    // img.main__pinned__article__link__img(src= pinned.Img)
-    time.main__pinned__article__link__date #{pinned.Date}
-    h3.main__pinned__article__link__title #{pinned.Title}
+mixin pin_content(item) 
+  a.main__pinned__item__link(href=`${home}/posts/${item._id}`)
+            img.main__pinned__item__link__img(src=`${/https?/g.test(item.Img) ? item.Img : `../${item.Img}`}`)
+            div.main__pinned__item__link__text
+              h3.main__pinned__item__link__text__title #{item.Title}
+              p.main__pinned__item__link__text__desc #{item.Desc}
 
 block head
   link(rel='stylesheet', href='/css/style.css')
 block heading
-  include ./components/header
+  // include ./components/header
 block content
   main.main
-    section.main__pinned
-      article.main__pinned__article.main__pinned__article--big
-        +pinBig(pinnedList[0])
-      article.main__pinned__article.main__pinned__article--small
-        +pinSmall(pinnedList[1])
-      article.main__pinned__article.main__pinned__article--small
-        +pinSmall(pinnedList[2])
+    ul.main__pinned
+      - if(pinnedList.length)
+        li.main__pinned__item.main__pinned__item--big
+          +pin_content(pinnedList[0])
+
+        - for(let i = 1; i < pinnedList.length; i++)
+          li.main__pinned__item
+            +pin_content(pinnedList[i])
 
     h2.main__title.main__title--posts Latest Stories
 

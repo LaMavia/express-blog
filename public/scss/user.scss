@@ -8,43 +8,14 @@
 }
 
 :root {
-	--body-color: #1e1e1e;
 	--header-h: 70vh;
 }
 
-html,
-body {
-	width: 100vw;
-	height: auto;
-	min-height: 100vh;
-	background-color: var(--body-color);
-	overflow-x: hidden;
-}
-
-body {
-	position: relative;
-}
-
+@import "./components/wrapper";
 .wrapper {
-	width: calc(100vw - var(--nav-w));
 	height: 100vh;
-	margin-left: var(--nav-w);
 	perspective: 1px;
 	transform-style: preserve-3d;
-	overflow-y: auto;
-	overflow-x: hidden;
-	&::-webkit-scrollbar {
-		width: 8px;
-		background-color: #1a1a1a;
-		@include phone {
-			width: 2px;
-		}
-		&-thumb {
-			background-color: #fff;
-			@include phone {
-			}
-		}
-	}
 }
 
 .header {
@@ -287,6 +258,7 @@ body {
 
 			@include phone {
 				width: 90%;
+				font-size: 2.5vh;
 			}
 
 			&__name {

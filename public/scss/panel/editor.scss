@@ -1,0 +1,155 @@
+@import "../partials/breakpoints";
+@import "../partials/functions";
+
+:root {
+  --editor-btns-h: 4vh;
+  --editor-btn-w: 10%;
+  --editor-item-h: 10vh;
+  --editor-item-fs: 2vh;
+  --editor-item-mb: 2vh;
+  --editor-wrapper-h: calc(100% - var(--editor-btns-h));
+  --editor-wrapper-pd: 2%;
+  --editor-main-pd: 2%;
+}
+
+@include phone {
+  :root {
+    --editor-btns-h: 8vh;
+    --editor-btn-w: 20%;
+  }
+}
+
+.wrapper {
+  overflow: hidden;
+}
+
+.editor {
+  width: 100%;
+  height: 100vh;
+  background-color: #2c2c2c;
+  overflow: hidden;
+
+  @include phone {
+    min-height: 100vh;
+    height: auto;
+  }
+
+  * {
+    overflow: hidden;
+  }
+
+  &__btns {
+    width: 100%;
+    height: var(--editor-btns-h);
+    display: flex;
+    flex-flow: row nowrap;
+    background-color: #ffffff;
+
+    &__item {
+      display: block;
+      width: var(--editor-btn-w);
+      height: var(--editor-btns-h);
+      margin: auto 0;
+
+      &__btn {
+        $c1: #ffffff;
+        $c2: #2c2c2c;
+        display: block;
+        width: 100%;
+        height: 100%;
+        line-height: calc(var(--editor-btns-h));
+        text-align: center;
+        font-weight: 100;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        border: none;
+        font-size: calc(var(--editor-btns-h) / 3);
+        color: $c2;
+        background-color: $c1;
+        cursor: pointer;
+        text-decoration: none;
+
+        &:hover, &:focus {
+          border-color: $c1;
+          color: $c1;
+          background-color: $c2;
+        }
+      }
+    }
+  }
+
+  &__wrapper {
+    width: 100%;
+    height: var(--editor-wrapper-h);
+    display: flex;
+    flex-flow: row nowrap;
+    padding: var(--editor-wrapper-pd);
+
+    @include phone {
+      flex-flow: column nowrap;
+    }
+
+    &__meta {
+      height: 100%;
+      flex: 1 0 15%;
+
+      &__list {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-flow: column nowrap;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        list-style: none;
+
+        &__item {
+          width: 100%;
+          height: var(--editor-item-h);
+          background-color: #ffffff;
+          margin-bottom: var(--editor-item-mb);
+
+          &__label {
+            display: flex;
+            flex-flow: column nowrap;
+            width: 100%;
+            height: 100%;
+            // padding: 5%;
+            font-size: var(--editor-item-fs);
+            text-align: center;
+            line-height: calc(
+              var(--editor-item-h) / 2
+            );
+
+            &__input {
+              $w: 70%;
+              width: $w;
+              height: calc(var(--editor-item-fs) * 1.5);
+              margin: auto (100% - $w) / 2;
+              padding: 0 2%;
+            }
+          }
+        }
+      }
+    }
+
+    &__main {
+      flex: 1 0 60%;
+      height: 100%;
+      padding-left: var(--editor-main-pd);
+
+      @include phone {
+        height: 60vh;
+      }
+
+      &__editor {
+        width: 100%;
+        height: 100%;
+        font-size: fluid-typo(1rem, 2rem, 400px, 1920px);
+        font-family: "Fira Sans", "Verdana", "Geneva", sans-serif;
+        resize: none;
+        appearance: none;
+        -webkit-appearance: none;
+        border: none;
+        padding: 2%;
+      }
+    }
+  }
+}

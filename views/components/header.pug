@@ -9,7 +9,7 @@ header.slider
         li.bookmark__pages__item
           h2.bookmark__title #{slide.title}
           p.bookmark__desc #{slide.desc}
-          a.bookmark__btn.bookmark__btn--slider Read more
+          a.bookmark__btn.bookmark__btn--slider(href= `${home}/posts/${slide._id}`) Read more
           div.bookmark__shape
 
   // button.slider__btn.slider__btn--prev <

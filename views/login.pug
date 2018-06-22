@@ -1,7 +1,7 @@
 extends layout
 
 block head
-  link(rel="stylesheet", href="../css/signform.css")
+  link(rel="stylesheet", href="/css/signform.css")
 
 block content
   main.bookmark
@@ -18,4 +18,6 @@ block content
         label(for="vis").bookmark__form__field__label show password
       input#submit(type="submit", value="login", disabled).bookmark__btn
     div.bookmark__shape
+    span.bookmark__text Don't have an account? 
+      a.bookmark__text--link(href="/register") Register
   script(src="../js/login.js", defer)

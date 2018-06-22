@@ -19,8 +19,9 @@
   grid-template-areas: "settings" "content";
   grid-row-gap: calc( var(--main-list-gap) * 0.6 );
   @include phone {
+    width: 100vw;
+
     --main-padding-ver: 0;
-    --main-padding-hor: 0;
     --search-settings-height: 12vh;
   }
 

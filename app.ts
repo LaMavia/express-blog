@@ -19,7 +19,11 @@ import login from "./routes/login"
 import register from "./routes/register"
 import logout from "./routes/logout"
 import user from "./routes/user"
+
+// Panel routes
 import panel from "./routes/panel"
+import panel_editor from "./routes/panel_editor"
+import post_preview from "./api/post/post_preview"
 
 // APIRoutes
 import posts from "./api/get/posts"
@@ -35,7 +39,7 @@ import Shadow from "./ShadowMS/index"
 const middleware = [
 	favicon(path.join(__dirname, "public", "favicon.ico")),
 	// logger("dev"),
-	bodyParser.json(),
+	bodyParser.json({limit: '3mb'}),
 	bodyParser.urlencoded({ extended: false }),
 	cookieParser(),
 	sassMiddleware({
@@ -63,14 +67,16 @@ const routes: iShadow.Route[] = [
 	register,
 	logout,
 	user,
-	panel 
+	panel,
+	panel_editor 
 ]
 const apiRoutes: iShadow.APIRoute[] = [
 	posts,
 	AddPost,
 	AddUser,
 	APILogin,
-	GetUser
+	GetUser,
+	post_preview
 ]
 const catchHandler = (err => new Error(err))
 const app = new Shadow(3000, db, schemas, middleware, routes, apiRoutes, catchHandler)

@@ -7,57 +7,9 @@
   --title-color: #2c2c2c;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
-html, body {
-  width: 100vw;
-  height: auto;
-  min-height: 100vh;
-  background-color: var(--main-bg);
-  overflow-x: hidden;
-}
-
-.root, .main {
-  overflow-x: hidden;
-}
-
-.main__posts__item__link:hover {
-  text-decoration: none;
-}
-
-.main__posts__item__link__article {
-  &__btns {
-    --btn-h: 3vh;
-    margin-top: 3vh;
-    width: 30%;
-    height: var(--btn-h);
-    display: flex;
-    flex-flow: row nowrap;
-    z-index: 200;
-
-    &__btn {
-      --color: #2c2c2c;
-      flex: 1 0 10%;
-      height: 100%;
-      line-height: var(--btn-h);
-      text-align: center;
-      border: none;
-      background-color: var(--color);
-      font-size: calc(var(--btn-h) / 2.5);
-
-      &--green {--color: #2ECC40;}
-      &--red {--color: #FF4136;}
-      &--white{--color: #ffffff;color: #2c2c2c;}
-    }
-  }
-}
-
-
-// @import "./panel/nav.scss";
+@import "./components/wrapper";
+@import "./components/nav.scss";
 // @import "./panel/index.scss";
-@import "./panel/postEditor.scss";
+@import "./panel/editor.scss";
 @import "./components/posts.scss";

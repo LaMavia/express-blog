@@ -35,27 +35,31 @@ body {
 	position: absolute;
 	left: 0;
 	top: 0;
-	// transform: translateZ(-1px) scale(2);
 	width: 100vw;
 	height: var(--post-header-height);
 	overflow: hidden;
-	@include phone {
+	@include phone {	
 	}
+
 	&__img {
 		min-height: 100%;
 		transform-origin: center;
+		transform: translateX(-50%);
 		@include chrome {
-			transform: translateZ(-1px) scale(2); 
+			transform: translateZ(-1px) scale(2) translateX(-25%); 
 		}
 		// max-height: 120vh;
 		width: auto;
 		position: absolute;
 		// top: 50%;
-		// left: 50%;
+		left: 50%;
 		z-index: -1;
 		overflow: hidden;
 		@include phone {
-			transform: translateZ(-1px) translate(-35.5%, -27.5%) scale(2); 
+			transform: translate(-35.5%, -27.5%); 
+			@include chrome {
+				transform: translate(-35.5%, -27.5%) translateZ(-1px) scale(2); 
+			}
 		}
 	}
 
@@ -84,28 +88,25 @@ body {
 		@include phone {
 			font-size: 2.4rem;
 			padding: 5%;
+			transform: translate(-50%, -50%);
 		}
 	}
 
 	&__author {
 		position: absolute;
-		left: 50%;
-		bottom: 10%;
-		transform: translate(-50%, -50%);
-		@include chrome {
-			transform: translate(-50%, -50%) translateZ(-1px) scale(1.7);
-		}
+		left: 0;
+		bottom: 0;
 		width: auto;
 		height: var(--post-header-author-height);
 		display: flex;
-		flex-flow: column nowrap;
+		flex-flow: row nowrap;
 		text-decoration: none;
 		z-index: 42343;
 
 		&__img {
 			width: var(--post-header-author-img-size);
 			height: var(--post-header-author-img-size);
-			margin: 0 auto;
+			margin: 0 1vh;
 			border-radius: 50%;
 			box-shadow: .1px 1.4px 2px 0px rgba(21,21,21,0.7);
 		}
@@ -114,7 +115,7 @@ body {
 			font-size: calc( var(--post-header-author-height) / 3 );
 			color: #ffffff;
 			text-align: center;
-			// line-height: var(--post-header-author-height);
+			line-height: calc(var(--post-header-author-height)/ 1.2);
 			font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 			font-weight: 300;
 			text-shadow: .1px 1.4px 2px rgba(21,21,21,0.7);
@@ -130,6 +131,9 @@ body {
 	height: auto;
 	white-space: pre-line;
 	width: 35em;
+	@include phone {
+		padding: 0 4%;
+	}
 
 	&::before {
 		content: "";

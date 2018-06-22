@@ -1,17 +1,9 @@
-doctype html
-html(lang="en")
-  head
-    meta(charset="UTF-8")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    meta(http-equiv="X-UA-Compatible", content="ie=edge")
-    title Panel
-    link(rel="stylesheet", href="/css/bootstrap.min.css")
-    link(rel="stylesheet", href="/css/panel.css")
+extends ../layout
 
-  body
-    div#root.root
+block head
+  link(rel="stylesheet", href="/css/panel.css")
 
-    input#id(type="hidden", name="id", value= userID)
-    script(src="https://pugjs.org/js/pug.js")
-    script(src="/js/panel/generic.js", charset="UTF-8")
-    script(src="/js/panel/panel_bundle.js")
+block content
+  block panelContent
+
+  script(src="/js/panel/index.js", defer)

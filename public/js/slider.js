@@ -6,12 +6,13 @@ class Slider {
 	 * @param imgs {Element[]} 
 	 * @param articles {Element[]} 
 	 */
-	constructor(header, imgs, articles) {
+	constructor(header, imgs, articles, time) {
 		this.header = header
 		this.imgs = imgs
 		this.articles = articles
 		this.n = 0
-		this.timeout = setInterval(this.change.bind(this), 3000)
+		this.time = time
+		this.timeout = setInterval(this.change.bind(this), this.time)
 	}
 
 	change() {

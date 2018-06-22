@@ -12,8 +12,10 @@
 		transform .4s 0s linear
 	;
 	--bookmark-w: 26em;
-	--bookmark-c: #1C1C1C;
-	--bookmark-title-c: #EEEEEE;
+	// --bookmark-c: #1C1C1C;
+	--bookmark-c: #ffffff;
+	// --bookmark-title-c: #EEEEEE;
+	--bookmark-title-c: #2a2a2a;
 	--bookmark-title-mb: 20%;
 	--bookmark-shape-r: 10%;
 	--bookmark-shape-b: -40%;
@@ -25,16 +27,28 @@
 	--bookmark-form-box-s: 1rem;
 }
 
+@include phone {
+	:root {
+		--bookmark-w: 20rem;
+		--bookmark-c: rgba(10,10,10,0.7);
+		--header-img-w: 100vw;
+	}
+}
+
 .slider {
-	width: 100vw;
+	width: 100%;
 	height: 100vh;
 	position: relative;
+	@include phone {
+		height: 90vh;
+	}
 
 	&__imgs {
 		position: absolute;
 		left: 0;
 		top: 0;
 		width: auto;
+		min-width: 100vw;
 		height: inherit;
 		display: flex;
 		flex-flow: row nowrap;
@@ -45,13 +59,19 @@
 		transition: var(--header-trans);
 
 		&__item {
+			position: relative;
 			width: var(--header-img-w);
-			height: inherit;
+			min-height: 100%;
 			overflow: hidden;
 
 			&__img {
-				object-fit: fill;
-				height: 100vh;
+				min-height: 100vh;
+				max-height: 120%;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				min-width: 100%;	
 				width: auto;
 			}
 		}
@@ -72,6 +92,7 @@
 			position: relative;
 			width: var(--bookmark-w);
 			height: 100%;
+			overflow: hidden;
 		}
 
 		.bookmark__btn--slider {
@@ -82,214 +103,3 @@
 		}
 	}
 }
-
-
-
-
-
-
-
-
-
-/*
-
-.slider {
-	--w: calc(100vw - var(--nav-w));
-	width: var(--w);
-	max-width: 100vw;
-	height: 100vh;
-	z-index: 10;
-	overflow: hidden;
-	position: relative;
-
-	&__btn {
-		position: absolute;
-		top: 0;
-		width: 5rem;
-		height: 100vh;
-		background-color: transparent;
-		border: none;
-		color: #cccccc;
-		line-height: 100vh;
-		font-size: 4rem;
-		font-weight: 1;
-		text-align: center;
-
-		&:focus {
-			outline: none;
-		}
-		&:hover {
-			color: #ffffff;
-			cursor: pointer;
-		}
-		&--prev {
-			left: 0;
-		}
-		&--next {
-			left: calc(var(--w) - 5rem);
-		}
-	}
-
-	&__slides {
-		--speed: 0.2s;
-		--translate: 0vw;
-		overflow: hidden;
-		position: absolute;
-		left: 0;
-		top: 0;
-		display: flex;
-		flex-flow: row nowrap;
-		width: auto;
-		height: 100%;
-		transform: translateX(var(--translate));
-		transition: transform var(--speed) 0s ease-in-out;
-		// backface-visibility: hidden;
-		text-rendering: geometricPrecision;
-
-		&__item {
-			--img: url("https://loremflickr.com/1280/720");
-			width: var(--w);
-			height: 100%;
-			display: grid;
-			grid-template: repeat(10, 1fr) / repeat(10, 1fr);
-			background: var(--img) center center no-repeat;
-			box-shadow: inset 0 -2vh 6vh 2vh rgba(#1e1e1e, 1);
-			background-size: cover;
-			background-color: $deep_black;
-			overflow: hidden;
-			position: relative;
-
-			&:nth-of-type(3n) {
-				background-color: #2c2c2c;
-			}
-			&:nth-of-type(2n) {
-				background-color: $violet;
-			}
-
-			&__line {
-				position: absolute;
-				left: 50%;
-				top: 50%;
-				transform: translate(-50%, -50%);
-				width: floor(100vw / 5);
-				height: 5px;
-				background-color: #ffffff;
-			}
-
-			&__title {
-				grid-row: 3 / 6;
-				grid-column: 1 / -1;
-				width: auto;
-				height: auto;
-				max-height: 100%;
-				margin: auto;
-				color: #ffffff;
-				font-size: floor(100vh / 9);
-				font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-				line-height: 1;
-				// line-height: floor(100vh / 3.5);
-				vertical-align: middle;
-				text-align: center;
-				text-transform: capitalize;
-				text-shadow: .1px 2px 2px rgba(21,21,21,0.7);		
-				white-space: pre-line;
-				overflow: hidden;
-				font-weight: 300;
-
-				@include phone {
-					font-size: 13vw;
-					padding: 2%;
-				}
-			}
-
-			&__desc {
-				grid-row: 6 / 7;
-				grid-column: 4 / 8;
-				text-align: center;
-				// line-height: 10vh;
-				color: #ffffff;
-				font-size: 1.3rem;
-				text-shadow: 0 0 1px rgba(21, 21, 21, 0.7);
-				overflow: hidden;
-				white-space: pre-line;
-				padding: 5% 0;
-				line-height: 1;
-				@include phone {
-					grid-row: 6 / 8;
-					grid-column: 3 / 9;
-					padding-top: 15%;
-					vertical-align: baseline;
-					width: auto;
-					height: auto;
-				}
-			}
-
-			&__link {
-				$height: 60%;
-				$p_height: 80%;
-				display: block;
-				width: 60%;
-				height: $height;
-				margin: auto;
-				grid-row: 7 / 8;
-				grid-column: 5 / 7;
-				text-align: center;
-				color: #ffffff;
-				border: 3px solid #ffffff;
-				line-height: calc(100vh / 18);
-				font-size: 1.3rem;
-				text-decoration: none;
-				text-transform: uppercase;
-				overflow: hidden;
-
-				@include phone {
-					--h: calc(100vh / 12);
-					grid-row: 8 / 9;
-					grid-column: 1 / 11;
-					height: var(--h);
-					line-height: var(--h);
-				}
-			}
-		}
-	}
-
-	&__btns {
-		position: absolute;
-		left: 50%;
-		bottom: 4%;
-		transform: translateX(-50%);
-		display: flex;
-		flex-flow: row nowrap;
-
-		&__item {
-			$pdd: 0.6vw;
-			$width: (2vw - $pdd);
-
-			display: block;
-			width: $width;
-			margin: 0 $pdd;
-			height: 6px;
-			position: relative;
-			overflow: hidden;
-
-			&__btn {
-				width: $width;
-				height: $width;
-				position: absolute;
-				top: 50%;
-				left: 50%;
-				transform: translate(-50%, -50%);
-				box-shadow: inset 0 0 100vh #aaaaaa;
-				cursor: pointer;
-
-				&:checked {
-					background-color: #ffffff;
-					color: #ffffff;
-					box-shadow: inset 0 0 100vh #ffffff;
-					content: "\9632";
-				}
-			}
-		}
-	}
-}
-*/

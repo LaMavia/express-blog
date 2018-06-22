@@ -1,8 +1,13 @@
-@function threeD($color) {
-	@return 1px 1px 0.5px $color, 2px 2px 0.5px darken($color, 10%),
-		3px 3px 0.5px darken($color, 30%);
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+
+  @return $number;
 }
 
-@mixin nthAlphabet() {
-	
+@function fluid-typo(
+	$min, $max, $min_vp, $max_vp
+) {
+	@return calc(#{$min} + (#{strip-unit($max - $min)}) * ((100vw - #{$min_vp}) / (#{strip-unit($max_vp - $min_vp)})));
 }

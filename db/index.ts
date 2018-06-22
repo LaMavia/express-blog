@@ -6,10 +6,10 @@ import User from "./schemas/User"
 
 const dbLink = String(process.env["DB_LINK"])
 // Setting up MongoDB
+console.info("🕕 Connecting to the Database")
 mongoose
 	.connect(dbLink)
-	.then(() => console.info("Connected"))
-	.catch(err => console.error(err))
+	.then(() => {console.info("✔️ Connected to the Database")})
 const db = mongoose.connection
 
 export default db

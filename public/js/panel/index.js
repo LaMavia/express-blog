@@ -1,0 +1,3 @@
+(() => {
+  const myNav = new Nav()
+})()

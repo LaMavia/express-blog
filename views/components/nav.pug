@@ -1,33 +1,3 @@
-// mixin item(name, href)
-//   li.nav__pages__item
-//     a.nav__pages__item__link(href= href) #{name}
-// 
-// nav.nav.nav--static#nav
-//   button.nav__burger#burger
-//     include ../../public/svg/menu.svg
-//   h1.nav__logo
-//     a.nav__logo__link(href= home) #{title}
-//   form.nav__search#search(action="")
-//     input.nav__search__input(type="search", name="filter", value= filter ? filter : "", // placeholder="Search")
-//     button.nav__search__submit(type="submit") 
-//       include ../../public/svg/search.svg
-//   ul.nav__pages
-//     each page in pages
-//       +item(page.Name, page.Href)
-//   section.nav__user
-//     if user
-//       a.nav__user__name(
-//         href=`${home}/users/${String(user._id)}`,
-//         title="Visit your profile!"
-//       )= user.Name
-//       a.nav__user__logout(
-//         href=`${home}/logout`,
-//       ) logout
-//     else
-//       a.nav__user__login(href=`${home}/login`) login
-//     
-//       
-
 mixin Item--link(text, href)
   li.nav__under__block__list__item
     a.nav__under__block__list__item__link(href= href) #{text}
@@ -70,9 +40,11 @@ nav.nav
   ul.nav__under
     li#menu.nav__under__block
       ul.nav__under__block__list
-        +Item--link("Home", home)
-        +Item--link("Home", home)
-        +Item--link("Home, but longer", home)
+        // +Item--link("Home", home)
+        // +Item--link("Home", home)
+        // +Item--link("Home, but longer", home)
+        for item in pages
+          +Item--link(item.Name, item.Href)
     li#user.nav__under__block
       ul.nav__under__block__list
         if user
@@ -81,7 +53,7 @@ nav.nav
               include ../../public/svg/maticons/arrow-right.svg
         else 
           +Item--link("Login", `${home}/login`)
-          +Item--link("Register", `${home}/login`)
+          +Item--link("Register", `${home}/register`)
         
 
 

@@ -34,8 +34,9 @@
 		font-weight: lighter;
 		margin: 5vh auto 2vh auto;
 		@include phone {
-			width: 50%;
+			width: 80%;
 			height: auto;
+			font-size: 1.5rem;
 		}
 
 		&::before,

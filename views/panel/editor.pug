@@ -1,0 +1,40 @@
+extends ./index
+
+
+block panelContent
+  form.editor#editor
+    ul.editor__btns
+      li.editor__btns__item
+        a(href= home).editor__btns__item__btn exit
+      li.editor__btns__item
+        input(type="submit", value="preview")#preview.editor__btns__item__btn 
+      li.editor__btns__item
+        input(type="submit", value="post").editor__btns__item__btn
+      li.editor__btns__item
+        a(href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet", target="_blank").editor__btns__item__btn Formatting
+    div.editor__wrapper
+      aside.editor__wrapper__meta
+        ul.editor__wrapper__meta__list
+
+          li.editor__wrapper__meta__list__item
+            label(for="title").editor__wrapper__meta__list__item__label Title
+              input#title(type="text", name="title", placeholder="title").editor__wrapper__meta__list__item__label__input
+
+          li.editor__wrapper__meta__list__item
+            label(for="tags").editor__wrapper__meta__list__item__label Tags
+              input#tags(type="text", name="tags", placeholder="tags separeted with ,").editor__wrapper__meta__list__item__label__input
+
+          li.editor__wrapper__meta__list__item
+            label(for="desc").editor__wrapper__meta__list__item__label Description
+              input#desc(type="text", name="desc", placeholder="description").editor__wrapper__meta__list__item__label__input
+
+          li.editor__wrapper__meta__list__item
+            label(for="img").editor__wrapper__meta__list__item__label Image
+              input#img(type="file", name="img", accept="image/*").editor__wrapper__meta__list__item__label__input.editor__wrapper__meta__list__item__label__input--file
+
+
+      main.editor__wrapper__main
+        textarea#body(name="body").editor__wrapper__main__editor
+
+  script(src="/js/panel/editor.js")
+    

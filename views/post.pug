@@ -11,7 +11,7 @@ html(lang="en")
     include ./components/nav
     div.wrapper#wrapper
       header.header
-        img.header__img(src= `${/https?/g.test(post.Img) ? post.Img : `../${post.Img}`}`, alt="")
+        img.header__img(src= post.Img && post.Img.length > 1 ? `${/https?/g.test(post.Img) ? post.Img : (/data:.*/.test(post.Img) ? post.Img : `../${post.Img}`)}` : "/images/PH/man-l.jpeg", alt="")
         h1.header__title #{post.Title}
         if author
           a.header__author(href=`${home}/users/${String(author._id)}`)
@@ -23,7 +23,7 @@ html(lang="en")
       main.post !{post.Body}
     div.progress
       div.progress__bar#progressBar
-    script(src="../js/post.js" defer)
+    script(src="/js/post.js" defer)
 
 
 // extends layout

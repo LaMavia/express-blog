@@ -25,7 +25,7 @@ const handlerConstructor = (Shadow: iShadow.App) =>
 		}))
 
 		const posts: any[] = data["Post"].map(formatDate)
-		const pinnedList: any[] = randomItems(posts, 3)
+		const pinnedList: any[] = randomItems(posts, 5)
 		
 
 		res.render("index", {

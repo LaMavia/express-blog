@@ -17,8 +17,8 @@ const handlerConstruct = (Shadow: iShadow.App) =>
         String(user._id) === id
       )
     if(isAdmin) {
-      res.render("panel", {
-        title: "Express",
+      res.render("panel/editor", {
+        title: "Express -> Editor",
 				home: Shadow.data.origin,
         user: userRenderProps(req.cookies["UserID"], Shadow.data["User"]),
         pages: formatPages(Shadow.data, "NavPage"),
@@ -29,5 +29,5 @@ const handlerConstruct = (Shadow: iShadow.App) =>
     }
   })
 
-export default new Route("/panel/", handlerConstruct)
+export default new Route("/panel/editor", handlerConstruct)
 
