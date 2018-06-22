@@ -6,9 +6,9 @@
     "pretty": true,
     "strict": true,
     "sourceMap": true,
-    "inlineSourceMap": true,
     "inlineSources": true,
     "noUnusedLocals": true,
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "noEmit": true
   }
 }

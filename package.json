@@ -28,6 +28,7 @@
     "awesome-typescript-loader": "^5.0.0",
     "axios": "^0.18.0",
     "babel": "^6.23.0",
+    "bcrypt": "^2.0.1",
     "body-parser": "~1.18.2",
     "compression": "^1.7.2",
     "concurrently": "^3.5.1",
