@@ -16,10 +16,6 @@ declare namespace Models {
     Href: string
   } interface NavPage extends INavPage, mongoose.Document {}
 
-  interface Img {
-    data: Buffer
-    contentType: string
-  }
   interface IUser {
     Login: string
     Password: string // hashed using bcrypt
@@ -28,9 +24,11 @@ declare namespace Models {
     Name: string // Both firstname and lastname
     Desc: string
     BirthDate: string // YYYY MM DD
-    Img: Img
+    Img: string
     Type: string // User / Admin
-  } interface User extends IUser, mongoose.Document {}
+  } interface User extends IUser, mongoose.Document {
+    _id: string
+  }
 }
 
 export default Models

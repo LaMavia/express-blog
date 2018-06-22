@@ -30,13 +30,14 @@ const fillUser = async (user: Models.IUser): Models.IUser => {
   let img: string
   let temp: Models.IUser
 
+  // @ts-ignore
   const fill = (img: string = ""): Models.IUser => ({
     ...user,
     Desc: user.Desc || "I'm just a placeholder awaiting my master.",
     Img: user.Img || img,
     Type: user.Type || "User",
     BirthDate: user.BirthDate || "2018 05 26"
-  }) 
+  }) as Models.IUser 
 
   if(!user.Img) {
     await fs.readFile(_path.resolve(__dirname, "../../DEV/PH_Img.txt"))
