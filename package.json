@@ -15,7 +15,7 @@
     "webpack": "webpack -w",
     "shadow": "tsc -p . -w",
     "_shadow": "tsc ./ShadowMS/index --target ES2016 --strict -w --pretty --module commonjs",
-    "postinstall": "tsc"
+    "postinstall": "tsc ./app -t ES2015 -m commonjs"
   },
   "browserslist": [
     "> 1%",
